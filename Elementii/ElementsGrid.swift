@@ -5,7 +5,6 @@
 //  Created by Petar Vidakovic on 2025-03-01.
 //
 
-
 import SwiftUI
 
 struct ElementsGrid: View {

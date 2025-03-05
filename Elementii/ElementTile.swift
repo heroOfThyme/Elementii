@@ -5,39 +5,43 @@
 //  Created by Petar Vidakovic on 2025-03-01.
 //
 
-
 import SwiftUI
 
 struct ElementTile: View {
     let element: Element
     
     var body: some View {
-        VStack {
-            Spacer()
-            
-            Text(String(element.atomicNumber))
-                .font(.system(size: 12, weight: .bold))
+        VStack(spacing: 1) {
+            // Atomic number
+            Text("\(element.atomicNumber)")
+                .font(.system(size: 10))
                 .foregroundColor(.white)
+                .frame(maxWidth: .infinity, alignment: .center)
             
-            Spacer()
-            
+            // Element symbol
             Text(element.symbol)
-                .font(.system(size: 18, weight: .bold))
+                .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.white)
-                .lineLimit(1)
+                .frame(height: 26)
             
-            Spacer()
-            
+            // Element name
             Text(element.name)
-                .font(.system(size: 10, weight: .bold))
+                .font(.system(size: 9))
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
                 .foregroundColor(.white)
-                .lineLimit(2)
-                .multilineTextAlignment(.center)
             
-            Spacer()
+            // Atomic weight
+            Text(String(format: "%.3f", element.atomicWeight))
+                .font(.system(size: 9))
+                .foregroundColor(.white.opacity(0.9))
+                .padding(.top, 2)
         }
+        .padding(4)
         .frame(width: 78, height: 94)
-        .background(Color(element.categoryColor))
-        .cornerRadius(10)
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .fill(element.categoryColor)
+        )
     }
 }

@@ -9,9 +9,10 @@ import SwiftUI
 
 struct PeriodicGridView: View {
     let elements: [Element] = Bundle.main.decode("elements.json")
-    @State private var showLegendModal = false
-    @State private var showCategoriesModal = false
-    @State private var selectedCategory: String? = nil // Track the selected category
+    @State private var showLegendPopover = false
+    @State private var showCategoriesPopover = false
+    @State private var selectedCategory: String? = nil
+    @State private var offset = CGPoint.zero
     
     // List of element categories
     let categories = [
@@ -20,143 +21,115 @@ struct PeriodicGridView: View {
         "Post-Transition Metal", "Transition Metal"
     ]
     
-    @State private var offset = CGPoint.zero // Track scroll offset
-    
     var body: some View {
         VStack(spacing: 0) {
-            // Toolbar with Icons
+            // Top toolbar with legend and categories buttons
             HStack {
-                // Categories Icon
                 Button(action: {
-                    showCategoriesModal = true
+                    showCategoriesPopover = true
                 }) {
-                    Image(systemName: "square.grid.2x2.fill")
-                        .font(.headline)
-                        .padding()
-                        .background(Color.blue.opacity(0.1))
-                        .cornerRadius(10)
+                    Label("Categories", systemImage: "square.grid.2x2.fill")
+                        .font(.subheadline)
+                        .padding(8)
+                        .background(Color.secondary.opacity(0.1))
+                        .cornerRadius(8)
                 }
-                .sheet(isPresented: $showCategoriesModal) {
-                    CategoriesModalView(categories: categories, selectedCategory: $selectedCategory)
+                .popover(isPresented: $showCategoriesPopover, arrowEdge: .top) {
+                    CategoriesPopoverView(categories: categories, selectedCategory: $selectedCategory)
+                        .presentationCompactAdaptation(.popover)
+                        .frame(width: 300, height: 400)
                 }
                 
                 Spacer()
                 
-                // Legend Icon
                 Button(action: {
-                    showLegendModal = true
+                    showLegendPopover = true
                 }) {
-                    Image(systemName: "info.circle.fill")
-                        .font(.headline)
-                        .padding()
-                        .background(Color.blue.opacity(0.1))
-                        .cornerRadius(10)
+                    Label("Legend", systemImage: "info.circle.fill")
+                        .font(.subheadline)
+                        .padding(8)
+                        .background(Color.secondary.opacity(0.1))
+                        .cornerRadius(8)
                 }
-                .sheet(isPresented: $showLegendModal) {
-                    LegendModalView(showLegendModal: $showLegendModal)
+                .popover(isPresented: $showLegendPopover, arrowEdge: .top) {
+                    LegendPopoverView()
+                        .presentationCompactAdaptation(.popover)
+                        .frame(width: 300, height: 400)
                 }
             }
-            .padding(.horizontal)
-            .padding(.top, 8)
+            .padding()
             
-            // Periodic Table Grid
-            ZStack(alignment: .topLeading) {
-                // Column Headers
-                HStack(spacing: 8) {
-                    // Empty space for the row headers
-                    RoundedRectangle(cornerRadius: 8)
-                        .frame(width: 36, height: 36)
-                        .foregroundStyle(Color.clear)
-                    
-                    // Column numbers
-                    ForEach(1..<19) { group in
-                        RoundedRectangle(cornerRadius: 8)
-                            .strokeBorder(Color.gray.opacity(0.3), lineWidth: 2)
-                            .frame(width: 78, height: 36)
-                            .overlay {
-                                Text("\(group)")
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                            }
-                    }
-                }
-                .padding(.leading, 52) // Adjust for row headers
-                .background(Theme.background) // Match background color
-                .zIndex(1) // Ensure headers are above the scrollable content
+            // Main periodic table
+            periodicTable
+        }
+        .navigationTitle("Periodic Table of Elements")
+        .background(Theme.background)
+    }
+    
+    // Main periodic table implementation
+    private var periodicTable: some View {
+        HStack(alignment: .top, spacing: 8) {
+            // Row headers column
+            VStack(alignment: .leading, spacing: 8) {
+                // Origin tile (empty top-left corner)
+                originTile
                 
-                // Row Headers
-                VStack(spacing: 8) {
-                    // Empty space for the column headers
-                    RoundedRectangle(cornerRadius: 8)
-                        .frame(width: 36, height: 36)
-                        .foregroundStyle(Color.clear)
-                    
-                    // Row numbers
-                    ForEach(1..<10) { row in
-                        RoundedRectangle(cornerRadius: 8)
-                            .strokeBorder(Color.gray.opacity(0.3), lineWidth: 2)
-                            .frame(width: 36, height: 94)
-                            .overlay {
-                                Text(row == 8 ? "L" : row == 9 ? "A" : "\(row)")
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                            }
+                // Row headers
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        ForEach(1..<10) { row in
+                            rowHeaderTile(row: row)
+                                .padding(.top, row == 8 ? 16 : 0)
+                        }
                     }
+                    .offset(y: offset.y)
                 }
-                .padding(.top, 44) // Adjust for column headers
-                .background(Theme.background) // Match background color
-                .zIndex(1) // Ensure headers are above the scrollable content
+                .disabled(true)
+            }
+            
+            // Column headers and element grid
+            VStack(alignment: .leading, spacing: 8) {
+                // Column headers
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(alignment: .top, spacing: 8) {
+                        ForEach(1..<19) { group in
+                            groupHeaderTile(group: group)
+                        }
+                    }
+                    .offset(x: offset.x)
+                }
+                .disabled(true)
                 
-                // Scrollable Tiles
+                // Scrollable element grid
                 ScrollView([.horizontal, .vertical], showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 8) {
                         ForEach(1..<10) { row in
                             HStack(alignment: .top, spacing: 8) {
                                 ForEach(1..<19) { group in
-                                    if row == 6 && group == 3 {
-                                        // Lanthanides Tile
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .frame(width: 78, height: 94)
-                                            .foregroundStyle(Color.secondary.opacity(0.1))
-                                            .overlay {
-                                                Text("57-71")
-                                                    .font(.headline)
-                                                    .foregroundColor(.gray)
-                                            }
-                                    } else if row == 7 && group == 3 {
-                                        // Actinides Tile
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .frame(width: 78, height: 94)
-                                            .foregroundStyle(Color.secondary.opacity(0.1))
-                                            .overlay {
-                                                Text("89-103")
-                                                    .font(.headline)
-                                                    .foregroundColor(.gray)
-                                            }
+                                    if row == 8 && group == 3 {
+                                        // Lanthanides reference cell
+                                        referenceCell(text: "57-71", color: Color("Lanthanide"))
+                                    } else if row == 9 && group == 3 {
+                                        // Actinides reference cell
+                                        referenceCell(text: "89-103", color: Color("Actinide"))
+                                    } else if let element = elements.first(where: {
+                                        $0.position.x == group && $0.position.y == row
+                                    }) {
+                                        // Element tile
+                                        elementTile(for: element)
                                     } else {
-                                        // Element Tile
-                                        if let element = elements.first(where: { $0.position.x == group && $0.position.y == row }) {
-                                            NavigationLink(destination: ElementDetailView(element: element)) {
-                                                ElementTile(element: element)
-                                                    .opacity(selectedCategory == nil || element.category == selectedCategory ? 1 : 0.3) // Dim non-matching categories
-                                            }
-                                        } else {
-                                            // Empty Tile
-                                            RoundedRectangle(cornerRadius: 8)
-                                                .frame(width: 78, height: 94)
-                                                .foregroundStyle(Color.clear)
-                                        }
+                                        // Empty space
+                                        emptyTile
                                     }
                                 }
                             }
-                            .padding(.leading, 52) // Adjust for row headers
                             .padding(.top, row == 8 ? 16 : 0)
                         }
                     }
-                    .padding(.top, 44) // Adjust for column headers
                     .background(GeometryReader { geo in
                         Color.clear
-                            .preference(key: ViewOffsetKey.self, value: geo.frame(in: .named("scroll")).origin)
+                            .preference(key: ViewOffsetKey.self,
+                                        value: geo.frame(in: .named("scroll")).origin)
                     })
                     .onPreferenceChange(ViewOffsetKey.self) { value in
                         offset = value
@@ -164,87 +137,250 @@ struct PeriodicGridView: View {
                 }
                 .coordinateSpace(name: "scroll")
             }
-            .padding(.top, 8)
         }
-        .navigationTitle("The Periodic Table of Elements")
-        .background(Theme.background)
+        .padding(.leading, 16)
+        .padding(.top, 8)
     }
-}
-
-// Category Label Component
-struct CategoryLabel: View {
-    let category: String
     
-    var body: some View {
-        HStack {
-            Circle()
-                .fill(Color(category)) // Use the color from Assets
-                .frame(width: 20, height: 20)
-            Text(category)
-                .font(.subheadline)
-                .lineLimit(1) // Ensure text fits in one line
-        }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 10)
-        .background(Color.gray.opacity(0.1))
-        .cornerRadius(10)
+    // Origin tile (top-left corner)
+    private var originTile: some View {
+        RoundedRectangle(cornerRadius: 8)
+            .frame(width: 36, height: 36)
+            .foregroundStyle(Color.secondary.opacity(0.1))
     }
-}
-
-// Legend Modal Component
-struct LegendModalView: View {
-    @Binding var showLegendModal: Bool
     
-    var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    // Title
-                    Text("How to Read the Periodic Table")
-                        .font(.largeTitle)
-                        .bold()
-                        .padding(.bottom, 10)
-                    
-                    // Introduction
-                    Text("The periodic table organizes elements based on their atomic number, electron configuration, and recurring chemical properties. Here's a quick guide to understanding it:")
-                        .font(.body)
-                        .padding(.bottom, 10)
-                    
-                    // Sections
-                    VStack(alignment: .leading, spacing: 15) {
-                        // Groups and Periods
-                        Text("1. **Groups and Periods**")
-                            .font(.title2)
-                            .bold()
-                        Text("Elements are arranged in **18 vertical columns (groups)** and **7 horizontal rows (periods)**. Groups share similar chemical properties, while periods represent the number of electron shells.")
-                            .font(.body)
-                        
-                        // Categories
-                        Text("2. **Element Categories**")
-                            .font(.title2)
-                            .bold()
-                        Text("Elements are color-coded based on their categories:")
-                            .font(.body)
-                        CategoryLabel(category: "Actinide")
-                        CategoryLabel(category: "Alkali Metal")
-                        CategoryLabel(category: "Alkaline Earth Metal")
-                        CategoryLabel(category: "Halogen")
-                        CategoryLabel(category: "Lanthanide")
-                        CategoryLabel(category: "Metalloid")
-                        CategoryLabel(category: "Noble Gas")
-                        CategoryLabel(category: "Nonmetal")
-                        CategoryLabel(category: "Post-Transition Metal")
-                        CategoryLabel(category: "Transition Metal")
-                    }
-                    .padding()
-                }
-                .padding()
+    // Column header tile
+    private func groupHeaderTile(group: Int) -> some View {
+        RoundedRectangle(cornerRadius: 8)
+            .strokeBorder(Color.secondary.opacity(0.2), lineWidth: 2)
+            .frame(width: 78, height: 36)
+            .overlay {
+                Text(group.romanNumeral)
+                    .foregroundStyle(Color.secondary)
             }
-            .navigationTitle("Legend")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
-                        showLegendModal = false
+    }
+    
+    // Row header tile
+    private func rowHeaderTile(row: Int) -> some View {
+        let rowText = row == 8 ? "L" : row == 9 ? "A" : "\(row)"
+        
+        return RoundedRectangle(cornerRadius: 8)
+            .strokeBorder(Color.secondary.opacity(0.2), lineWidth: 2)
+            .frame(width: 36, height: 94)
+            .overlay {
+                Text(rowText)
+                    .font(.system(size: 20))
+                    .foregroundStyle(Color.secondary)
+            }
+    }
+    
+    // Element tile
+    private func elementTile(for element: Element) -> some View {
+        NavigationLink(destination: ElementDetailView(element: element)) {
+            VStack(spacing: 1) {
+                // Atomic number
+                Text("\(element.atomicNumber)")
+                    .font(.system(size: 10))
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                
+                // Element symbol
+                Text(element.symbol)
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(.white)
+                    .frame(height: 26)
+                
+                // Element name
+                Text(element.name)
+                    .font(.system(size: 9))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                    .foregroundColor(.white)
+                
+                // Atomic weight
+                Text(String(format: "%.3f", element.atomicWeight))
+                    .font(.system(size: 9))
+                    .foregroundColor(.white.opacity(0.9))
+                    .padding(.top, 2)
+            }
+            .padding(4)
+            .frame(width: 78, height: 94)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(getElementColor(element))
+            )
+        }
+    }
+    
+    // Empty tile
+    private var emptyTile: some View {
+        Rectangle()
+            .fill(Color.clear)
+            .frame(width: 78, height: 94)
+    }
+    
+    // Lanthanide/Actinide reference cell
+    private func referenceCell(text: String, color: Color) -> some View {
+        RoundedRectangle(cornerRadius: 8)
+            .frame(width: 78, height: 94)
+            .foregroundStyle(Color.secondary.opacity(0.1))
+            .overlay {
+                VStack {
+                    Spacer()
+                    Text(text)
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundStyle(color)
+                    Spacer()
+                }
+            }
+    }
+    
+    // Determine element color based on filtering
+    private func getElementColor(_ element: Element) -> Color {
+        let matchesCategory = selectedCategory == nil || element.category == selectedCategory
+        
+        // Normal color if matches category filter, dimmed color otherwise
+        return element.categoryColor.opacity(matchesCategory ? 1.0 : 0.3)
+    }
+}
+
+// Extension to convert integer to Roman numeral (for column headers)
+extension Int {
+    var romanNumeral: String {
+        let romanValues = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X",
+                           "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII"]
+        return self <= romanValues.count ? romanValues[self-1] : "\(self)"
+    }
+}
+
+// Legend Popover View
+struct LegendPopoverView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Element Categories")
+                .font(.headline)
+                .padding(.horizontal)
+                .padding(.top)
+            
+            ScrollView {
+                VStack(alignment: .leading, spacing: 8) {
+                    ForEach(["Alkali Metal", "Alkaline Earth Metal", "Transition Metal",
+                             "Post-Transition Metal", "Metalloid", "Nonmetal",
+                             "Halogen", "Noble Gas", "Lanthanide", "Actinide"], id: \.self) { category in
+                        HStack {
+                            Circle()
+                                .fill(Color(category))
+                                .frame(width: 20, height: 20)
+                            
+                            Text(category)
+                                .font(.subheadline)
+                        }
+                        .padding(.horizontal)
+                    }
+                    
+                    Divider()
+                        .padding(.vertical)
+                    
+                    Text("Element Tile Structure")
+                        .font(.headline)
+                        .padding(.horizontal)
+                    
+                    HStack {
+                        // Example element tile
+                        VStack(spacing: 1) {
+                            Text("11")
+                                .font(.system(size: 10))
+                                .foregroundColor(.white)
+                            
+                            Text("Na")
+                                .font(.system(size: 24, weight: .bold))
+                                .foregroundColor(.white)
+                            
+                            Text("Sodium")
+                                .font(.system(size: 9))
+                                .foregroundColor(.white)
+                            
+                            Text("22.990")
+                                .font(.system(size: 9))
+                                .foregroundColor(.white)
+                                .padding(.top, 2)
+                        }
+                        .padding(4)
+                        .frame(width: 70, height: 70)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color("Alkali Metal"))
+                        )
+                        
+                        VStack(alignment: .leading, spacing: 5) {
+                            Label("Atomic number", systemImage: "1.circle.fill")
+                            Label("Symbol", systemImage: "2.circle.fill")
+                            Label("Name", systemImage: "3.circle.fill")
+                            Label("Weight", systemImage: "4.circle.fill")
+                        }
+                        .font(.caption)
+                    }
+                    .padding(.horizontal)
+                }
+            }
+        }
+    }
+}
+
+// Categories Popover View
+struct CategoriesPopoverView: View {
+    let categories: [String]
+    @Binding var selectedCategory: String?
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Filter by Category")
+                .font(.headline)
+                .padding(.horizontal)
+                .padding(.top)
+            
+            ScrollView {
+                VStack(alignment: .leading, spacing: 8) {
+                    Button {
+                        selectedCategory = nil
+                    } label: {
+                        HStack {
+                            Text("All Categories")
+                                .foregroundColor(.primary)
+                            Spacer()
+                            if selectedCategory == nil {
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 4)
+                    
+                    Divider()
+                    
+                    ForEach(categories, id: \.self) { category in
+                        Button {
+                            selectedCategory = category
+                        } label: {
+                            HStack {
+                                Circle()
+                                    .fill(Color(category))
+                                    .frame(width: 20, height: 20)
+                                
+                                Text(category)
+                                    .foregroundColor(.primary)
+                                
+                                Spacer()
+                                
+                                if selectedCategory == category {
+                                    Image(systemName: "checkmark")
+                                        .foregroundColor(.blue)
+                                }
+                            }
+                        }
+                        .padding(.horizontal)
+                        .padding(.vertical, 4)
                     }
                 }
             }
@@ -256,7 +392,12 @@ struct ViewOffsetKey: PreferenceKey {
     typealias Value = CGPoint
     static var defaultValue = CGPoint.zero
     static func reduce(value: inout Value, nextValue: () -> Value) {
-        value.x += nextValue().x
-        value.y += nextValue().y
+        value = nextValue()
+    }
+}
+
+#Preview {
+    NavigationView {
+        PeriodicGridView()
     }
 }
