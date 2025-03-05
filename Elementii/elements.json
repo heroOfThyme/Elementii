@@ -1,0 +1,3070 @@
+[
+    {
+        "icon": "flame",
+        "name": "Hydrogen",
+        "symbol": "H",
+        "atomicNumber": 1,
+        "atomicWeight": 1,
+        "category": "Nonmetal",
+        "roomTempState": "Gas",
+        "fact": "Hydrogen is the lightest and most abundant element in the universe.",
+        "examples": [
+            {
+                "image": "helium_balloon",
+                "description": "Helium is used in party balloons because it's non-flammable and lighter than air."
+            },
+            {
+                "image": "mri_machine",
+                "description": "Helium is used to cool the magnets in MRI machines."
+            }
+        ],
+        "history": "Hydrogen was discovered by British scientist Henry Cavendish in the year 1766. The word Hydrogen comes from the French words 'hydr-' meaning water, and -gène meaning producer. This is because when hydrogen gas is burned, it combines with oxygen to create water.",
+        "applications": [
+            "Hydrogen is a main component in rocket fuel. This is because it is light and burns very well.",
+            "Hydrogen Peroxide is a sterilizing agent used for cleaning wounds and cuts."
+        ],
+        "wikipediaLink": "https://en.wikipedia.org/wiki/Hydrogen"
+    },
+    {
+        "icon": "flame",
+         "name": "Helium",
+         "symbol": "He",
+         "atomicNumber": 2,
+         "atomicWeight": 4.0026,
+         "category": "Noble Gas",
+         "roomTempState": "Gas",
+         "fact": "Helium is used to inflate balloons because it's lighter than air.",
+         "examples": [
+             {
+                 "image": "helium_balloon",
+                 "description": "Helium is used in party balloons because it's non-flammable and lighter than air."
+             },
+             {
+                 "image": "mri_machine",
+                 "description": "Helium is used to cool the magnets in MRI machines."
+             }
+         ],
+         "history": "Discovered in 1868 by Pierre Janssen and Norman Lockyer, helium is the second lightest element.",
+         "applications": [
+             "Used in cryogenics.",
+             "Used in airships and balloons."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Helium"
+     },
+     {
+         "icon": "flame",
+         "name": "Lithium",
+         "symbol": "Li",
+         "atomicNumber": 3,
+         "atomicWeight": 6.94,
+         "category": "Alkali Metal",
+         "roomTempState": "Solid",
+         "fact": "Lithium is used in rechargeable batteries for phones and laptops.",
+         "examples": [
+             {
+                 "image": "lithium_battery",
+                 "description": "Lithium-ion batteries are widely used in electronics and electric vehicles."
+             },
+             {
+                 "image": "lithium_medication",
+                 "description": "Lithium is used in medications to treat bipolar disorder."
+             }
+         ],
+         "history": "Discovered by Johan August Arfwedson in 1817, lithium is the lightest metal.",
+         "applications": [
+             "Used in batteries.",
+             "Used in psychiatric medications."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Lithium"
+     },
+     {
+         "icon": "flame",
+         "name": "Beryllium",
+         "symbol": "Be",
+         "atomicNumber": 4,
+         "atomicWeight": 9.0122,
+         "category": "Alkaline Earth Metal",
+         "roomTempState": "Solid",
+         "fact": "Beryllium is used in aerospace materials due to its strength and lightness.",
+         "examples": [
+             {
+                 "image": "beryllium_copper",
+                 "description": "Beryllium-copper alloys are used in springs and connectors."
+             },
+             {
+                 "image": "satellite_dish",
+                 "description": "Beryllium is used in satellite dishes and telescopes."
+             }
+         ],
+         "history": "Discovered by Louis-Nicolas Vauquelin in 1798, beryllium is a lightweight but strong metal.",
+         "applications": [
+             "Used in aerospace engineering.",
+             "Used in X-ray windows."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Beryllium"
+     },
+     {
+         "icon": "flame",
+         "name": "Boron",
+         "symbol": "B",
+         "atomicNumber": 5,
+         "atomicWeight": 10.81,
+         "category": "Metalloid",
+         "roomTempState": "Solid",
+         "fact": "Boron is used in detergents and as a flame retardant.",
+         "examples": [
+             {
+                 "image": "borax",
+                 "description": "Borax, a compound of boron, is used in laundry detergents."
+             },
+             {
+                 "image": "fiberglass",
+                 "description": "Boron is used in fiberglass for insulation."
+             }
+         ],
+         "history": "Discovered by Joseph Louis Gay-Lussac and Louis Jacques Thénard in 1808, boron is a versatile element.",
+         "applications": [
+             "Used in detergents.",
+             "Used in fiberglass."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Boron"
+     },
+     {
+         "icon": "flame",
+         "name": "Carbon",
+         "symbol": "C",
+         "atomicNumber": 6,
+         "atomicWeight": 12.011,
+         "category": "Nonmetal",
+         "roomTempState": "Solid",
+         "fact": "Carbon is the basis of all known life on Earth.",
+         "examples": [
+             {
+                 "image": "diamond",
+                 "description": "Diamonds are a form of carbon with a crystalline structure."
+             },
+             {
+                 "image": "graphite",
+                 "description": "Graphite, another form of carbon, is used in pencils."
+             }
+         ],
+         "history": "Known since ancient times, carbon is a key element in organic chemistry.",
+         "applications": [
+             "Used in jewelry (diamonds).",
+             "Used in pencils (graphite)."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Carbon"
+     },
+     {
+         "icon": "flame",
+         "name": "Nitrogen",
+         "symbol": "N",
+         "atomicNumber": 7,
+         "atomicWeight": 14.007,
+         "category": "Nonmetal",
+         "roomTempState": "Gas",
+         "fact": "Nitrogen makes up about 78% of Earth's atmosphere.",
+         "examples": [
+             {
+                 "image": "liquid_nitrogen",
+                 "description": "Liquid nitrogen is used in cryogenics."
+             },
+             {
+                 "image": "fertilizer",
+                 "description": "Nitrogen is a key component of fertilizers."
+             }
+         ],
+         "history": "Discovered by Daniel Rutherford in 1772, nitrogen is essential for life.",
+         "applications": [
+             "Used in fertilizers.",
+             "Used in cryogenics."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Nitrogen"
+     },
+     {
+         "icon": "flame",
+         "name": "Oxygen",
+         "symbol": "O",
+         "atomicNumber": 8,
+         "atomicWeight": 15.999,
+         "category": "Nonmetal",
+         "roomTempState": "Gas",
+         "fact": "Oxygen is essential for respiration and combustion.",
+         "examples": [
+             {
+                 "image": "oxygen_tank",
+                 "description": "Oxygen tanks are used in medical treatments."
+             },
+             {
+                 "image": "fire",
+                 "description": "Oxygen supports combustion, making fire possible."
+             }
+         ],
+         "history": "Discovered independently by Carl Wilhelm Scheele and Joseph Priestley in the 1770s, oxygen is vital for life.",
+         "applications": [
+             "Used in medical treatments.",
+             "Supports combustion."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Oxygen"
+     },
+     {
+         "icon": "flame",
+         "name": "Fluorine",
+         "symbol": "F",
+         "atomicNumber": 9,
+         "atomicWeight": 18.998,
+         "category": "Halogen",
+         "roomTempState": "Gas",
+         "fact": "Fluorine is the most reactive element.",
+         "examples": [
+             {
+                 "image": "toothpaste",
+                 "description": "Fluoride, a compound of fluorine, is used in toothpaste."
+             },
+             {
+                 "image": "teflon",
+                 "description": "Teflon, a fluorine compound, is used in non-stick cookware."
+             }
+         ],
+         "history": "Discovered by Henri Moissan in 1886, fluorine is highly reactive.",
+         "applications": [
+             "Used in toothpaste.",
+             "Used in non-stick coatings."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Fluorine"
+     },
+     {
+         "icon": "flame",
+         "name": "Neon",
+         "symbol": "Ne",
+         "atomicNumber": 10,
+         "atomicWeight": 20.180,
+         "category": "Noble Gas",
+         "roomTempState": "Gas",
+         "fact": "Neon is used in colorful signs and lighting.",
+         "examples": [
+             {
+                 "image": "neon_sign",
+                 "description": "Neon lights are used in advertising and art."
+             },
+             {
+                 "image": "laser",
+                 "description": "Neon is used in lasers."
+             }
+         ],
+         "history": "Discovered by William Ramsay and Morris Travers in 1898, neon is known for its bright red-orange glow.",
+         "applications": [
+             "Used in lighting.",
+             "Used in lasers."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Neon"
+     },
+     {
+         "icon": "flame",
+         "name": "Sodium",
+         "symbol": "Na",
+         "atomicNumber": 11,
+         "atomicWeight": 22.990,
+         "category": "Alkali Metal",
+         "roomTempState": "Solid",
+         "fact": "Sodium is a key component of table salt (NaCl).",
+         "examples": [
+             {
+                 "image": "table_salt",
+                 "description": "Sodium chloride, or table salt, is essential for human health."
+             },
+             {
+                 "image": "street_lamp",
+                 "description": "Sodium vapor lamps are used for street lighting."
+             }
+         ],
+         "history": "Discovered by Sir Humphry Davy in 1807, sodium is a highly reactive metal.",
+         "applications": [
+             "Used in table salt.",
+             "Used in street lighting."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Sodium"
+     },
+     {
+         "icon": "flame",
+         "name": "Magnesium",
+         "symbol": "Mg",
+         "atomicNumber": 12,
+         "atomicWeight": 24.305,
+         "category": "Alkaline Earth Metal",
+         "roomTempState": "Solid",
+         "fact": "Magnesium is used in fireworks to produce bright white light.",
+         "examples": [
+             {
+                 "image": "fireworks",
+                 "description": "Magnesium is used in fireworks for its bright white flame."
+             },
+             {
+                 "image": "magnesium_wheel",
+                 "description": "Magnesium alloys are used in lightweight car wheels."
+             }
+         ],
+         "history": "Discovered by Joseph Black in 1755, magnesium is a lightweight and strong metal.",
+         "applications": [
+             "Used in fireworks.",
+             "Used in lightweight alloys."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Magnesium"
+     },
+     {
+         "icon": "flame",
+         "name": "Aluminum",
+         "symbol": "Al",
+         "atomicNumber": 13,
+         "atomicWeight": 26.982,
+         "category": "Post-Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Aluminum is the most abundant metal in Earth's crust.",
+         "examples": [
+             {
+                 "image": "aluminum_foil",
+                 "description": "Aluminum foil is used for packaging and cooking."
+             },
+             {
+                 "image": "airplane",
+                 "description": "Aluminum is used in aircraft construction due to its lightness."
+             }
+         ],
+         "history": "Discovered by Hans Christian Ørsted in 1825, aluminum is widely used in industry.",
+         "applications": [
+             "Used in packaging.",
+             "Used in aircraft construction."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Aluminum"
+     },
+     {
+         "icon": "flame",
+         "name": "Silicon",
+         "symbol": "Si",
+         "atomicNumber": 14,
+         "atomicWeight": 28.085,
+         "category": "Metalloid",
+         "roomTempState": "Solid",
+         "fact": "Silicon is used in computer chips and solar panels.",
+         "examples": [
+             {
+                 "image": "computer_chip",
+                 "description": "Silicon is the primary material in computer chips."
+             },
+             {
+                 "image": "solar_panel",
+                 "description": "Silicon is used in solar panels to convert sunlight into electricity."
+             }
+         ],
+         "history": "Discovered by Jöns Jacob Berzelius in 1824, silicon is a key element in electronics.",
+         "applications": [
+             "Used in electronics.",
+             "Used in solar panels."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Silicon"
+     },
+     {
+         "icon": "flame",
+         "name": "Phosphorus",
+         "symbol": "P",
+         "atomicNumber": 15,
+         "atomicWeight": 30.974,
+         "category": "Nonmetal",
+         "roomTempState": "Solid",
+         "fact": "Phosphorus is essential for DNA and energy transfer in cells.",
+         "examples": [
+             {
+                 "image": "matchstick",
+                 "description": "Phosphorus is used in matchsticks for ignition."
+             },
+             {
+                 "image": "fertilizer",
+                 "description": "Phosphorus is a key component of fertilizers."
+             }
+         ],
+         "history": "Discovered by Hennig Brand in 1669, phosphorus is essential for life.",
+         "applications": [
+             "Used in matches.",
+             "Used in fertilizers."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Phosphorus"
+     },
+     {
+         "icon": "flame",
+         "name": "Sulfur",
+         "symbol": "S",
+         "atomicNumber": 16,
+         "atomicWeight": 32.06,
+         "category": "Nonmetal",
+         "roomTempState": "Solid",
+         "fact": "Sulfur is used in gunpowder and matches.",
+         "examples": [
+             {
+                 "image": "gunpowder",
+                 "description": "Sulfur is a key ingredient in gunpowder."
+             },
+             {
+                 "image": "matches",
+                 "description": "Sulfur is used in the heads of matches."
+             }
+         ],
+         "history": "Known since ancient times, sulfur has been used for thousands of years.",
+         "applications": [
+             "Used in gunpowder.",
+             "Used in matches."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Sulfur"
+     },
+     {
+         "icon": "flame",
+         "name": "Chlorine",
+         "symbol": "Cl",
+         "atomicNumber": 17,
+         "atomicWeight": 35.45,
+         "category": "Halogen",
+         "roomTempState": "Gas",
+         "fact": "Chlorine is used to disinfect swimming pools.",
+         "examples": [
+             {
+                 "image": "swimming_pool",
+                 "description": "Chlorine is used to keep swimming pools clean."
+             },
+             {
+                 "image": "bleach",
+                 "description": "Chlorine is a key ingredient in household bleach."
+             }
+         ],
+         "history": "Discovered by Carl Wilhelm Scheele in 1774, chlorine is widely used in sanitation.",
+         "applications": [
+             "Used in water purification.",
+             "Used in bleach."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Chlorine"
+     },
+     {
+         "icon": "flame",
+         "name": "Argon",
+         "symbol": "Ar",
+         "atomicNumber": 18,
+         "atomicWeight": 39.948,
+         "category": "Noble Gas",
+         "roomTempState": "Gas",
+         "fact": "Argon is used in light bulbs to prevent filament oxidation.",
+         "examples": [
+             {
+                 "image": "light_bulb",
+                 "description": "Argon is used in incandescent light bulbs."
+             },
+             {
+                 "image": "welding",
+                 "description": "Argon is used as a shielding gas in welding."
+             }
+         ],
+         "history": "Discovered by Lord Rayleigh and William Ramsay in 1894, argon is an inert gas.",
+         "applications": [
+             "Used in lighting.",
+             "Used in welding."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Argon"
+     },
+     {
+         "icon": "flame",
+         "name": "Potassium",
+         "symbol": "K",
+         "atomicNumber": 19,
+         "atomicWeight": 39.098,
+         "category": "Alkali Metal",
+         "roomTempState": "Solid",
+         "fact": "Potassium is essential for muscle and nerve function.",
+         "examples": [
+             {
+                 "image": "banana",
+                 "description": "Potassium is found in bananas, which are a good dietary source."
+             },
+             {
+                 "image": "fertilizer",
+                 "description": "Potassium is a key component of fertilizers."
+             }
+         ],
+         "history": "Discovered by Sir Humphry Davy in 1807, potassium is a vital nutrient.",
+         "applications": [
+             "Used in fertilizers.",
+             "Essential for human health."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Potassium"
+     },
+     {
+         "icon": "flame",
+         "name": "Calcium",
+         "symbol": "Ca",
+         "atomicNumber": 20,
+         "atomicWeight": 40.078,
+         "category": "Alkaline Earth Metal",
+         "roomTempState": "Solid",
+         "fact": "Calcium is the main component of bones and teeth.",
+         "examples": [
+             {
+                 "image": "bones",
+                 "description": "Calcium is essential for strong bones and teeth."
+             },
+             {
+                 "image": "chalk",
+                 "description": "Calcium carbonate is used in chalk and antacids."
+             }
+         ],
+         "history": "Discovered by Sir Humphry Davy in 1808, calcium is essential for life.",
+         "applications": [
+             "Used in construction (e.g., cement).",
+             "Essential for human health."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Calcium"
+     },
+     {
+         "icon": "flame",
+         "name": "Scandium",
+         "symbol": "Sc",
+         "atomicNumber": 21,
+         "atomicWeight": 44.956,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Scandium is used in aerospace components due to its lightweight and strength.",
+         "examples": [
+             {
+                 "image": "airplane",
+                 "description": "Scandium-aluminum alloys are used in aircraft frames."
+             },
+             {
+                 "image": "bicycle",
+                 "description": "Scandium is used in high-performance bicycle frames."
+             }
+         ],
+         "history": "Discovered by Lars Fredrik Nilson in 1879, scandium is a rare transition metal.",
+         "applications": [
+             "Used in aerospace alloys.",
+             "Used in sports equipment."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Scandium"
+     },
+     {
+         "icon": "flame",
+         "name": "Titanium",
+         "symbol": "Ti",
+         "atomicNumber": 22,
+         "atomicWeight": 47.867,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Titanium is known for its strength, lightness, and resistance to corrosion.",
+         "examples": [
+             {
+                 "image": "airplane",
+                 "description": "Titanium is used in aircraft engines and frames."
+             },
+             {
+                 "image": "medical_implants",
+                 "description": "Titanium is used in medical implants due to its biocompatibility."
+             }
+         ],
+         "history": "Discovered by William Gregor in 1791, titanium is widely used in industry and medicine.",
+         "applications": [
+             "Used in aerospace engineering.",
+             "Used in medical implants."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Titanium"
+     },
+     {
+         "icon": "flame",
+         "name": "Vanadium",
+         "symbol": "V",
+         "atomicNumber": 23,
+         "atomicWeight": 50.942,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Vanadium is used in steel alloys to increase strength and durability.",
+         "examples": [
+             {
+                 "image": "steel_beams",
+                 "description": "Vanadium steel is used in construction and tools."
+             },
+             {
+                 "image": "battery",
+                 "description": "Vanadium is used in redox flow batteries for energy storage."
+             }
+         ],
+         "history": "Discovered by Andrés Manuel del Río in 1801, vanadium is a versatile transition metal.",
+         "applications": [
+             "Used in steel alloys.",
+             "Used in energy storage systems."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Vanadium"
+     },
+     {
+         "icon": "flame",
+         "name": "Chromium",
+         "symbol": "Cr",
+         "atomicNumber": 24,
+         "atomicWeight": 51.996,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Chromium is used to make stainless steel and is known for its shiny finish.",
+         "examples": [
+             {
+                 "image": "stainless_steel",
+                 "description": "Chromium is a key component of stainless steel."
+             },
+             {
+                 "image": "chrome_plating",
+                 "description": "Chromium is used in chrome plating for a shiny, corrosion-resistant finish."
+             }
+         ],
+         "history": "Discovered by Louis Nicolas Vauquelin in 1797, chromium is widely used in industry.",
+         "applications": [
+             "Used in stainless steel.",
+             "Used in chrome plating."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Chromium"
+     },
+     {
+         "icon": "flame",
+         "name": "Manganese",
+         "symbol": "Mn",
+         "atomicNumber": 25,
+         "atomicWeight": 54.938,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Manganese is essential for steel production and is found in batteries.",
+         "examples": [
+             {
+                 "image": "steel_production",
+                 "description": "Manganese is used to remove impurities in steel production."
+             },
+             {
+                 "image": "battery",
+                 "description": "Manganese is used in alkaline and lithium-ion batteries."
+             }
+         ],
+         "history": "Discovered by Johan Gottlieb Gahn in 1774, manganese is a key industrial metal.",
+         "applications": [
+             "Used in steel production.",
+             "Used in batteries."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Manganese"
+     },
+     {
+         "icon": "flame",
+         "name": "Iron",
+         "symbol": "Fe",
+         "atomicNumber": 26,
+         "atomicWeight": 55.845,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Iron is the most widely used metal and is essential for blood production.",
+         "examples": [
+             {
+                 "image": "steel_beams",
+                 "description": "Iron is the primary component of steel, used in construction."
+             },
+             {
+                 "image": "hemoglobin",
+                 "description": "Iron is a key component of hemoglobin, which carries oxygen in blood."
+             }
+         ],
+         "history": "Known since ancient times, iron has been used for tools and weapons for thousands of years.",
+         "applications": [
+             "Used in construction and manufacturing.",
+             "Essential for human health."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Iron"
+     },
+     {
+         "icon": "flame",
+         "name": "Cobalt",
+         "symbol": "Co",
+         "atomicNumber": 27,
+         "atomicWeight": 58.933,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Cobalt is used in rechargeable batteries and magnetic alloys.",
+         "examples": [
+             {
+                 "image": "lithium_battery",
+                 "description": "Cobalt is a key component of lithium-ion batteries."
+             },
+             {
+                 "image": "magnet",
+                 "description": "Cobalt is used in strong magnets for motors and generators."
+             }
+         ],
+         "history": "Discovered by Georg Brandt in 1735, cobalt is a versatile transition metal.",
+         "applications": [
+             "Used in batteries.",
+             "Used in magnets."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Cobalt"
+     },
+     {
+         "icon": "flame",
+         "name": "Nickel",
+         "symbol": "Ni",
+         "atomicNumber": 28,
+         "atomicWeight": 58.693,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Nickel is used in stainless steel and rechargeable batteries.",
+         "examples": [
+             {
+                 "image": "stainless_steel",
+                 "description": "Nickel is a key component of stainless steel."
+             },
+             {
+                 "image": "battery",
+                 "description": "Nickel is used in nickel-metal hydride batteries."
+             }
+         ],
+         "history": "Discovered by Axel Fredrik Cronstedt in 1751, nickel is widely used in industry.",
+         "applications": [
+             "Used in stainless steel.",
+             "Used in batteries."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Nickel"
+     },
+     {
+         "icon": "flame",
+         "name": "Copper",
+         "symbol": "Cu",
+         "atomicNumber": 29,
+         "atomicWeight": 63.546,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Copper is an excellent conductor of electricity and is used in wiring.",
+         "examples": [
+             {
+                 "image": "electrical_wires",
+                 "description": "Copper is used in electrical wiring due to its conductivity."
+             },
+             {
+                 "image": "penny",
+                 "description": "Copper is used in coins, such as the U.S. penny."
+             }
+         ],
+         "history": "Known since ancient times, copper has been used for thousands of years.",
+         "applications": [
+             "Used in electrical wiring.",
+             "Used in coins and plumbing."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Copper"
+     },
+     {
+         "icon": "flame",
+         "name": "Zinc",
+         "symbol": "Zn",
+         "atomicNumber": 30,
+         "atomicWeight": 65.38,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Zinc is used to galvanize steel and is essential for human health.",
+         "examples": [
+             {
+                 "image": "galvanized_steel",
+                 "description": "Zinc is used to coat steel to prevent rusting."
+             },
+             {
+                 "image": "vitamin",
+                 "description": "Zinc is an essential nutrient for the immune system."
+             }
+         ],
+         "history": "Known since ancient times, zinc has been used for brass and medicinal purposes.",
+         "applications": [
+             "Used in galvanizing steel.",
+             "Essential for human health."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Zinc"
+     },
+     {
+         "icon": "flame",
+         "name": "Gallium",
+         "symbol": "Ga",
+         "atomicNumber": 31,
+         "atomicWeight": 69.723,
+         "category": "Post-Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Gallium melts in your hand due to its low melting point (29.76°C).",
+         "examples": [
+             {
+                 "image": "gallium_spoon",
+                 "description": "Gallium is often used in science demonstrations to show its low melting point."
+             },
+             {
+                 "image": "semiconductor",
+                 "description": "Gallium is used in semiconductors and LEDs."
+             }
+         ],
+         "history": "Discovered by Paul-Émile Lecoq de Boisbaudran in 1875, gallium is a unique metal.",
+         "applications": [
+             "Used in semiconductors.",
+             "Used in LEDs and solar panels."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Gallium"
+     },
+     {
+         "icon": "flame",
+         "name": "Germanium",
+         "symbol": "Ge",
+         "atomicNumber": 32,
+         "atomicWeight": 72.630,
+         "category": "Metalloid",
+         "roomTempState": "Solid",
+         "fact": "Germanium is used in fiber optics and infrared optics.",
+         "examples": [
+             {
+                 "image": "fiber_optic",
+                 "description": "Germanium is used in fiber optic cables for high-speed internet."
+             },
+             {
+                 "image": "infrared_lens",
+                 "description": "Germanium lenses are used in infrared cameras."
+             }
+         ],
+         "history": "Discovered by Clemens Winkler in 1886, germanium is a key material in electronics.",
+         "applications": [
+             "Used in fiber optics.",
+             "Used in infrared optics."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Germanium"
+     },
+     {
+         "icon": "flame",
+         "name": "Arsenic",
+         "symbol": "As",
+         "atomicNumber": 33,
+         "atomicWeight": 74.922,
+         "category": "Metalloid",
+         "roomTempState": "Solid",
+         "fact": "Arsenic is toxic but has been used in pesticides and wood preservatives.",
+         "examples": [
+             {
+                 "image": "pesticide",
+                 "description": "Arsenic compounds were once used in pesticides."
+             },
+             {
+                 "image": "wood_preservative",
+                 "description": "Arsenic is used to preserve wood from insects and decay."
+             }
+         ],
+         "history": "Known since ancient times, arsenic has a long history of use and misuse.",
+         "applications": [
+             "Used in wood preservatives.",
+             "Used in semiconductors (in small amounts)."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Arsenic"
+     },
+     {
+         "icon": "flame",
+         "name": "Selenium",
+         "symbol": "Se",
+         "atomicNumber": 34,
+         "atomicWeight": 78.971,
+         "category": "Nonmetal",
+         "roomTempState": "Solid",
+         "fact": "Selenium is essential for human health and is used in photocopiers.",
+         "examples": [
+             {
+                 "image": "photocopier",
+                 "description": "Selenium is used in photocopiers and laser printers."
+             },
+             {
+                 "image": "dietary_supplement",
+                 "description": "Selenium is an essential nutrient for the human body."
+             }
+         ],
+         "history": "Discovered by Jöns Jacob Berzelius in 1817, selenium is a versatile element.",
+         "applications": [
+             "Used in photocopiers.",
+             "Essential for human health."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Selenium"
+     },
+     {
+         "icon": "flame",
+         "name": "Bromine",
+         "symbol": "Br",
+         "atomicNumber": 35,
+         "atomicWeight": 79.904,
+         "category": "Halogen",
+         "roomTempState": "Liquid",
+         "fact": "Bromine is one of only two elements that are liquid at room temperature.",
+         "examples": [
+             {
+                 "image": "bromine_liquid",
+                 "description": "Bromine is a reddish-brown liquid at room temperature."
+             },
+             {
+                 "image": "flame_retardant",
+                 "description": "Bromine compounds are used as flame retardants."
+             }
+         ],
+         "history": "Discovered by Antoine Jérôme Balard in 1826, bromine is a reactive halogen.",
+         "applications": [
+             "Used in flame retardants.",
+             "Used in photography and disinfectants."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Bromine"
+     },
+     {
+         "icon": "flame",
+         "name": "Krypton",
+         "symbol": "Kr",
+         "atomicNumber": 36,
+         "atomicWeight": 83.798,
+         "category": "Noble Gas",
+         "roomTempState": "Gas",
+         "fact": "Krypton is used in high-performance lighting and photography.",
+         "examples": [
+             {
+                 "image": "camera_flash",
+                 "description": "Krypton is used in camera flashes for bright, white light."
+             },
+             {
+                 "image": "laser",
+                 "description": "Krypton is used in certain types of lasers."
+             }
+         ],
+         "history": "Discovered by William Ramsay and Morris Travers in 1898, krypton is a noble gas.",
+         "applications": [
+             "Used in lighting.",
+             "Used in lasers."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Krypton"
+     },
+     {
+         "icon": "flame",
+         "name": "Rubidium",
+         "symbol": "Rb",
+         "atomicNumber": 37,
+         "atomicWeight": 85.468,
+         "category": "Alkali Metal",
+         "roomTempState": "Solid",
+         "fact": "Rubidium is used in atomic clocks and vacuum tubes.",
+         "examples": [
+             {
+                 "image": "atomic_clock",
+                 "description": "Rubidium is used in highly accurate atomic clocks."
+             },
+             {
+                 "image": "vacuum_tube",
+                 "description": "Rubidium is used in vacuum tubes for specialized applications."
+             }
+         ],
+         "history": "Discovered by Robert Bunsen and Gustav Kirchhoff in 1861, rubidium is a reactive alkali metal.",
+         "applications": [
+             "Used in atomic clocks.",
+             "Used in vacuum tubes."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Rubidium"
+     },
+     {
+         "icon": "flame",
+         "name": "Strontium",
+         "symbol": "Sr",
+         "atomicNumber": 38,
+         "atomicWeight": 87.62,
+         "category": "Alkaline Earth Metal",
+         "roomTempState": "Solid",
+         "fact": "Strontium is used in fireworks to produce bright red colors.",
+         "examples": [
+             {
+                 "image": "fireworks",
+                 "description": "Strontium compounds are used in red fireworks."
+             },
+             {
+                 "image": "toothpaste",
+                 "description": "Strontium is used in some toothpastes for sensitive teeth."
+             }
+         ],
+         "history": "Discovered by Adair Crawford in 1790, strontium is known for its vibrant red flame.",
+         "applications": [
+             "Used in fireworks.",
+             "Used in toothpaste."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Strontium"
+     },
+     {
+         "icon": "flame",
+         "name": "Yttrium",
+         "symbol": "Y",
+         "atomicNumber": 39,
+         "atomicWeight": 88.906,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Yttrium is used in superconductors and LED lights.",
+         "examples": [
+             {
+                 "image": "led_light",
+                 "description": "Yttrium is used in phosphors for LED lights."
+             },
+             {
+                 "image": "superconductor",
+                 "description": "Yttrium is used in high-temperature superconductors."
+             }
+         ],
+         "history": "Discovered by Johan Gadolin in 1794, yttrium is a versatile transition metal.",
+         "applications": [
+             "Used in LEDs.",
+             "Used in superconductors."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Yttrium"
+     },
+     {
+         "icon": "flame",
+         "name": "Zirconium",
+         "symbol": "Zr",
+         "atomicNumber": 40,
+         "atomicWeight": 91.224,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Zirconium is used in nuclear reactors due to its resistance to corrosion.",
+         "examples": [
+             {
+                 "image": "nuclear_reactor",
+                 "description": "Zirconium is used in fuel rods for nuclear reactors."
+             },
+             {
+                 "image": "jewelry",
+                 "description": "Zirconium is used in jewelry as a diamond substitute."
+             }
+         ],
+         "history": "Discovered by Martin Heinrich Klaproth in 1789, zirconium is a corrosion-resistant metal.",
+         "applications": [
+             "Used in nuclear reactors.",
+             "Used in jewelry."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Zirconium"
+     },
+     {
+         "icon": "flame",
+         "name": "Niobium",
+         "symbol": "Nb",
+         "atomicNumber": 41,
+         "atomicWeight": 92.906,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Niobium is used in superconducting magnets and jet engines.",
+         "examples": [
+             {
+                 "image": "superconducting_magnet",
+                 "description": "Niobium is used in superconducting magnets for MRI machines."
+             },
+             {
+                 "image": "jet_engine",
+                 "description": "Niobium alloys are used in jet engines for their strength and heat resistance."
+             }
+         ],
+         "history": "Discovered by Charles Hatchett in 1801, niobium is a versatile transition metal.",
+         "applications": [
+             "Used in superconducting magnets.",
+             "Used in jet engines."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Niobium"
+     },
+     {
+         "icon": "flame",
+         "name": "Molybdenum",
+         "symbol": "Mo",
+         "atomicNumber": 42,
+         "atomicWeight": 95.95,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Molybdenum is used in high-strength steel alloys and lubricants.",
+         "examples": [
+             {
+                 "image": "steel_alloy",
+                 "description": "Molybdenum is added to steel to increase strength and heat resistance."
+             },
+             {
+                 "image": "lubricant",
+                 "description": "Molybdenum disulfide is used as a dry lubricant."
+             }
+         ],
+         "history": "Discovered by Carl Wilhelm Scheele in 1778, molybdenum is a key industrial metal.",
+         "applications": [
+             "Used in steel alloys.",
+             "Used in lubricants."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Molybdenum"
+     },
+     {
+         "icon": "flame",
+         "name": "Technetium",
+         "symbol": "Tc",
+         "atomicNumber": 43,
+         "atomicWeight": 98,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Technetium is the lightest element with no stable isotopes and is used in medical imaging.",
+         "examples": [
+             {
+                 "image": "medical_imaging",
+                 "description": "Technetium-99m is used in medical imaging to diagnose diseases."
+             },
+             {
+                 "image": "nuclear_medicine",
+                 "description": "Technetium is used in nuclear medicine for diagnostic procedures."
+             }
+         ],
+         "history": "Discovered by Carlo Perrier and Emilio Segrè in 1937, technetium was the first artificially produced element.",
+         "applications": [
+             "Used in medical imaging.",
+             "Used in nuclear medicine."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Technetium"
+     },
+     {
+         "icon": "flame",
+         "name": "Ruthenium",
+         "symbol": "Ru",
+         "atomicNumber": 44,
+         "atomicWeight": 101.07,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Ruthenium is used in electronics and as a catalyst in chemical reactions.",
+         "examples": [
+             {
+                 "image": "hard_drive",
+                 "description": "Ruthenium is used in hard drives for data storage."
+             },
+             {
+                 "image": "catalyst",
+                 "description": "Ruthenium is used as a catalyst in the production of ammonia."
+             }
+         ],
+         "history": "Discovered by Karl Ernst Claus in 1844, ruthenium is a rare transition metal.",
+         "applications": [
+             "Used in electronics.",
+             "Used as a catalyst."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Ruthenium"
+     },
+     {
+         "icon": "flame",
+         "name": "Rhodium",
+         "symbol": "Rh",
+         "atomicNumber": 45,
+         "atomicWeight": 102.91,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Rhodium is used in catalytic converters and jewelry plating.",
+         "examples": [
+             {
+                 "image": "catalytic_converter",
+                 "description": "Rhodium is used in catalytic converters to reduce vehicle emissions."
+             },
+             {
+                 "image": "jewelry",
+                 "description": "Rhodium is used to plate jewelry for a shiny, tarnish-resistant finish."
+             }
+         ],
+         "history": "Discovered by William Hyde Wollaston in 1803, rhodium is a rare and valuable metal.",
+         "applications": [
+             "Used in catalytic converters.",
+             "Used in jewelry plating."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Rhodium"
+     },
+     {
+         "icon": "flame",
+         "name": "Palladium",
+         "symbol": "Pd",
+         "atomicNumber": 46,
+         "atomicWeight": 106.42,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Palladium is used in catalytic converters and electronics.",
+         "examples": [
+             {
+                 "image": "catalytic_converter",
+                 "description": "Palladium is used in catalytic converters to reduce vehicle emissions."
+             },
+             {
+                 "image": "electronics",
+                 "description": "Palladium is used in capacitors and connectors in electronics."
+             }
+         ],
+         "history": "Discovered by William Hyde Wollaston in 1803, palladium is a versatile transition metal.",
+         "applications": [
+             "Used in catalytic converters.",
+             "Used in electronics."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Palladium"
+     },
+     {
+         "icon": "flame",
+         "name": "Silver",
+         "symbol": "Ag",
+         "atomicNumber": 47,
+         "atomicWeight": 107.87,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Silver is the best conductor of electricity and is used in jewelry and electronics.",
+         "examples": [
+             {
+                 "image": "jewelry",
+                 "description": "Silver is widely used in jewelry and decorative items."
+             },
+             {
+                 "image": "electronics",
+                 "description": "Silver is used in electrical contacts and conductors."
+             }
+         ],
+         "history": "Known since ancient times, silver has been used for currency, jewelry, and utensils.",
+         "applications": [
+             "Used in jewelry.",
+             "Used in electronics."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Silver"
+     },
+     {
+         "icon": "flame",
+         "name": "Cadmium",
+         "symbol": "Cd",
+         "atomicNumber": 48,
+         "atomicWeight": 112.41,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Cadmium is used in rechargeable batteries and pigments.",
+         "examples": [
+             {
+                 "image": "battery",
+                 "description": "Cadmium is used in nickel-cadmium rechargeable batteries."
+             },
+             {
+                 "image": "paint",
+                 "description": "Cadmium is used in pigments for paints and plastics."
+             }
+         ],
+         "history": "Discovered by Friedrich Stromeyer in 1817, cadmium is a toxic but useful metal.",
+         "applications": [
+             "Used in batteries.",
+             "Used in pigments."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Cadmium"
+     },
+     {
+         "icon": "flame",
+         "name": "Indium",
+         "symbol": "In",
+         "atomicNumber": 49,
+         "atomicWeight": 114.82,
+         "category": "Post-Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Indium is used in touchscreens and solar panels.",
+         "examples": [
+             {
+                 "image": "touchscreen",
+                 "description": "Indium tin oxide is used in touchscreens for its transparency and conductivity."
+             },
+             {
+                 "image": "solar_panel",
+                 "description": "Indium is used in thin-film solar panels."
+             }
+         ],
+         "history": "Discovered by Ferdinand Reich and Hieronymous Theodor Richter in 1863, indium is a rare metal.",
+         "applications": [
+             "Used in touchscreens.",
+             "Used in solar panels."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Indium"
+     },
+     {
+         "icon": "flame",
+         "name": "Tin",
+         "symbol": "Sn",
+         "atomicNumber": 50,
+         "atomicWeight": 118.71,
+         "category": "Post-Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Tin is used in solder, food packaging, and bronze alloys.",
+         "examples": [
+             {
+                 "image": "solder",
+                 "description": "Tin is used in solder for electronics and plumbing."
+             },
+             {
+                 "image": "tin_can",
+                 "description": "Tin is used to coat steel cans for food preservation."
+             }
+         ],
+         "history": "Known since ancient times, tin has been used in bronze and pewter.",
+         "applications": [
+             "Used in solder.",
+             "Used in food packaging."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Tin"
+     },
+     {
+         "icon": "flame",
+         "name": "Antimony",
+         "symbol": "Sb",
+         "atomicNumber": 51,
+         "atomicWeight": 121.76,
+         "category": "Metalloid",
+         "roomTempState": "Solid",
+         "fact": "Antimony is used in flame retardants and batteries.",
+         "examples": [
+             {
+                 "image": "flame_retardant",
+                 "description": "Antimony compounds are used as flame retardants in plastics and textiles."
+             },
+             {
+                 "image": "battery",
+                 "description": "Antimony is used in lead-acid batteries to improve performance."
+             }
+         ],
+         "history": "Known since ancient times, antimony has been used in cosmetics and medicines.",
+         "applications": [
+             "Used in flame retardants.",
+             "Used in batteries."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Antimony"
+     },
+     {
+         "icon": "flame",
+         "name": "Tellurium",
+         "symbol": "Te",
+         "atomicNumber": 52,
+         "atomicWeight": 127.60,
+         "category": "Metalloid",
+         "roomTempState": "Solid",
+         "fact": "Tellurium is used in solar panels and thermoelectric devices.",
+         "examples": [
+             {
+                 "image": "solar_panel",
+                 "description": "Tellurium is used in cadmium telluride solar panels."
+             },
+             {
+                 "image": "thermoelectric_device",
+                 "description": "Tellurium is used in thermoelectric devices to convert heat into electricity."
+             }
+         ],
+         "history": "Discovered by Franz-Joseph Müller von Reichenstein in 1782, tellurium is a rare metalloid.",
+         "applications": [
+             "Used in solar panels.",
+             "Used in thermoelectric devices."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Tellurium"
+     },
+     {
+         "icon": "flame",
+         "name": "Iodine",
+         "symbol": "I",
+         "atomicNumber": 53,
+         "atomicWeight": 126.90,
+         "category": "Halogen",
+         "roomTempState": "Solid",
+         "fact": "Iodine is essential for thyroid function and is used in disinfectants.",
+         "examples": [
+             {
+                 "image": "iodized_salt",
+                 "description": "Iodine is added to table salt to prevent iodine deficiency."
+             },
+             {
+                 "image": "antiseptic",
+                 "description": "Iodine is used as an antiseptic to disinfect wounds."
+             }
+         ],
+         "history": "Discovered by Bernard Courtois in 1811, iodine is an essential nutrient.",
+         "applications": [
+             "Used in iodized salt.",
+             "Used in disinfectants."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Iodine"
+     },
+     {
+         "icon": "flame",
+         "name": "Xenon",
+         "symbol": "Xe",
+         "atomicNumber": 54,
+         "atomicWeight": 131.29,
+         "category": "Noble Gas",
+         "roomTempState": "Gas",
+         "fact": "Xenon is used in high-intensity lamps and anesthesia.",
+         "examples": [
+             {
+                 "image": "xenon_lamp",
+                 "description": "Xenon is used in high-intensity discharge lamps for bright, white light."
+             },
+             {
+                 "image": "anesthesia",
+                 "description": "Xenon is used as an anesthetic in medical procedures."
+             }
+         ],
+         "history": "Discovered by William Ramsay and Morris Travers in 1898, xenon is a noble gas.",
+         "applications": [
+             "Used in lighting.",
+             "Used in anesthesia."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Xenon"
+     },
+     {
+         "icon": "flame",
+         "name": "Cesium",
+         "symbol": "Cs",
+         "atomicNumber": 55,
+         "atomicWeight": 132.91,
+         "category": "Alkali Metal",
+         "roomTempState": "Solid",
+         "fact": "Cesium is used in atomic clocks and drilling fluids.",
+         "examples": [
+             {
+                 "image": "atomic_clock",
+                 "description": "Cesium is used in atomic clocks for highly accurate timekeeping."
+             },
+             {
+                 "image": "drilling_fluid",
+                 "description": "Cesium compounds are used in drilling fluids for oil exploration."
+             }
+         ],
+         "history": "Discovered by Robert Bunsen and Gustav Kirchhoff in 1860, cesium is a highly reactive alkali metal.",
+         "applications": [
+             "Used in atomic clocks.",
+             "Used in drilling fluids."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Cesium"
+     },
+     {
+         "icon": "flame",
+         "name": "Barium",
+         "symbol": "Ba",
+         "atomicNumber": 56,
+         "atomicWeight": 137.33,
+         "category": "Alkaline Earth Metal",
+         "roomTempState": "Solid",
+         "fact": "Barium is used in medical imaging and fireworks.",
+         "examples": [
+             {
+                 "image": "x_ray",
+                 "description": "Barium sulfate is used in X-ray imaging to visualize the digestive system."
+             },
+             {
+                 "image": "fireworks",
+                 "description": "Barium compounds are used in green fireworks."
+             }
+         ],
+         "history": "Discovered by Carl Wilhelm Scheele in 1772, barium is a reactive alkaline earth metal.",
+         "applications": [
+             "Used in medical imaging.",
+             "Used in fireworks."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Barium"
+     },
+     {
+         "icon": "flame",
+         "name": "Lanthanum",
+         "symbol": "La",
+         "atomicNumber": 57,
+         "atomicWeight": 138.91,
+         "category": "Lanthanide",
+         "roomTempState": "Solid",
+         "fact": "Lanthanum is used in camera lenses and hydrogen storage.",
+         "examples": [
+             {
+                 "image": "camera_lens",
+                 "description": "Lanthanum is used in high-quality camera lenses for its optical properties."
+             },
+             {
+                 "image": "hydrogen_storage",
+                 "description": "Lanthanum is used in hydrogen storage alloys for fuel cells."
+             }
+         ],
+         "history": "Discovered by Carl Gustaf Mosander in 1839, lanthanum is the first lanthanide.",
+         "applications": [
+             "Used in camera lenses.",
+             "Used in hydrogen storage."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Lanthanum"
+     },
+     {
+         "icon": "flame",
+         "name": "Cerium",
+         "symbol": "Ce",
+         "atomicNumber": 58,
+         "atomicWeight": 140.12,
+         "category": "Lanthanide",
+         "roomTempState": "Solid",
+         "fact": "Cerium is used in catalytic converters and self-cleaning ovens.",
+         "examples": [
+             {
+                 "image": "catalytic_converter",
+                 "description": "Cerium is used in catalytic converters to reduce vehicle emissions."
+             },
+             {
+                 "image": "self_cleaning_oven",
+                 "description": "Cerium oxide is used in self-cleaning ovens to break down food residues."
+             }
+         ],
+         "history": "Discovered by Jöns Jakob Berzelius and Wilhelm Hisinger in 1803, cerium is a versatile lanthanide.",
+         "applications": [
+             "Used in catalytic converters.",
+             "Used in self-cleaning ovens."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Cerium"
+     },
+     {
+         "icon": "flame",
+         "name": "Praseodymium",
+         "symbol": "Pr",
+         "atomicNumber": 59,
+         "atomicWeight": 140.91,
+         "category": "Lanthanide",
+         "roomTempState": "Solid",
+         "fact": "Praseodymium is used in high-strength magnets and colored glass.",
+         "examples": [
+             {
+                 "image": "magnet",
+                 "description": "Praseodymium is used in high-strength magnets for motors and generators."
+             },
+             {
+                 "image": "colored_glass",
+                 "description": "Praseodymium is used to create yellow-green glass."
+             }
+         ],
+         "history": "Discovered by Carl Auer von Welsbach in 1885, praseodymium is a rare earth metal.",
+         "applications": [
+             "Used in magnets.",
+             "Used in colored glass."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Praseodymium"
+     },
+     {
+         "icon": "flame",
+         "name": "Neodymium",
+         "symbol": "Nd",
+         "atomicNumber": 60,
+         "atomicWeight": 144.24,
+         "category": "Lanthanide",
+         "roomTempState": "Solid",
+         "fact": "Neodymium is used in powerful magnets and lasers.",
+         "examples": [
+             {
+                 "image": "neodymium_magnet",
+                 "description": "Neodymium magnets are the strongest permanent magnets known."
+             },
+             {
+                 "image": "laser",
+                 "description": "Neodymium is used in high-powered lasers."
+             }
+         ],
+         "history": "Discovered by Carl Auer von Welsbach in 1885, neodymium is a key component of rare earth magnets.",
+         "applications": [
+             "Used in magnets.",
+             "Used in lasers."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Neodymium"
+     },
+     {
+         "name": "Promethium",
+         "symbol": "Pm",
+         "atomicNumber": 61,
+         "atomicWeight": 145,
+         "category": "Lanthanide",
+         "roomTempState": "Solid",
+         "fact": "Promethium is a radioactive element used in nuclear batteries.",
+         "examples": [
+             {
+                 "image": "nuclear_battery",
+                 "description": "Promethium is used in nuclear batteries for space exploration."
+             },
+             {
+                 "image": "glow_paint",
+                 "description": "Promethium is used in glow-in-the-dark paints."
+             }
+         ],
+         "history": "Discovered by Jacob A. Marinsky, Lawrence E. Glendenin, and Charles D. Coryell in 1945, promethium is a rare radioactive element.",
+         "applications": [
+             "Used in nuclear batteries.",
+             "Used in glow-in-the-dark paints."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Promethium",
+         "icon": "radiation"
+     },
+     {
+         "name": "Samarium",
+         "symbol": "Sm",
+         "atomicNumber": 62,
+         "atomicWeight": 150.36,
+         "category": "Lanthanide",
+         "roomTempState": "Solid",
+         "fact": "Samarium is used in magnets and cancer treatment.",
+         "examples": [
+             {
+                 "image": "magnet",
+                 "description": "Samarium-cobalt magnets are used in high-performance motors."
+             },
+             {
+                 "image": "cancer_treatment",
+                 "description": "Samarium-153 is used in cancer treatment to relieve pain."
+             }
+         ],
+         "history": "Discovered by Paul-Émile Lecoq de Boisbaudran in 1879, samarium is a versatile lanthanide.",
+         "applications": [
+             "Used in magnets.",
+             "Used in cancer treatment."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Samarium",
+         "icon": "magnet"
+     },
+     {
+         "name": "Europium",
+         "symbol": "Eu",
+         "atomicNumber": 63,
+         "atomicWeight": 151.96,
+         "category": "Lanthanide",
+         "roomTempState": "Solid",
+         "fact": "Europium is used in fluorescent lamps and TV screens.",
+         "examples": [
+             {
+                 "image": "fluorescent_lamp",
+                 "description": "Europium is used in phosphors for fluorescent lamps."
+             },
+             {
+                 "image": "tv_screen",
+                 "description": "Europium is used in red and blue phosphors for TV screens."
+             }
+         ],
+         "history": "Discovered by Eugène-Anatole Demarçay in 1896, europium is a key element in lighting technology.",
+         "applications": [
+             "Used in fluorescent lamps.",
+             "Used in TV screens."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Europium",
+         "icon": "lightbulb"
+     },
+     {
+         "name": "Gadolinium",
+         "symbol": "Gd",
+         "atomicNumber": 64,
+         "atomicWeight": 157.25,
+         "category": "Lanthanide",
+         "roomTempState": "Solid",
+         "fact": "Gadolinium is used in MRI contrast agents and nuclear reactors.",
+         "examples": [
+             {
+                 "image": "mri_scan",
+                 "description": "Gadolinium is used in contrast agents for MRI scans."
+             },
+             {
+                 "image": "nuclear_reactor",
+                 "description": "Gadolinium is used as a neutron absorber in nuclear reactors."
+             }
+         ],
+         "history": "Discovered by Jean Charles Galissard de Marignac in 1880, gadolinium is a versatile lanthanide.",
+         "applications": [
+             "Used in MRI contrast agents.",
+             "Used in nuclear reactors."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Gadolinium",
+         "icon": "waveform"
+     },
+     {
+         "name": "Terbium",
+         "symbol": "Tb",
+         "atomicNumber": 65,
+         "atomicWeight": 158.93,
+         "category": "Lanthanide",
+         "roomTempState": "Solid",
+         "fact": "Terbium is used in green phosphors and solid-state devices.",
+         "examples": [
+             {
+                 "image": "green_phosphor",
+                 "description": "Terbium is used in green phosphors for fluorescent lamps."
+             },
+             {
+                 "image": "solid_state_device",
+                 "description": "Terbium is used in solid-state devices for data storage."
+             }
+         ],
+         "history": "Discovered by Carl Gustaf Mosander in 1843, terbium is a rare earth metal.",
+         "applications": [
+             "Used in green phosphors.",
+             "Used in solid-state devices."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Terbium",
+         "icon": "leaf"
+     },
+     {
+         "name": "Dysprosium",
+         "symbol": "Dy",
+         "atomicNumber": 66,
+         "atomicWeight": 162.50,
+         "category": "Lanthanide",
+         "roomTempState": "Solid",
+         "fact": "Dysprosium is used in high-strength magnets and nuclear reactors.",
+         "examples": [
+             {
+                 "image": "magnet",
+                 "description": "Dysprosium is used in high-strength magnets for electric vehicles."
+             },
+             {
+                 "image": "nuclear_reactor",
+                 "description": "Dysprosium is used as a neutron absorber in nuclear reactors."
+             }
+         ],
+         "history": "Discovered by Paul-Émile Lecoq de Boisbaudran in 1886, dysprosium is a rare earth metal.",
+         "applications": [
+             "Used in high-strength magnets.",
+             "Used in nuclear reactors."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Dysprosium",
+         "icon": "bolt"
+     },
+     {
+         "name": "Holmium",
+         "symbol": "Ho",
+         "atomicNumber": 67,
+         "atomicWeight": 164.93,
+         "category": "Lanthanide",
+         "roomTempState": "Solid",
+         "fact": "Holmium is used in lasers and nuclear control rods.",
+         "examples": [
+             {
+                 "image": "laser",
+                 "description": "Holmium is used in medical lasers for surgery."
+             },
+             {
+                 "image": "nuclear_reactor",
+                 "description": "Holmium is used in nuclear control rods to regulate reactions."
+             }
+         ],
+         "history": "Discovered by Marc Delafontaine and Jacques-Louis Soret in 1878, holmium is a rare earth metal.",
+         "applications": [
+             "Used in lasers.",
+             "Used in nuclear control rods."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Holmium",
+         "icon": "scope"
+     },
+     {
+         "name": "Erbium",
+         "symbol": "Er",
+         "atomicNumber": 68,
+         "atomicWeight": 167.26,
+         "category": "Lanthanide",
+         "roomTempState": "Solid",
+         "fact": "Erbium is used in fiber optics and lasers.",
+         "examples": [
+             {
+                 "image": "fiber_optic",
+                 "description": "Erbium is used in fiber optic cables for high-speed internet."
+             },
+             {
+                 "image": "laser",
+                 "description": "Erbium is used in medical and dental lasers."
+             }
+         ],
+         "history": "Discovered by Carl Gustaf Mosander in 1843, erbium is a versatile lanthanide.",
+         "applications": [
+             "Used in fiber optics.",
+             "Used in lasers."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Erbium",
+         "icon": "waveform.path.ecg"
+     },
+     {
+         "name": "Thulium",
+         "symbol": "Tm",
+         "atomicNumber": 69,
+         "atomicWeight": 168.93,
+         "category": "Lanthanide",
+         "roomTempState": "Solid",
+         "fact": "Thulium is used in portable X-ray machines and lasers.",
+         "examples": [
+             {
+                 "image": "x_ray_machine",
+                 "description": "Thulium is used in portable X-ray machines."
+             },
+             {
+                 "image": "laser",
+                 "description": "Thulium is used in medical lasers for surgery."
+             }
+         ],
+         "history": "Discovered by Per Teodor Cleve in 1879, thulium is a rare earth metal.",
+         "applications": [
+             "Used in X-ray machines.",
+             "Used in lasers."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Thulium",
+         "icon": "xray"
+     },
+     {
+         "name": "Ytterbium",
+         "symbol": "Yb",
+         "atomicNumber": 70,
+         "atomicWeight": 173.05,
+         "category": "Lanthanide",
+         "roomTempState": "Solid",
+         "fact": "Ytterbium is used in atomic clocks and stress gauges.",
+         "examples": [
+             {
+                 "image": "atomic_clock",
+                 "description": "Ytterbium is used in highly accurate atomic clocks."
+             },
+             {
+                 "image": "stress_gauge",
+                 "description": "Ytterbium is used in stress gauges for measuring pressure."
+             }
+         ],
+         "history": "Discovered by Jean Charles Galissard de Marignac in 1878, ytterbium is a versatile lanthanide.",
+         "applications": [
+             "Used in atomic clocks.",
+             "Used in stress gauges."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Ytterbium",
+         "icon": "clock"
+     },
+     {
+         "name": "Lutetium",
+         "symbol": "Lu",
+         "atomicNumber": 71,
+         "atomicWeight": 174.97,
+         "category": "Lanthanide",
+         "roomTempState": "Solid",
+         "fact": "Lutetium is used in cancer treatment and petroleum refining.",
+         "examples": [
+             {
+                 "image": "cancer_treatment",
+                 "description": "Lutetium-177 is used in targeted cancer therapies."
+             },
+             {
+                 "image": "petroleum_refining",
+                 "description": "Lutetium is used as a catalyst in petroleum refining."
+             }
+         ],
+         "history": "Discovered by Georges Urbain and Carl Auer von Welsbach in 1907, lutetium is the last lanthanide.",
+         "applications": [
+             "Used in cancer treatment.",
+             "Used in petroleum refining."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Lutetium",
+         "icon": "cross.case"
+     },
+     {
+         "name": "Hafnium",
+         "symbol": "Hf",
+         "atomicNumber": 72,
+         "atomicWeight": 178.49,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Hafnium is used in nuclear reactors and computer chips.",
+         "examples": [
+             {
+                 "image": "nuclear_reactor",
+                 "description": "Hafnium is used in control rods for nuclear reactors."
+             },
+             {
+                 "image": "computer_chip",
+                 "description": "Hafnium is used in high-performance computer chips."
+             }
+         ],
+         "history": "Discovered by Dirk Coster and George de Hevesy in 1923, hafnium is a corrosion-resistant metal.",
+         "applications": [
+             "Used in nuclear reactors.",
+             "Used in computer chips."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Hafnium",
+         "icon": "atom"
+     },
+     {
+         "name": "Tantalum",
+         "symbol": "Ta",
+         "atomicNumber": 73,
+         "atomicWeight": 180.95,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Tantalum is used in capacitors and surgical implants.",
+         "examples": [
+             {
+                 "image": "capacitor",
+                 "description": "Tantalum capacitors are used in electronics for their reliability."
+             },
+             {
+                 "image": "surgical_implant",
+                 "description": "Tantalum is used in surgical implants due to its biocompatibility."
+             }
+         ],
+         "history": "Discovered by Anders Gustaf Ekeberg in 1802, tantalum is a highly corrosion-resistant metal.",
+         "applications": [
+             "Used in capacitors.",
+             "Used in surgical implants."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Tantalum",
+         "icon": "heart"
+     },
+     {
+         "name": "Tungsten",
+         "symbol": "W",
+         "atomicNumber": 74,
+         "atomicWeight": 183.84,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Tungsten has the highest melting point of all metals and is used in light bulb filaments.",
+         "examples": [
+             {
+                 "image": "light_bulb",
+                 "description": "Tungsten is used in incandescent light bulb filaments."
+             },
+             {
+                 "image": "drill_bit",
+                 "description": "Tungsten carbide is used in drill bits for its hardness."
+             }
+         ],
+         "history": "Discovered by Juan José and Fausto Elhuyar in 1783, tungsten is known for its strength and heat resistance.",
+         "applications": [
+             "Used in light bulb filaments.",
+             "Used in drill bits."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Tungsten",
+         "icon": "lightbulb"
+     },
+     {
+         "name": "Rhenium",
+         "symbol": "Re",
+         "atomicNumber": 75,
+         "atomicWeight": 186.21,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Rhenium is used in jet engines and catalysts.",
+         "examples": [
+             {
+                 "image": "jet_engine",
+                 "description": "Rhenium is used in superalloys for jet engine components."
+             },
+             {
+                 "image": "catalyst",
+                 "description": "Rhenium is used as a catalyst in the production of lead-free gasoline."
+             }
+         ],
+         "history": "Discovered by Walter Noddack, Ida Tacke, and Otto Berg in 1925, rhenium is one of the rarest elements.",
+         "applications": [
+             "Used in jet engines.",
+             "Used in catalysts."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Rhenium",
+         "icon": "airplane"
+     },
+     {
+         "name": "Osmium",
+         "symbol": "Os",
+         "atomicNumber": 76,
+         "atomicWeight": 190.23,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Osmium is the densest naturally occurring element and is used in fountain pen tips.",
+         "examples": [
+             {
+                 "image": "fountain_pen",
+                 "description": "Osmium is used in fountain pen tips for its durability."
+             },
+             {
+                 "image": "microscope",
+                 "description": "Osmium is used in electron microscopy for staining samples."
+             }
+         ],
+         "history": "Discovered by Smithson Tennant in 1803, osmium is a dense and hard metal.",
+         "applications": [
+             "Used in fountain pen tips.",
+             "Used in electron microscopy."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Osmium",
+         "icon": "pencil.tip"
+     },
+     {
+         "name": "Iridium",
+         "symbol": "Ir",
+         "atomicNumber": 77,
+         "atomicWeight": 192.22,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Iridium is used in spark plugs and as a catalyst.",
+         "examples": [
+             {
+                 "image": "spark_plug",
+                 "description": "Iridium is used in spark plugs for its high melting point."
+             },
+             {
+                 "image": "catalyst",
+                 "description": "Iridium is used as a catalyst in chemical reactions."
+             }
+         ],
+         "history": "Discovered by Smithson Tennant in 1803, iridium is one of the most corrosion-resistant metals.",
+         "applications": [
+             "Used in spark plugs.",
+             "Used as a catalyst."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Iridium",
+         "icon": "bolt"
+     },
+     {
+         "name": "Platinum",
+         "symbol": "Pt",
+         "atomicNumber": 78,
+         "atomicWeight": 195.08,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Platinum is used in catalytic converters and jewelry.",
+         "examples": [
+             {
+                 "image": "catalytic_converter",
+                 "description": "Platinum is used in catalytic converters to reduce vehicle emissions."
+             },
+             {
+                 "image": "jewelry",
+                 "description": "Platinum is used in high-end jewelry for its luster and durability."
+             }
+         ],
+         "history": "Known since ancient times, platinum is a precious metal used in jewelry and industry.",
+         "applications": [
+             "Used in catalytic converters.",
+             "Used in jewelry."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Platinum",
+         "icon": "diamond"
+     },
+     {
+         "name": "Gold",
+         "symbol": "Au",
+         "atomicNumber": 79,
+         "atomicWeight": 196.97,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Gold is used in jewelry, electronics, and as a financial asset.",
+         "examples": [
+             {
+                 "image": "jewelry",
+                 "description": "Gold is widely used in jewelry for its beauty and resistance to tarnish."
+             },
+             {
+                 "image": "electronics",
+                 "description": "Gold is used in electronics for its excellent conductivity."
+             }
+         ],
+         "history": "Known since ancient times, gold has been used as currency and in jewelry for thousands of years.",
+         "applications": [
+             "Used in jewelry.",
+             "Used in electronics."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Gold",
+         "icon": "dollarsign.circle"
+     },
+     {
+         "name": "Mercury",
+         "symbol": "Hg",
+         "atomicNumber": 80,
+         "atomicWeight": 200.59,
+         "category": "Transition Metal",
+         "roomTempState": "Liquid",
+         "fact": "Mercury is the only metal that is liquid at room temperature and is used in thermometers.",
+         "examples": [
+             {
+                 "image": "thermometer",
+                 "description": "Mercury is used in thermometers for its uniform expansion."
+             },
+             {
+                 "image": "barometer",
+                 "description": "Mercury is used in barometers to measure atmospheric pressure."
+             }
+         ],
+         "history": "Known since ancient times, mercury has been used in alchemy and scientific instruments.",
+         "applications": [
+             "Used in thermometers.",
+             "Used in barometers."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Mercury_(element)",
+         "icon": "thermometer"
+     },
+     {
+         "name": "Thallium",
+         "symbol": "Tl",
+         "atomicNumber": 81,
+         "atomicWeight": 204.38,
+         "category": "Post-Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Thallium is highly toxic and was once used in rat poison.",
+         "examples": [
+             {
+                 "image": "rat_poison",
+                 "description": "Thallium sulfate was once used as a rat poison."
+             },
+             {
+                 "image": "infrared_lens",
+                 "description": "Thallium is used in infrared lenses for cameras."
+             }
+         ],
+         "history": "Discovered by Sir William Crookes in 1861, thallium is a toxic post-transition metal.",
+         "applications": [
+             "Used in infrared optics.",
+             "Used in semiconductor research."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Thallium",
+         "icon": "exclamationmark.triangle"
+     },
+     {
+         "name": "Lead",
+         "symbol": "Pb",
+         "atomicNumber": 82,
+         "atomicWeight": 207.2,
+         "category": "Post-Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Lead is used in batteries and radiation shielding.",
+         "examples": [
+             {
+                 "image": "car_battery",
+                 "description": "Lead-acid batteries are widely used in vehicles."
+             },
+             {
+                 "image": "radiation_shielding",
+                 "description": "Lead is used in radiation shielding for X-rays and nuclear reactors."
+             }
+         ],
+         "history": "Known since ancient times, lead has been used in pipes, paints, and weights.",
+         "applications": [
+             "Used in batteries.",
+             "Used in radiation shielding."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Lead",
+         "icon": "battery.100"
+     },
+     {
+         "name": "Bismuth",
+         "symbol": "Bi",
+         "atomicNumber": 83,
+         "atomicWeight": 208.98,
+         "category": "Post-Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Bismuth is used in cosmetics and pharmaceuticals.",
+         "examples": [
+             {
+                 "image": "cosmetics",
+                 "description": "Bismuth oxychloride is used in cosmetics for its pearlescent effect."
+             },
+             {
+                 "image": "pepto_bismol",
+                 "description": "Bismuth subsalicylate is the active ingredient in Pepto-Bismol."
+             }
+         ],
+         "history": "Known since ancient times, bismuth is a post-transition metal with unique properties.",
+         "applications": [
+             "Used in cosmetics.",
+             "Used in pharmaceuticals."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Bismuth",
+         "icon": "pills"
+     },
+     {
+         "name": "Polonium",
+         "symbol": "Po",
+         "atomicNumber": 84,
+         "atomicWeight": 209,
+         "category": "Metalloid",
+         "roomTempState": "Solid",
+         "fact": "Polonium is highly radioactive and was used in the assassination of Alexander Litvinenko.",
+         "examples": [
+             {
+                 "image": "radioactive_source",
+                 "description": "Polonium is used as a radioactive heat source in space probes."
+             },
+             {
+                 "image": "static_eliminator",
+                 "description": "Polonium is used in static eliminators for industrial applications."
+             }
+         ],
+         "history": "Discovered by Marie and Pierre Curie in 1898, polonium is a highly radioactive element.",
+         "applications": [
+             "Used in radioactive heat sources.",
+             "Used in static eliminators."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Polonium",
+         "icon": "radiation"
+     },
+     {
+         "name": "Astatine",
+         "symbol": "At",
+         "atomicNumber": 85,
+         "atomicWeight": 210,
+         "category": "Halogen",
+         "roomTempState": "Solid",
+         "fact": "Astatine is the rarest naturally occurring element on Earth.",
+         "examples": [
+             {
+                 "image": "radioactive_source",
+                 "description": "Astatine is used in cancer treatment due to its radioactivity."
+             },
+             {
+                 "image": "research",
+                 "description": "Astatine is studied for its potential use in targeted alpha therapy."
+             }
+         ],
+         "history": "Discovered by Dale R. Corson, Kenneth Ross MacKenzie, and Emilio Segrè in 1940, astatine is a rare halogen.",
+         "applications": [
+             "Used in cancer research.",
+             "Studied for medical applications."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Astatine",
+         "icon": "cross.case"
+     },
+     {
+         "name": "Radon",
+         "symbol": "Rn",
+         "atomicNumber": 86,
+         "atomicWeight": 222,
+         "category": "Noble Gas",
+         "roomTempState": "Gas",
+         "fact": "Radon is a radioactive gas that can cause lung cancer.",
+         "examples": [
+             {
+                 "image": "radon_testing",
+                 "description": "Radon testing kits are used to detect radon levels in homes."
+             },
+             {
+                 "image": "cancer_treatment",
+                 "description": "Radon is used in cancer treatment in controlled environments."
+             }
+         ],
+         "history": "Discovered by Friedrich Ernst Dorn in 1900, radon is a radioactive noble gas.",
+         "applications": [
+             "Used in cancer treatment.",
+             "Monitored for health and safety."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Radon",
+         "icon": "wind"
+     },
+     {
+         "name": "Francium",
+         "symbol": "Fr",
+         "atomicNumber": 87,
+         "atomicWeight": 223,
+         "category": "Alkali Metal",
+         "roomTempState": "Solid",
+         "fact": "Francium is the second rarest naturally occurring element and is highly radioactive.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Francium is studied in nuclear physics due to its extreme rarity."
+             },
+             {
+                 "image": "atomic_structure",
+                 "description": "Francium is used in atomic structure research."
+             }
+         ],
+         "history": "Discovered by Marguerite Perey in 1939, francium is a highly reactive alkali metal.",
+         "applications": [
+             "Used in nuclear research.",
+             "Studied for atomic properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Francium",
+         "icon": "atom"
+     },
+     {
+         "name": "Radium",
+         "symbol": "Ra",
+         "atomicNumber": 88,
+         "atomicWeight": 226,
+         "category": "Alkaline Earth Metal",
+         "roomTempState": "Solid",
+         "fact": "Radium was once used in glow-in-the-dark paints but is highly radioactive.",
+         "examples": [
+             {
+                 "image": "glow_paint",
+                 "description": "Radium was used in glow-in-the-dark paints for watches and instruments."
+             },
+             {
+                 "image": "cancer_treatment",
+                 "description": "Radium is used in cancer treatment in controlled environments."
+             }
+         ],
+         "history": "Discovered by Marie and Pierre Curie in 1898, radium is a highly radioactive element.",
+         "applications": [
+             "Used in cancer treatment.",
+             "Used in historical glow-in-the-dark paints."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Radium",
+         "icon": "paintbrush"
+     },
+     {
+         "name": "Actinium",
+         "symbol": "Ac",
+         "atomicNumber": 89,
+         "atomicWeight": 227,
+         "category": "Actinide",
+         "roomTempState": "Solid",
+         "fact": "Actinium is used in cancer treatment and as a neutron source.",
+         "examples": [
+             {
+                 "image": "cancer_treatment",
+                 "description": "Actinium-225 is used in targeted cancer therapies."
+             },
+             {
+                 "image": "neutron_source",
+                 "description": "Actinium is used as a neutron source in scientific research."
+             }
+         ],
+         "history": "Discovered by André-Louis Debierne in 1899, actinium is a radioactive actinide.",
+         "applications": [
+             "Used in cancer treatment.",
+             "Used as a neutron source."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Actinium",
+         "icon": "cross.case"
+     },
+     {
+         "name": "Thorium",
+         "symbol": "Th",
+         "atomicNumber": 90,
+         "atomicWeight": 232.04,
+         "category": "Actinide",
+         "roomTempState": "Solid",
+         "fact": "Thorium is used in nuclear reactors and as a potential future energy source.",
+         "examples": [
+             {
+                 "image": "nuclear_reactor",
+                 "description": "Thorium is used in nuclear reactors as a fuel source."
+             },
+             {
+                 "image": "energy_source",
+                 "description": "Thorium is being researched as a sustainable energy source."
+             }
+         ],
+         "history": "Discovered by Jöns Jakob Berzelius in 1828, thorium is a radioactive actinide.",
+         "applications": [
+             "Used in nuclear reactors.",
+             "Studied as a future energy source."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Thorium",
+         "icon": "bolt"
+     },
+     {
+         "name": "Protactinium",
+         "symbol": "Pa",
+         "atomicNumber": 91,
+         "atomicWeight": 231.04,
+         "category": "Actinide",
+         "roomTempState": "Solid",
+         "fact": "Protactinium is a rare and highly radioactive element used in scientific research.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Protactinium is studied for its nuclear properties."
+             },
+             {
+                 "image": "nuclear_reactor",
+                 "description": "Protactinium is used in nuclear research."
+             }
+         ],
+         "history": "Discovered by Kasimir Fajans and Oswald Helmuth Göhring in 1913, protactinium is a rare actinide.",
+         "applications": [
+             "Used in nuclear research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Protactinium",
+         "icon": "atom"
+     },
+     {
+         "name": "Uranium",
+         "symbol": "U",
+         "atomicNumber": 92,
+         "atomicWeight": 238.03,
+         "category": "Actinide",
+         "roomTempState": "Solid",
+         "fact": "Uranium is used as fuel in nuclear reactors and in atomic bombs.",
+         "examples": [
+             {
+                 "image": "nuclear_reactor",
+                 "description": "Uranium is used as fuel in nuclear power plants."
+             },
+             {
+                 "image": "atomic_bomb",
+                 "description": "Uranium-235 is used in atomic bombs."
+             }
+         ],
+         "history": "Discovered by Martin Heinrich Klaproth in 1789, uranium is a key element in nuclear energy.",
+         "applications": [
+             "Used in nuclear reactors.",
+             "Used in atomic weapons."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Uranium",
+         "icon": "bolt"
+     },
+     {
+         "name": "Neptunium",
+         "symbol": "Np",
+         "atomicNumber": 93,
+         "atomicWeight": 237,
+         "category": "Actinide",
+         "roomTempState": "Solid",
+         "fact": "Neptunium is a byproduct of nuclear reactors and is used in research.",
+         "examples": [
+             {
+                 "image": "nuclear_reactor",
+                 "description": "Neptunium is produced in nuclear reactors."
+             },
+             {
+                 "image": "research",
+                 "description": "Neptunium is studied for its nuclear properties."
+             }
+         ],
+         "history": "Discovered by Edwin McMillan and Philip H. Abelson in 1940, neptunium is a synthetic actinide.",
+         "applications": [
+             "Used in nuclear research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Neptunium",
+         "icon": "flask"
+     },
+     {
+         "name": "Plutonium",
+         "symbol": "Pu",
+         "atomicNumber": 94,
+         "atomicWeight": 244,
+         "category": "Actinide",
+         "roomTempState": "Solid",
+         "fact": "Plutonium is used in nuclear reactors and atomic bombs.",
+         "examples": [
+             {
+                 "image": "nuclear_reactor",
+                 "description": "Plutonium is used as fuel in nuclear reactors."
+             },
+             {
+                 "image": "atomic_bomb",
+                 "description": "Plutonium-239 is used in atomic bombs."
+             }
+         ],
+         "history": "Discovered by Glenn T. Seaborg, Edwin McMillan, Joseph W. Kennedy, and Arthur Wahl in 1940, plutonium is a key element in nuclear technology.",
+         "applications": [
+             "Used in nuclear reactors.",
+             "Used in atomic weapons."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Plutonium",
+         "icon": "bolt"
+     },
+     {
+         "name": "Americium",
+         "symbol": "Am",
+         "atomicNumber": 95,
+         "atomicWeight": 243,
+         "category": "Actinide",
+         "roomTempState": "Solid",
+         "fact": "Americium is used in smoke detectors and as a neutron source.",
+         "examples": [
+             {
+                 "image": "smoke_detector",
+                 "description": "Americium-241 is used in smoke detectors."
+             },
+             {
+                 "image": "neutron_source",
+                 "description": "Americium is used as a neutron source in scientific research."
+             }
+         ],
+         "history": "Discovered by Glenn T. Seaborg, Ralph A. James, Leon O. Morgan, and Albert Ghiorso in 1944, americium is a synthetic actinide.",
+         "applications": [
+             "Used in smoke detectors.",
+             "Used as a neutron source."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Americium",
+         "icon": "smoke"
+     },
+     {
+         "name": "Curium",
+         "symbol": "Cm",
+         "atomicNumber": 96,
+         "atomicWeight": 247,
+         "category": "Actinide",
+         "roomTempState": "Solid",
+         "fact": "Curium is used in scientific research and as a power source in space probes.",
+         "examples": [
+             {
+                 "image": "space_probe",
+                 "description": "Curium is used as a power source in space probes."
+             },
+             {
+                 "image": "research",
+                 "description": "Curium is studied for its radioactive properties."
+             }
+         ],
+         "history": "Discovered by Glenn T. Seaborg, Ralph A. James, and Albert Ghiorso in 1944, curium is a synthetic actinide.",
+         "applications": [
+             "Used in space probes.",
+             "Used in scientific research."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Curium",
+         "icon": "moon"
+     },
+     {
+         "name": "Berkelium",
+         "symbol": "Bk",
+         "atomicNumber": 97,
+         "atomicWeight": 247,
+         "category": "Actinide",
+         "roomTempState": "Solid",
+         "fact": "Berkelium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Berkelium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Berkelium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Glenn T. Seaborg, Stanley G. Thompson, and Albert Ghiorso in 1949, berkelium is a synthetic actinide.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Berkelium",
+         "icon": "flask"
+     },
+     {
+         "name": "Californium",
+         "symbol": "Cf",
+         "atomicNumber": 98,
+         "atomicWeight": 251,
+         "category": "Actinide",
+         "roomTempState": "Solid",
+         "fact": "Californium is used in neutron sources and cancer treatment.",
+         "examples": [
+             {
+                 "image": "neutron_source",
+                 "description": "Californium-252 is used as a neutron source."
+             },
+             {
+                 "image": "cancer_treatment",
+                 "description": "Californium is used in cancer treatment in controlled environments."
+             }
+         ],
+         "history": "Discovered by Glenn T. Seaborg, Stanley G. Thompson, and Albert Ghiorso in 1950, californium is a synthetic actinide.",
+         "applications": [
+             "Used as a neutron source.",
+             "Used in cancer treatment."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Californium",
+         "icon": "cross.case"
+     },
+     {
+         "name": "Einsteinium",
+         "symbol": "Es",
+         "atomicNumber": 99,
+         "atomicWeight": 252,
+         "category": "Actinide",
+         "roomTempState": "Solid",
+         "fact": "Einsteinium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Einsteinium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Einsteinium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Albert Ghiorso and his team in 1952, einsteinium is a synthetic actinide.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Einsteinium",
+         "icon": "flask"
+     },
+     {
+         "name": "Fermium",
+         "symbol": "Fm",
+         "atomicNumber": 100,
+         "atomicWeight": 257,
+         "category": "Actinide",
+         "roomTempState": "Solid",
+         "fact": "Fermium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Fermium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Fermium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Albert Ghiorso and his team in 1952, fermium is a synthetic actinide.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Fermium",
+         "icon": "flask"
+     },
+     {
+         "name": "Mendelevium",
+         "symbol": "Md",
+         "atomicNumber": 101,
+         "atomicWeight": 258,
+         "category": "Actinide",
+         "roomTempState": "Solid",
+         "fact": "Mendelevium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Mendelevium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Mendelevium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Albert Ghiorso, Glenn T. Seaborg, and their team in 1955, mendelevium is a synthetic actinide.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Mendelevium",
+         "icon": "flask"
+     },
+     {
+         "name": "Nobelium",
+         "symbol": "No",
+         "atomicNumber": 102,
+         "atomicWeight": 259,
+         "category": "Actinide",
+         "roomTempState": "Solid",
+         "fact": "Nobelium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Nobelium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Nobelium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Albert Ghiorso, Glenn T. Seaborg, and their team in 1958, nobelium is a synthetic actinide.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Nobelium",
+         "icon": "flask"
+     },
+     {
+         "name": "Lawrencium",
+         "symbol": "Lr",
+         "atomicNumber": 103,
+         "atomicWeight": 262,
+         "category": "Actinide",
+         "roomTempState": "Solid",
+         "fact": "Lawrencium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Lawrencium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Lawrencium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Albert Ghiorso, Torbjørn Sikkeland, Almon Larsh, and Robert M. Latimer in 1961, lawrencium is a synthetic actinide.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Lawrencium",
+         "icon": "flask"
+     },
+     {
+         "name": "Rutherfordium",
+         "symbol": "Rf",
+         "atomicNumber": 104,
+         "atomicWeight": 267,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Rutherfordium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Rutherfordium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Rutherfordium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Albert Ghiorso and his team in 1969, rutherfordium is a synthetic transition metal.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Rutherfordium",
+         "icon": "flask"
+     },
+     {
+         "name": "Dubnium",
+         "symbol": "Db",
+         "atomicNumber": 105,
+         "atomicWeight": 268,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Dubnium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Dubnium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Dubnium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Albert Ghiorso and his team in 1970, dubnium is a synthetic transition metal.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Dubnium",
+         "icon": "flask"
+     },
+     {
+         "name": "Seaborgium",
+         "symbol": "Sg",
+         "atomicNumber": 106,
+         "atomicWeight": 269,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Seaborgium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Seaborgium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Seaborgium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Albert Ghiorso and his team in 1974, seaborgium is a synthetic transition metal.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Seaborgium",
+         "icon": "flask"
+     },
+     {
+         "name": "Bohrium",
+         "symbol": "Bh",
+         "atomicNumber": 107,
+         "atomicWeight": 270,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Bohrium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Bohrium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Bohrium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Peter Armbruster and Gottfried Münzenberg in 1981, bohrium is a synthetic transition metal.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Bohrium",
+         "icon": "flask"
+     },
+     {
+         "name": "Hassium",
+         "symbol": "Hs",
+         "atomicNumber": 108,
+         "atomicWeight": 269,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Hassium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Hassium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Hassium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Peter Armbruster and Gottfried Münzenberg in 1984, hassium is a synthetic transition metal.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Hassium",
+         "icon": "flask"
+     },
+     {
+         "name": "Meitnerium",
+         "symbol": "Mt",
+         "atomicNumber": 109,
+         "atomicWeight": 278,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Meitnerium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Meitnerium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Meitnerium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Peter Armbruster and Gottfried Münzenberg in 1982, meitnerium is a synthetic transition metal.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Meitnerium",
+         "icon": "flask"
+     },
+     {
+         "name": "Darmstadtium",
+         "symbol": "Ds",
+         "atomicNumber": 110,
+         "atomicWeight": 281,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Darmstadtium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Darmstadtium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Darmstadtium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Peter Armbruster and Gottfried Münzenberg in 1994, darmstadtium is a synthetic transition metal.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Darmstadtium",
+         "icon": "flask"
+     },
+     {
+         "name": "Roentgenium",
+         "symbol": "Rg",
+         "atomicNumber": 111,
+         "atomicWeight": 282,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Roentgenium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Roentgenium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Roentgenium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Peter Armbruster and Gottfried Münzenberg in 1994, roentgenium is a synthetic transition metal.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Roentgenium",
+         "icon": "flask"
+     },
+     {
+         "name": "Copernicium",
+         "symbol": "Cn",
+         "atomicNumber": 112,
+         "atomicWeight": 285,
+         "category": "Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Copernicium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Copernicium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Copernicium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Sigurd Hofmann and his team in 1996, copernicium is a synthetic transition metal.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Copernicium",
+         "icon": "flask"
+     },
+     {
+         "name": "Nihonium",
+         "symbol": "Nh",
+         "atomicNumber": 113,
+         "atomicWeight": 286,
+         "category": "Post-Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Nihonium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Nihonium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Nihonium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Kosuke Morita and his team in 2004, nihonium is a synthetic post-transition metal.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Nihonium",
+         "icon": "flask"
+     },
+     {
+         "name": "Flerovium",
+         "symbol": "Fl",
+         "atomicNumber": 114,
+         "atomicWeight": 289,
+         "category": "Post-Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Flerovium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Flerovium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Flerovium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Yuri Oganessian and his team in 1998, flerovium is a synthetic post-transition metal.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Flerovium",
+         "icon": "flask"
+     },
+     {
+         "name": "Moscovium",
+         "symbol": "Mc",
+         "atomicNumber": 115,
+         "atomicWeight": 290,
+         "category": "Post-Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Moscovium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Moscovium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Moscovium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Yuri Oganessian and his team in 2003, moscovium is a synthetic post-transition metal.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Moscovium",
+         "icon": "flask"
+     },
+     {
+         "name": "Livermorium",
+         "symbol": "Lv",
+         "atomicNumber": 116,
+         "atomicWeight": 293,
+         "category": "Post-Transition Metal",
+         "roomTempState": "Solid",
+         "fact": "Livermorium is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Livermorium is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Livermorium is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Yuri Oganessian and his team in 2000, livermorium is a synthetic post-transition metal.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Livermorium",
+         "icon": "flask"
+     },
+     {
+         "name": "Tennessine",
+         "symbol": "Ts",
+         "atomicNumber": 117,
+         "atomicWeight": 294,
+         "category": "Halogen",
+         "roomTempState": "Solid",
+         "fact": "Tennessine is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Tennessine is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Tennessine is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Yuri Oganessian and his team in 2010, tennessine is a synthetic halogen.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Tennessine",
+         "icon": "flask"
+     },
+     {
+         "name": "Oganesson",
+         "symbol": "Og",
+         "atomicNumber": 118,
+         "atomicWeight": 294,
+         "category": "Noble Gas",
+         "roomTempState": "Solid",
+         "fact": "Oganesson is used in scientific research and has no commercial applications.",
+         "examples": [
+             {
+                 "image": "research",
+                 "description": "Oganesson is studied for its nuclear properties."
+             },
+             {
+                 "image": "particle_accelerator",
+                 "description": "Oganesson is produced in particle accelerators."
+             }
+         ],
+         "history": "Discovered by Yuri Oganessian and his team in 2002, oganesson is a synthetic noble gas.",
+         "applications": [
+             "Used in scientific research.",
+             "Studied for its radioactive properties."
+         ],
+         "wikipediaLink": "https://en.wikipedia.org/wiki/Oganesson",
+         "icon": "flask"
+     }
+]

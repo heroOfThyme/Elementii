@@ -1,3 +1,12 @@
+//
+//  ElementListView.swift
+//  Elementii
+//
+//  Created by Petar Vidakovic on 2025-03-01.
+//
+
+import SwiftUI
+
 struct ElementListView: View {
     let elements: [Element] = Bundle.main.decode("elements.json")
     
@@ -17,6 +26,7 @@ struct ElementListView: View {
                     }
                 }
             }
+            .listRowBackground(Color.black.opacity(0.01))
         }
         .navigationTitle("Elements")
     }

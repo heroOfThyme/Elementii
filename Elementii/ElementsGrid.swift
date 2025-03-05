@@ -1,16 +1,28 @@
+//
+//  ElementsGrid.swift
+//  Elementii
+//
+//  Created by Petar Vidakovic on 2025-03-01.
+//
+
+
 import SwiftUI
 
 struct ElementsGrid: View {
     let elements: [Element]
-    @Binding var scale: CGFloat
     
     var body: some View {
-        ForEach(elements) { element in
-            ElementTile(element: element)
+        ZStack {
+            ForEach(elements) { element in
+                NavigationLink(destination: ElementDetailView(element: element)) {
+                    ElementTile(element: element)
+                }
                 .position(
-                    x: CGFloat(element.position.x) * 50, // Adjust spacing as needed
-                    y: CGFloat(element.position.y) * 50  // Adjust spacing as needed
+                    x: CGFloat(element.position.x) * 85, // Adjusted spacing for larger tiles
+                    y: CGFloat(element.position.y) * 85  // Adjusted spacing for larger tiles
                 )
+            }
         }
+        .background(Theme.tableAccent)
     }
 }
