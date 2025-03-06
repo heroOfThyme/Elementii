@@ -12,7 +12,7 @@ struct ContentView: View {
         TabView {
             // Tab 1: Periodic Table Grid
             NavigationStack {
-                PeriodicGridView()
+                PeriodicTableView()
             }
             .tabItem {
                 Image(systemName: "square.grid.3x3.fill")
@@ -46,5 +46,6 @@ struct ContentView: View {
                 Text("Settings")
             }
         }
+        .tint(Theme.primary)
     }
 }

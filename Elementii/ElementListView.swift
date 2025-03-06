@@ -45,7 +45,7 @@ struct ElementListView: View {
                         .font(.title2)
                 }
                 .popover(isPresented: $showCategoriesPopover, arrowEdge: .top) {
-                    CategoriesPopoverView(categories: getCategories(), selectedCategory: $selectedCategory)
+                    ListCategoriesPopoverView(categories: getCategories(), selectedCategory: $selectedCategory)
                 }
             }
             .padding()
