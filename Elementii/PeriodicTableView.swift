@@ -16,35 +16,38 @@ struct ViewOffsetKey: PreferenceKey {
     }
 }
 
-
-
 struct PeriodicTableView: View {
     let elements: [Element] = Bundle.main.decode("elements.json")
     
     @State private var showLegendModal = false
     @State private var offset = CGPoint.zero
-    // We're only using table view now
     @State private var searchQuery: String = ""
     
     var body: some View {
         VStack(alignment: .leading) {
             periodicTable
-                .padding(.top, 8)
+                .padding(.top, 2)
                 .padding(.leading, 16)
         }
-        .navigationTitle("The Periodic Table")
-        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    Text("The Periodic Table")
+                        .font(.largeTitle)
+                        .bold()
+                        .foregroundColor(Color("AppPrimary"))
+                }
+            }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
                     showLegendModal = true
                 }) {
                     Image(systemName: "info.square.fill")
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(Color("AppPrimary"))
                 }
             }
         }
-                    .sheet(isPresented: $showLegendModal) {
+        .sheet(isPresented: $showLegendModal) {
             NavigationView {
                 VStack(alignment: .leading, spacing: 12) {
                     List {
@@ -145,7 +148,7 @@ struct PeriodicTableView: View {
         }
     }
     
-    @ViewBuilder
+    // Main periodic table view
     private var periodicTable: some View {
         HStack(alignment: .top, spacing: 8) {
             // Add the row headers
@@ -196,6 +199,79 @@ struct PeriodicTableView: View {
         }
     }
     
+    // Main periodic table grid layout
+    private var periodicTableGrid: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            ForEach(1..<8) { row in
+                HStack(alignment: .top, spacing: 8) {
+                    ForEach(1..<19) { group in
+                        tileFor(group: group, row: row)
+                    }
+                }
+            }
+            
+            // Extra spacing before lanthanide/actinide rows
+            HStack(alignment: .top, spacing: 8) {
+                ForEach(1..<19) { group in
+                    tileFor(group: group, row: 8)
+                }
+            }
+            .padding(.top, 16)
+            
+            HStack(alignment: .top, spacing: 8) {
+                ForEach(1..<19) { group in
+                    tileFor(group: group, row: 9)
+                }
+            }
+        }
+    }
+    
+    // Determine which type of tile to show at a given position
+    private func tileFor(group: Int, row: Int) -> some View {
+        // Special reference cells for lanthanides and actinides
+        if row == 6 && group == 3 {
+            return AnyView(referenceCell(text: "57-71", color: Color("Lanthanide")))
+        }
+        if row == 7 && group == 3 {
+            return AnyView(referenceCell(text: "89-103", color: Color("Actinide")))
+        }
+        
+        // Empty spaces in main table
+        if (row == 1 && (2...17).contains(group)) ||
+           ((2...3).contains(row) && (3...12).contains(group)) ||
+           ((8...9).contains(row) && [1, 2, 18].contains(group)) {
+            return AnyView(blankTile)
+        }
+        
+        // Handle lanthanide row (row 8)
+        if row == 8 && group >= 3 && group <= 17 {
+            let atomicNumber = 54 + group  // Maps group 3 to element 57, group 4 to element 58, etc.
+            if let element = elements.first(where: { $0.atomicNumber == atomicNumber }) {
+                return AnyView(elementTile(for: element))
+            }
+        }
+        
+        // Handle actinide row (row 9)
+        if row == 9 && group >= 3 && group <= 17 {
+            let atomicNumber = 86 + group  // Maps group 3 to element 89, group 4 to element 90, etc.
+            if let element = elements.first(where: { $0.atomicNumber == atomicNumber }) {
+                return AnyView(elementTile(for: element))
+            }
+        }
+        
+        // Handle main table elements - exclude lanthanides and actinides
+        if row <= 7 {
+            if let element = elements.first(where: {
+                $0.position.x == group && $0.position.y == row &&
+                !((57...71).contains($0.atomicNumber) || (89...103).contains($0.atomicNumber))
+            }) {
+                return AnyView(elementTile(for: element))
+            }
+        }
+        
+        return AnyView(blankTile)
+    }
+    
     // Origin tile (top-left corner)
     private var originTile: some View {
         RoundedRectangle(cornerRadius: 8)
@@ -226,70 +302,6 @@ struct PeriodicTableView: View {
                 Text("\(group)")
                     .foregroundStyle(Color.secondary)
             }
-    }
-    
-    // Main periodic table grid
-    private var periodicTableGrid: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            ForEach(1..<8) { row in
-                HStack(alignment: .top, spacing: 8) {
-                    ForEach(1..<19) { group in
-                        tileFor(group: group, row: row)
-                    }
-                }
-            }
-            
-            // Extra spacing before lanthanide/actinide rows
-            HStack(alignment: .top, spacing: 8) {
-                ForEach(1..<19) { group in
-                    tileFor(group: group, row: 8)
-                }
-            }
-            .padding(.top, 16)
-            
-            HStack(alignment: .top, spacing: 8) {
-                ForEach(1..<19) { group in
-                    tileFor(group: group, row: 9)
-                }
-            }
-        }
-    }
-    
-    // Determine which type of tile to show at a given position
-    private func tileFor(group: Int, row: Int) -> some View {
-        let position = (group, row)
-        
-        // Lanthanides and Actinides reference blocks
-        if row == 6 && group == 3 {
-            return AnyView(referenceCell(text: "57-71", color: Color("Lanthanide")))
-        }
-        if row == 7 && group == 3 {
-            return AnyView(referenceCell(text: "89-103", color: Color("Actinide")))
-        }
-        
-        // Empty spaces
-        if (row == 1 && (2...17).contains(group)) ||
-            ((2...3).contains(row) && (3...12).contains(group)) ||
-            ((8...9).contains(row) && [1, 2, 18].contains(group)) {
-            return AnyView(blankTile)
-        }
-        
-        // Find the element at this position
-        if let element = elements.first(where: {
-            if row <= 7 {
-                return $0.position.x == group && $0.position.y == row
-            } else if row == 8 {
-                // Lanthanides are in row 9 in the data model
-                return $0.position.x == group && $0.position.y == 9
-            } else {
-                // Actinides are in row 10 in the data model
-                return $0.position.x == group && $0.position.y == 10
-            }
-        }) {
-            return AnyView(elementTile(for: element))
-        }
-        
-        return AnyView(blankTile)
     }
     
     // Empty tile for blank spaces
@@ -352,32 +364,9 @@ struct PeriodicTableView: View {
             )
         }
     }
-    
-    // Element list view
-    private var elementList: some View {
-        List {
-            ForEach(elements) { element in
-                NavigationLink(destination: ElementDetailView(element: element)) {
-                    HStack(alignment: .center) {
-                        Text("\(element.atomicNumber)")
-                            .font(.caption)
-                        Text("\(element.symbol)")
-                            .font(.headline)
-                            .bold()
-                        Text("\(element.name)")
-                        Spacer()
-                        Text(String(format: "%.3f", element.atomicWeight))
-                            .font(.caption)
-                    }
-                    .foregroundStyle(element.categoryColor)
-                    .frame(height: 36)
-                }
-            }
-        }
-    }
 }
 
-// Add this helper struct for the legend view
+// Helper struct for the legend view
 struct CategoryLegendItem: View {
     let name: String
     let color: Color
