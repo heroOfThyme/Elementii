@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct ElementListView: View {
-    let elements: [Element] = Bundle.main.decode("elements.json")
+    @ObservedObject private var dataStore = ElementDataStore.shared
     @State private var searchText = ""
-    @State private var selectedCategory: String? = nil
-    @State private var showCategoriesPopover = false
+    @State private var filteredElements: [Element] = []
     
     var body: some View {
         VStack(spacing: 0) {
@@ -24,10 +23,14 @@ struct ElementListView: View {
                     
                     TextField("Search elements...", text: $searchText)
                         .padding(10)
+                        .onChange(of: searchText) {
+                            updateFilteredElements()
+                        }
                     
                     if !searchText.isEmpty {
                         Button(action: {
                             searchText = ""
+                            updateFilteredElements()
                         }) {
                             Image(systemName: "xmark.circle.fill")
                                 .foregroundColor(.gray)
@@ -37,16 +40,6 @@ struct ElementListView: View {
                 }
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(10)
-                
-                Button(action: {
-                    showCategoriesPopover = true
-                }) {
-                    Image(systemName: "line.3.horizontal.decrease.circle")
-                        .font(.title2)
-                }
-                .popover(isPresented: $showCategoriesPopover, arrowEdge: .top) {
-                    ListCategoriesPopoverView(categories: getCategories(), selectedCategory: $selectedCategory)
-                }
             }
             .padding()
             
@@ -62,10 +55,18 @@ struct ElementListView: View {
             .listStyle(PlainListStyle())
         }
         .navigationTitle("Elements")
+        .background(Theme.background)
+        .onAppear {
+            // Initialize filtered elements when view appears
+            if filteredElements.isEmpty {
+                filteredElements = dataStore.elements
+            }
+        }
     }
     
-    // Element list row
+    // Element list row remains the same as your original code
     private func elementRow(element: Element) -> some View {
+        // Keep your existing implementation
         HStack {
             // Element symbol in colored circle
             ZStack {
@@ -82,18 +83,19 @@ struct ElementListView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(element.name)
                     .font(.headline)
+                    .foregroundColor(Theme.text)
                 
                 HStack {
                     Text("\(element.atomicNumber)")
                         .font(.subheadline)
-                        .foregroundColor(.gray)
+                        .foregroundColor(Theme.text)
                     
                     Text("•")
-                        .foregroundColor(.gray)
+                        .foregroundColor(Theme.text)
                     
                     Text(element.category)
                         .font(.subheadline)
-                        .foregroundColor(.gray)
+                        .foregroundColor(element.categoryColor)
                 }
             }
             .padding(.leading, 8)
@@ -103,81 +105,14 @@ struct ElementListView: View {
             // Atomic weight
             Text(String(format: "%.3f", element.atomicWeight))
                 .font(.system(size: 14, weight: .medium))
-                .foregroundColor(.gray)
+                .foregroundColor(Theme.text)
         }
         .padding(.vertical, 6)
     }
     
-    // Get unique categories from elements
-    private func getCategories() -> [String] {
-        return Array(Set(elements.map { $0.category })).sorted()
-    }
-    
-    // Filter elements based on search text and selected category
-    private var filteredElements: [Element] {
-        elements.filter { element in
-            let matchesSearch = searchText.isEmpty ||
-                              element.name.lowercased().contains(searchText.lowercased()) ||
-                              element.symbol.lowercased().contains(searchText.lowercased()) ||
-                              String(element.atomicNumber).contains(searchText) ||
-                              element.category.lowercased().contains(searchText.lowercased())
-            
-            let matchesCategory = selectedCategory == nil || element.category == selectedCategory
-            
-            return matchesSearch && matchesCategory
-        }
-        .sorted { $0.atomicNumber < $1.atomicNumber }
-    }
-}
-
-// Categories popover for list
-struct ListCategoriesPopoverView: View {
-    let categories: [String]
-    @Binding var selectedCategory: String?
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Filter by Category")
-                .font(.headline)
-                .padding(.horizontal)
-                .padding(.top)
-            
-            List {
-                Button {
-                    selectedCategory = nil
-                } label: {
-                    HStack {
-                        Text("All Categories")
-                            .foregroundColor(.primary)
-                        Spacer()
-                        if selectedCategory == nil {
-                            Image(systemName: "checkmark")
-                                .foregroundColor(.blue)
-                        }
-                    }
-                }
-                
-                ForEach(categories, id: \.self) { category in
-                    Button {
-                        selectedCategory = category
-                    } label: {
-                        HStack {
-                            Text(category)
-                                .foregroundColor(.primary)
-                            
-                            Spacer()
-                            
-                            if selectedCategory == category {
-                                Image(systemName: "checkmark")
-                                    .foregroundColor(.blue)
-                            }
-                        }
-                    }
-                }
-            }
-            .listStyle(PlainListStyle())
-        }
-        .frame(width: 300, height: 400)
+    // Update filtered elements using our optimized data store
+    private func updateFilteredElements() {
+        filteredElements = dataStore.searchElements(query: searchText)
     }
 }
 

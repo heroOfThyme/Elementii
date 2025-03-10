@@ -4,7 +4,6 @@
 //
 //  Created by Petar Vidakovic on 2025-03-01.
 //
-
 import SwiftUI
 
 struct SettingsView: View {
@@ -18,105 +17,123 @@ struct SettingsView: View {
     
     var body: some View {
         Form {
-            // Appearance section
-            Section {
-                Toggle(isOn: $isDarkMode) {
-                    HStack {
-                        Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
-                            .foregroundColor(isDarkMode ? .blue : .yellow)
-                        Text(isDarkMode ? "Dark Mode" : "Light Mode")
-                    }
-                }
-            } header: {
-                SectionHeaderWithIcon(
-                    title: "Appearance",
-                    systemName: "paintpalette.fill"
-                )
-            }
-            
-            // Notifications section
-            Section {
-                NavigationLink(destination: NotificationSettingsView()) {
-                    Label("Notification Preferences", systemImage: "bell.badge")
-                }
-            } header: {
-                SectionHeaderWithIcon(
-                    title: "Notifications",
-                    systemName: "bell.fill"
-                )
-            }
-            
-            // Message from the dev section
-            Section {
-                Button(action: {
-                    showingDevMessage = true
-                }) {
-                    Label("Read Message from the Developer", systemImage: "envelope.open")
-                }
-                .sheet(isPresented: $showingDevMessage) {
-                    DeveloperMessageView()
-                }
-            } header: {
-                SectionHeaderWithIcon(
-                    title: "Special Message",
-                    systemName: "heart.fill"
-                )
-            }
-            
-            // About section
-            Section {
-                LabeledContent("Version") {
-                    Text("\(appVersion) (\(buildNumber))")
-                }
-                
-                Button(action: {
-                    // Replace with your app's website URL
-                    if let url = URL(string: "https://elementii-app.com") {
-                        openURL(url)
-                    }
-                }) {
-                    Label("Visit Website", systemImage: "globe")
-                }
-                
-                Button(action: {
-                    // Replace with your support email
-                    if let url = URL(string: "mailto:support@elementii-app.com") {
-                        openURL(url)
-                    }
-                }) {
-                    Label("Contact Support", systemImage: "envelope")
-                }
-                
-                Button(action: {
-                    // Replace with your App Store URL
-                    if let url = URL(string: "https://apps.apple.com/app/idYOURAPPID") {
-                        openURL(url)
-                    }
-                }) {
-                    Label("Rate on App Store", systemImage: "star.fill")
-                }
-            } header: {
-                SectionHeaderWithIcon(
-                    title: "About",
-                    systemName: "info.circle.fill"
-                )
-            }
+            appearanceSection
+            messageFromDevSection
+            aboutSection
         }
         .navigationTitle("Settings")
         .preferredColorScheme(isDarkMode ? .dark : .light) // Apply the selected color scheme
+        .background(Theme.background)
     }
-}
-
-// Custom section header with icon
-struct SectionHeaderWithIcon: View {
-    let title: String
-    let systemName: String
     
-    var body: some View {
-        HStack(spacing: 8) {
-            Image(systemName: systemName)
-                .foregroundColor(.accentColor)
-            Text(title)
+    // MARK: - Sections
+    
+    @ViewBuilder
+    private var appearanceSection: some View {
+        Section(header: Text("Appearance")) {
+            Toggle(isOn: $isDarkMode) {
+                HStack {
+                    Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
+                        .foregroundColor(isDarkMode ? .blue : .yellow)
+                    Text(isDarkMode ? "Dark Mode" : "Light Mode")
+                        .foregroundStyle(Theme.text)
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private var messageFromDevSection: some View {
+        Section(header: Text("Special Message")) {
+            Button(action: {
+                showingDevMessage = true
+            }) {
+                HStack {
+                    Image(systemName: "envelope.badge.person.crop.fill")
+                        .foregroundStyle(Color.pink)
+                        .font(.system(size: 18))
+                        .frame(width: 24, height: 24)
+                    
+                    Text("Message from the Developer")
+                        .foregroundStyle(Theme.text)
+                }
+                .frame(height: 36)
+            }
+            .sheet(isPresented: $showingDevMessage) {
+                DeveloperMessageView()
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private var aboutSection: some View {
+        Section(header: Text("About")) {
+            HStack {
+                Image(systemName: "info.circle.fill")
+                    .foregroundStyle(Color.purple)
+                    .font(.system(size: 18))
+                    .frame(width: 24, height: 24)
+                
+                Text("Version")
+                    .foregroundStyle(Theme.text)
+                
+                Spacer()
+                
+                Text("\(appVersion) (\(buildNumber))")
+                    .foregroundStyle(Theme.text)
+            }
+            .frame(height: 36)
+            
+            Button(action: {
+                if let url = URL(string: "https://elementii-app.com") {
+                    openURL(url)
+                }
+            }) {
+                HStack {
+                    Image(systemName: "globe.americas.fill")
+                        .foregroundStyle(Color.green)
+                        .font(.system(size: 18))
+                        .frame(width: 24, height: 24)
+                    
+                    Text("Visit Website")
+                        .foregroundStyle(Theme.text)
+                }
+                .frame(height: 36)
+            }
+            
+            Button(action: {
+                if let url = URL(string: "mailto:support@elementii-app.com") {
+                    openURL(url)
+                }
+            }) {
+                HStack {
+                    Image(systemName: "envelope.front.fill")
+                        .foregroundStyle(Color.red)
+                        .font(.system(size: 18))
+                        .frame(width: 24, height: 24)
+                    
+                    Text("Contact Support")
+                        .foregroundStyle(Color.primary)
+                }
+                .frame(height: 36)
+            }
+            
+            Button(action: {
+                if let url = URL(string: "https://apps.apple.com/app/idYOURAPPID") {
+                    openURL(url)
+                }
+            }) {
+                HStack {
+                    Image(systemName: "star.fill")
+                        .foregroundStyle(Color.yellow)
+                        .font(.system(size: 18))
+                        .frame(width: 24, height: 24)
+                    
+                    Text("Rate on App Store")
+                        .foregroundStyle(Theme.text)
+                }
+                .frame(height: 36)
+            }
         }
     }
 }
@@ -150,19 +167,14 @@ struct NotificationSettingsView: View {
 
 // Developer message view
 struct DeveloperMessageView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 Text("A Message from the Developer")
                     .font(.largeTitle)
                     .bold()
-                
-                Image(systemName: "person.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 60, height: 60)
-                    .padding()
-                    .background(Circle().fill(Color.accentColor.opacity(0.2)))
                 
                 Text("Dear Elementii User,")
                     .font(.title2)
@@ -185,12 +197,14 @@ struct DeveloperMessageView: View {
                 Spacer()
                 
                 Button("Close") {
-                    // This will dismiss the sheet
+                    dismiss()
                 }
                 .buttonStyle(.borderedProminent)
+                .tint(Theme.primary)
                 .frame(maxWidth: .infinity)
             }
             .padding()
+            .background(Theme.background)
         }
     }
 }

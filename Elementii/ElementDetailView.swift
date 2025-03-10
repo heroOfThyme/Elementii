@@ -5,272 +5,716 @@
 //  Created by Petar Vidakovic on 2025-02-25.
 //
 
-
 import SwiftUI
 
 struct ElementDetailView: View {
     let element: Element
     @Environment(\.colorScheme) var colorScheme
+    @State private var selectedTab = 0
+    @State private var isShowingFact = false
+    @State private var isSymbolAnimating = false
+    
+    private let tabTitles = ["Basics", "Properties", "History", "Uses", "Atom", "More"]
+    private let tabIcons = ["info.circle", "list.bullet", "clock", "hammer", "atom", "ellipsis"]
     
     var body: some View {
-        TabView {
-            // Section 1: Element Symbol, Name, and Atomic Number
-            VStack(spacing: 20) {
-                Image(systemName: element.icon)
-                    .font(.system(size: 100, weight: .regular))
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
-                    .symbolEffect(.breathe)
+        ZStack {
+            // Background
+            element.categoryColor.opacity(colorScheme == .dark ? 0.15 : 0.08)
+                .edgesIgnoringSafeArea(.all)
+            
+            VStack(spacing: 0) {
+                // Header with element basics
+                ElementHeaderView(element: element)
+                
+                // Custom tab selector
+                HStack(spacing: 5) {
+                    ForEach(0..<tabTitles.count, id: \.self) { index in
+                        TabButton(
+                            title: tabTitles[index],
+                            icon: tabIcons[index],
+                            isSelected: selectedTab == index,
+                            accentColor: element.categoryColor
+                        ) {
+                            withAnimation {
+                                selectedTab = index
+                            }
+                        }
+                    }
+                }
+                .padding(.horizontal, 10)
+                .padding(.vertical, 8)
+                
+                // Content area
+                TabView(selection: $selectedTab) {
+                    // Tab 1: Basic Info
+                    ElementBasicsView(element: element)
+                        .tag(0)
+                    
+                    // Tab 2: Properties
+                    ElementPropertiesView(element: element)
+                        .tag(1)
+                    
+                    // Tab 3: History
+                    ElementHistoryView(element: element)
+                        .tag(2)
+                    
+                    // Tab 4: Applications
+                    ElementApplicationsView(element: element)
+                        .tag(3)
+                    
+                    // Tab 5: Bohr Diagram
+                    ElementBohrView(element: element)
+                        .tag(4)
+                    
+                    // Tab 6: More
+                    ElementMoreView(element: element)
+                        .tag(5)
+                }
+                .tabViewStyle(.page(indexDisplayMode: .never))
+                .animation(.easeInOut, value: selectedTab)
+            }
+            
+            // Fun Fact Popup
+            if isShowingFact {
+                FactPopupView(
+                    fact: element.funFacts?.randomElement() ?? element.fact,
+                    isShowing: $isShowingFact,
+                    backgroundColor: element.categoryColor
+                )
+                .transition(.scale.combined(with: .opacity))
+            }
+        }
+        .overlay(
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    
+                    Button(action: {
+                        withAnimation(.spring()) {
+                            isShowingFact.toggle()
+                        }
+                    }) {
+                        Image(systemName: "lightbulb.fill")
+                            .font(.system(size: 24))
+                            .foregroundColor(element.categoryColor)
+                            .padding()
+                            .background(
+                                Circle()
+                                    .fill(colorScheme == .dark ? Color.black.opacity(0.7) : Color.white.opacity(0.7))
+                                    .shadow(color: element.categoryColor.opacity(0.5), radius: 5)
+                            )
+                    }
+                    .padding(.trailing, 20)
+                    .padding(.bottom, 20)
+                }
+            }
+        )
+        .navigationTitle(element.name)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+// MARK: - Tab Button
+struct TabButton: View {
+    let title: String
+    let icon: String
+    let isSelected: Bool
+    let accentColor: Color
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 4) {
+                Image(systemName: icon)
+                    .font(.system(size: 16))
+                    .symbolEffect(.pulse, isActive: isSelected)
+                Text(title)
+                    .font(.caption)
+            }
+            .foregroundColor(isSelected ? .white : Theme.text)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 8)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(isSelected ? accentColor : (colorScheme == .dark ? Color.black.opacity(0.3) : Color.white.opacity(0.5)))
+            )
+        }
+    }
+    
+    @Environment(\.colorScheme) var colorScheme
+}
+
+// MARK: - Header View
+struct ElementHeaderView: View {
+    let element: Element
+    @Environment(\.colorScheme) var colorScheme
+    @State private var isSymbolAnimating = false
+    
+    var body: some View {
+        HStack(spacing: 15) {
+            // Element symbol with animation
+            ZStack {
+                Circle()
+                    .fill(element.categoryColor.opacity(0.3))
+                    .frame(width: 80, height: 80)
                 
                 Text(element.symbol)
-                    .font(.system(size: 100, weight: .bold))
+                    .font(.system(size: 36, weight: .bold))
                     .foregroundColor(colorScheme == .dark ? .white : .black)
-                
+                    .scaleEffect(isSymbolAnimating ? 1.1 : 1.0)
+                    .animation(
+                        Animation.easeInOut(duration: 1.5)
+                            .repeatForever(autoreverses: true),
+                        value: isSymbolAnimating
+                    )
+                    .onAppear {
+                        isSymbolAnimating = true
+                    }
+            }
+            
+            VStack(alignment: .leading, spacing: 4) {
                 Text(element.name)
-                    .font(.title)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(Theme.text)
                 
                 Text("Atomic Number: \(element.atomicNumber)")
-                    .font(.headline)
-                    .foregroundColor(colorScheme == .dark ? .white.opacity(0.8) : .black.opacity(0.8))
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding()
-            .background(element.categoryColor.opacity(colorScheme == .dark ? 0.2 : 0.1))
-            .tag(0)
-            
-            // Section 2: Atomic Weight and State
-            VStack(spacing: 20) {
-                Text("Atomic Weight: \(element.atomicWeight)")
-                    .font(.title2)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                    .font(.subheadline)
+                    .foregroundColor(Theme.text.opacity(0.8))
                 
-                Text("State: \(element.roomTempState)")
-                    .font(.title2)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding()
-            .background(element.categoryColor.opacity(colorScheme == .dark ? 0.2 : 0.1))
-            .tag(1)
-            
-            // Section 3: Fun Fact
-            ScrollView {
-                VStack(spacing: 20) {
-                    Text("Fun Fact")
-                        .font(.title)
-                        .foregroundColor(colorScheme == .dark ? .white : .black)
-                    
-                    Text(element.fact)
-                        .font(.body)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(colorScheme == .dark ? .white : .black)
-                        .padding()
+                HStack(spacing: 10) {
+                    Label(element.category, systemImage: element.categoryIcon)
+                        .font(.caption)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 3)
+                        .background(element.categoryColor.opacity(0.2))
+                        .cornerRadius(5)
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding()
-            .background(element.categoryColor.opacity(colorScheme == .dark ? 0.2 : 0.1))
-            .tag(2)
             
-            // Section 4: History
-            ScrollView {
-                VStack(spacing: 20) {
-                    Text("History")
-                        .font(.title)
-                        .foregroundColor(colorScheme == .dark ? .white : .black)
-                    
-                    Text(element.history)
-                        .font(.body)
-                        .multilineTextAlignment(.leading)
-                        .foregroundColor(colorScheme == .dark ? .white : .black)
-                        .padding()
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding()
-            .background(element.categoryColor.opacity(colorScheme == .dark ? 0.2 : 0.1))
-            .tag(3)
+            Spacer()
             
-            // Section 5: Bohr Diagram
-            VStack(spacing: 20) {
-                Text("Bohr Diagram")
-                    .font(.title)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
-                
-                BohrDiagramView(element: element)
-                    .frame(width: 300, height: 300)
-                    .padding()
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding()
-            .background(element.categoryColor.opacity(colorScheme == .dark ? 0.2 : 0.1))
-            .tag(5)
-            
-            // Section 6: Applications
-            ScrollView {
-                VStack(spacing: 20) {
-                    Text("Applications")
-                        .font(.title)
-                        .foregroundColor(colorScheme == .dark ? .white : .black)
-                    
-                    ForEach(element.applications, id: \.self) { application in
-                        Text("• \(application)")
-                            .font(.body)
-                            .multilineTextAlignment(.leading)
-                            .foregroundColor(colorScheme == .dark ? .white : .black)
-                    }
-                    .padding()
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding()
-            .background(element.categoryColor.opacity(colorScheme == .dark ? 0.2 : 0.1))
-            .tag(4)
-            
-            // Section 7: Wikipedia Link
-            VStack(spacing: 20) {
-                Text("Learn More")
-                    .font(.title)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
-                
-                Link("Visit Wikipedia", destination: URL(string: element.wikipediaLink)!)
-                    .font(.headline)
-                    .foregroundColor(.blue)
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(10)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding()
-            .background(element.categoryColor.opacity(colorScheme == .dark ? 0.2 : 0.1))
-            .tag(5)
+            // Element icon with animation
+            Image(systemName: element.categoryIcon)
+                .font(.system(size: 32))
+                .foregroundColor(element.categoryColor)
+                .symbolEffect(.pulse, options: .repeating)
         }
-        .tabViewStyle(.page(indexDisplayMode: .always)) // Enable pagination
-        .indexViewStyle(.page(backgroundDisplayMode: .always)) // Show page indicators
-        .edgesIgnoringSafeArea(.all)
-        .background(element.categoryColor.opacity(colorScheme == .dark ? 0.2 : 0.1)) // Full-screen background
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 15)
+                .fill(colorScheme == .dark ? Color.black.opacity(0.3) : Color.white.opacity(0.5))
+        )
+        .padding([.horizontal, .top])
+    }
+    
+    // Helper function to determine color based on state
+    private func stateColor(for state: String) -> Color {
+        switch state.lowercased() {
+        case "gas":
+            return .blue
+        case "liquid":
+            return .teal
+        case "solid":
+            return .brown
+        default:
+            return .gray
+        }
     }
 }
 
-struct BohrDiagramView: View {
+// MARK: - Tab Content Views
+struct ElementBasicsView: View {
     let element: Element
-    
-    // Constants for sizing
-    private let maxOrbitRadius: CGFloat = 160 // Maximum radius for the outermost orbit
-    private let nucleusSize: CGFloat = 25 // Size of the nucleus
-    private let electronSize: CGFloat = 10 // Size of each electron
-    
-    // Fixed number of rings (shells) for all elements
-    private let numberOfRings = 7 // Adjust as needed
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                // Nucleus
-                Circle()
-                    .fill(Color.red)
-                    .frame(width: nucleusSize, height: nucleusSize)
-                
-                // Draw all rings and electrons
-                let electronPositions = computeElectronPositions()
-                ForEach(electronPositions, id: \.id) { position in
-                    // Ring path
-                    if position.isRing {
-                        Circle()
-                            .stroke(Color.gray, lineWidth: 1)
-                            .frame(width: position.radius * 2, height: position.radius * 2)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                // Element symbol card
+                ZStack {
+                    RoundedRectangle(cornerRadius: 15)
+                        .fill(element.categoryColor.opacity(0.15))
+                        .shadow(color: element.categoryColor.opacity(0.3), radius: 5)
+                    
+                    HStack {
+                        Spacer()
+                        
+                        Text(element.symbol)
+                            .font(.system(size: 120, weight: .bold))
+                            .foregroundColor(element.categoryColor.opacity(0.3))
+                        
+                        Spacer()
                     }
                     
-                    // Electron
-                    if !position.isRing {
-                        Circle()
-                            .fill(Color.blue)
-                            .frame(width: electronSize, height: electronSize)
-                            .offset(x: position.x, y: position.y)
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Quick Facts")
+                            .font(.title2)
+                            .bold()
+                            .padding(.bottom, 5)
+                            
+                        InfoRow(title: "Atomic Weight", value: "\(element.atomicWeight)")
+                        InfoRow(title: "State at Room Temp", value: element.roomTempState)
+                        InfoRow(title: "Category", value: element.category)
+                        if let year = element.discoveryYear {
+                            InfoRow(title: "Discovered", value: "\(year)")
+                                .lineLimit(2)
+                        }
+                        if let discoverer = element.discoveredBy {
+                            InfoRow(title: "Discovered By", value: discoverer)
+                                .lineLimit(6)
+                        }
                     }
+                    .padding()
                 }
-            }
-            .frame(width: geometry.size.width, height: geometry.size.height)
-            .position(x: geometry.size.width / 2, y: geometry.size.height / 2) // Center the diagram
-        }
-        .frame(width: 300, height: 300) // Constrain the diagram to a fixed size
-    }
-    
-    // Precompute electron positions
-    private func computeElectronPositions() -> [ElectronPosition] {
-        var positions: [ElectronPosition] = []
-        var remainingElectrons = element.atomicNumber
-        
-        for ringIndex in 0..<numberOfRings {
-            let orbitRadius = calculateOrbitRadius(for: ringIndex)
-            
-            // Add ring path
-            positions.append(
-                ElectronPosition(
-                    id: "ring-\(ringIndex)",
-                    radius: orbitRadius,
-                    x: 0,
-                    y: 0,
-                    isRing: true
-                )
-            )
-            
-            // Calculate max electrons in this ring
-            let maxElectronsInRing = maxElectrons(for: ringIndex)
-            let electronsInRing = min(maxElectronsInRing, remainingElectrons)
-            
-            // Add electrons in this ring
-            for electronIndex in 0..<electronsInRing {
-                let angle = Double(electronIndex) * (2 * Double.pi / Double(electronsInRing))
-                let x = orbitRadius * cos(CGFloat(angle))
-                let y = orbitRadius * sin(CGFloat(angle))
+                .frame(height: 230)
+                .padding(.horizontal)
+                .padding(.top)
                 
-                positions.append(
-                    ElectronPosition(
-                        id: "electron-\(ringIndex)-\(electronIndex)",
-                        radius: 0,
-                        x: x,
-                        y: y,
-                        isRing: false
-                    )
-                )
+                // Main fact
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Did You Know?")
+                        .font(.title2)
+                        .bold()
+                    
+                    Text(element.fact)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(colorScheme == .dark ? Color.black.opacity(0.2) : Color.white.opacity(0.5))
+                        )
+                }
+                .padding(.horizontal)
+                .padding(.top)
+                
+                // Wikipedia link
+                Link(destination: URL(string: element.wikipediaLink)!) {
+                    Text("Learn more on Wikipedia")
+                        .foregroundColor(.blue)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.blue, lineWidth: 1)
+                                .background(
+                                    colorScheme == .dark ? Color.black.opacity(0.3) : Color.white.opacity(0.5)
+                                )
+                        )
+                }
+                .padding()
             }
-            
-            remainingElectrons -= electronsInRing
+            .padding(.bottom, 20)
         }
-        
-        return positions
-    }
-    
-    // Calculate the radius for each ring with extra spacing for the first ring
-    private func calculateOrbitRadius(for ringIndex: Int) -> CGFloat {
-        let baseSpacing = maxOrbitRadius / CGFloat(numberOfRings)
-        
-        // Add extra spacing for the first ring
-        if ringIndex == 0 {
-            return baseSpacing * CGFloat(ringIndex + 1) // Add 20 points of extra spacing
-        } else {
-            return baseSpacing * CGFloat(ringIndex + 1)
-        }
-    }
-    
-    // Calculate max electrons for a given ring
-    private func maxElectrons(for ringIndex: Int) -> Int {
-        // Electron shell configuration: [2, 8, 18, 32, 32, 18, 8]
-        let electronShells = [2, 8, 18, 32, 32, 18, 8]
-        return ringIndex < electronShells.count ? electronShells[ringIndex] : 0
     }
 }
 
-// Data structure to represent electron positions
-struct ElectronPosition: Identifiable {
-    let id: String
-    let radius: CGFloat // Radius of the orbit (0 for electrons)
-    let x: CGFloat // X offset
-    let y: CGFloat // Y offset
-    let isRing: Bool // Whether this is a ring or an electron
+struct InfoRow: View {
+    let title: String
+    let value: String
+    
+    var body: some View {
+        HStack {
+            Text(title)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+            Spacer()
+            Text(value)
+                .font(.subheadline)
+                .bold()
+        }
+    }
+}
+
+struct ElementPropertiesView: View {
+    let element: Element
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 15) {
+                Text("Physical & Chemical Properties")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .padding(.top)
+                
+                // Properties grid
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 15) {
+                    PropertyCard(title: "Atomic Weight", value: "\(element.atomicWeight)", icon: "scalemass")
+                    PropertyCard(title: "State", value: element.roomTempState, icon: "thermometer")
+                    
+                    if let meltingPoint = element.meltingPoint {
+                        PropertyCard(title: "Melting Point", value: meltingPoint, icon: "arrow.down.to.line")
+                    }
+                    
+                    if let boilingPoint = element.boilingPoint {
+                        PropertyCard(title: "Boiling Point", value: boilingPoint, icon: "arrow.up.to.line")
+                    }
+                    
+                    if let electronegativity = element.electronegativity {
+                        PropertyCard(title: "Electronegativity", value: "\(electronegativity)", icon: "bolt")
+                    }
+                    
+                    PropertyCard(title: "Category", value: element.category, icon: element.categoryIcon)
+                    
+                    PropertyCard(title: "Period", value: "\(element.period)", icon: "arrow.left.and.right")
+                    PropertyCard(title: "Group", value: "\(element.group)", icon: "arrow.up.and.down")
+                }
+                .padding(.horizontal)
+                
+                // Electron configuration
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Electron Configuration")
+                        .font(.headline)
+                        .padding(.horizontal)
+                        .padding(.top)
+                    
+                    Text(element.electronConfiguration)
+                        .font(.system(.body, design: .monospaced))
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(colorScheme == .dark ? Color.black.opacity(0.2) : Color.white.opacity(0.7))
+                        )
+                        .padding(.horizontal)
+                }
+                
+                Spacer()
+            }
+            .padding(.bottom, 20)
+        }
+    }
+}
+
+struct PropertyCard: View {
+    let title: String
+    let value: String
+    let icon: String
+    
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Image(systemName: icon)
+                    .font(.system(size: 16))
+                Text(title)
+                    .font(.headline)
+            }
+            .foregroundColor(.secondary)
+            
+            Text(value)
+                .font(.title3)
+                .fontWeight(.semibold)
+                .foregroundColor(.primary)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(colorScheme == .dark ? Color.black.opacity(0.3) : Color.white.opacity(0.7))
+                .shadow(color: Color.black.opacity(0.05), radius: 3, x: 0, y: 2)
+        )
+    }
+}
+
+struct ElementHistoryView: View {
+    let element: Element
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                // Discovery details
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack {
+                        Image(systemName: "clock.fill")
+                            .foregroundColor(element.categoryColor)
+                        
+                        Text("Discovery")
+                            .font(.title2)
+                            .bold()
+                    }
+                    .padding(.horizontal)
+                    .padding(.top)
+                    
+                    if let year = element.discoveryYear, let discoverer = element.discoveredBy {
+                        Text("Discovered in \(year) by \(discoverer)")
+                            .font(.headline)
+                            .padding(.vertical, 5)
+                            .padding(.horizontal)
+                    }
+                    
+                    Divider()
+                        .padding(.horizontal)
+                }
+                
+                // History text
+                Text(element.history)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(colorScheme == .dark ? Color.black.opacity(0.2) : Color.white.opacity(0.5))
+                    )
+                    .padding(.horizontal)
+                
+                Spacer(minLength: 20)
+            }
+            .padding(.bottom, 20)
+        }
+    }
+}
+
+struct ElementApplicationsView: View {
+    let element: Element
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                Text("Applications & Uses")
+                    .font(.title2)
+                    .bold()
+                    .padding(.horizontal)
+                    .padding(.top)
+                
+                // Applications list
+                ForEach(element.applications, id: \.self) { application in
+                    HStack(alignment: .top, spacing: 15) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(element.categoryColor)
+                            .font(.system(size: 22))
+                        
+                        Text(application)
+                            .font(.body)
+                    }
+                    .padding(.horizontal)
+                }
+                
+                // Sustainability notes if available
+                if let sustainabilityNotes = element.sustainabilityNotes {
+                    VStack(alignment: .leading, spacing: 10) {
+                        HStack {
+                            Image(systemName: "leaf.fill")
+                                .foregroundColor(.green)
+                            
+                            Text("Sustainability")
+                                .font(.headline)
+                        }
+                        .padding(.top)
+                        .padding(.horizontal)
+                        
+                        Text(sustainabilityNotes)
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.green.opacity(0.1))
+                            )
+                            .padding(.horizontal)
+                    }
+                }
+                
+                Spacer(minLength: 20)
+            }
+            .padding(.bottom, 20)
+        }
+    }
+}
+
+struct ElementBohrView: View {
+    let element: Element
+    
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 20) {
+                Text("Atomic Structure")
+                    .font(.title2)
+                    .bold()
+                    .padding(.top)
+                
+                Text("Bohr Model of \(element.name)")
+                    .font(.headline)
+                
+                BohrDiagramView(element: element)
+                    .frame(height: 300)
+                    .padding()
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Electron Configuration")
+                        .font(.headline)
+                    
+                    Text(element.electronConfiguration)
+                        .font(.system(.body, design: .monospaced))
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.gray.opacity(0.1))
+                        )
+                }
+                .padding(.horizontal)
+            }
+            .padding(.bottom, 20)
+        }
+    }
+}
+
+struct ElementMoreView: View {
+    let element: Element
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                // Compounds if available
+                if let compounds = element.compounds, !compounds.isEmpty {
+                    Text("Common Compounds")
+                        .font(.title2)
+                        .bold()
+                        .padding(.horizontal)
+                        .padding(.top)
+                    
+                    ForEach(compounds, id: \.name) { compound in
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(compound.name)
+                                .font(.headline)
+                                .foregroundColor(element.categoryColor)
+                            
+                            Text(compound.description)
+                                .font(.body)
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(colorScheme == .dark ? Color.black.opacity(0.2) : Color.white.opacity(0.5))
+                        )
+                        .padding(.horizontal)
+                    }
+                }
+                
+                // Cultural references if available
+                if let references = element.culturalReferences, !references.isEmpty {
+                    Text("In Culture & Media")
+                        .font(.title2)
+                        .bold()
+                        .padding(.horizontal)
+                        .padding(.top)
+                    
+                    ForEach(references, id: \.self) { reference in
+                        HStack(alignment: .top, spacing: 15) {
+                            Image(systemName: "star.fill")
+                                .foregroundColor(element.categoryColor)
+                                .font(.system(size: 22))
+                            
+                            Text(reference)
+                                .font(.body)
+                        }
+                        .padding(.horizontal)
+                    }
+                }
+                
+                // Fun facts if available
+                if let funFacts = element.funFacts, !funFacts.isEmpty {
+                    Text("Fun Facts")
+                        .font(.title2)
+                        .bold()
+                        .padding(.horizontal)
+                        .padding(.top)
+                    
+                    ForEach(funFacts, id: \.self) { fact in
+                        HStack(alignment: .top, spacing: 15) {
+                            Image(systemName: "lightbulb.fill")
+                                .foregroundColor(.yellow)
+                                .font(.system(size: 22))
+                            
+                            Text(fact)
+                                .font(.body)
+                        }
+                        .padding(.horizontal)
+                    }
+                }
+                
+                Spacer(minLength: 20)
+            }
+            .padding(.bottom, 20)
+        }
+    }
+}
+
+struct FactPopupView: View {
+    let fact: String
+    @Binding var isShowing: Bool
+    let backgroundColor: Color
+    
+    var body: some View {
+        ZStack {
+            Color.black.opacity(0.4)
+                .edgesIgnoringSafeArea(.all)
+                .onTapGesture {
+                    withAnimation(.spring()) {
+                        isShowing = false
+                    }
+                }
+            
+            VStack(spacing: 20) {
+                Image(systemName: "lightbulb.fill")
+                    .font(.system(size: 40))
+                    .foregroundColor(backgroundColor)
+                    .symbolEffect(.pulse, options: .repeating)
+                
+                Text("Did You Know?")
+                    .font(.headline)
+                
+                Text(fact)
+                    .font(.body)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                
+                Button("Cool!") {
+                    withAnimation(.spring()) {
+                        isShowing = false
+                    }
+                }
+                .padding(.horizontal, 40)
+                .padding(.vertical, 10)
+                .background(backgroundColor)
+                .foregroundColor(.white)
+                .cornerRadius(20)
+            }
+            .padding(30)
+            .background(Color(UIColor.systemBackground))
+            .cornerRadius(20)
+            .shadow(radius: 15)
+            .padding(30)
+        }
+    }
 }
 
 #Preview {
-    ContentView()
+    NavigationView {
+        ElementDetailView(element: Element(
+            name: "Hydrogen",
+            symbol: "H",
+            atomicNumber: 1,
+            atomicWeight: 1.008,
+            category: "Nonmetal",
+            fact: "Hydrogen is the lightest element.",
+            wikipediaLink: "https://en.wikipedia.org/wiki/Hydrogen",
+            applications: ["Rocket fuel", "Fuel cells"],
+            roomTempState: "Gas",
+            history: "Discovered in 1766.",
+            examples: [],
+            icon: "wind",
+            meltingPoint: "-259.16°C",
+            boilingPoint: "-252.87°C",
+            electronegativity: 2.20,
+            discoveryYear: 1766,
+            discoveredBy: "Henry Cavendish",
+            funFacts: ["Hydrogen makes up 75% of the universe's mass."],
+            compounds: [ElementCompound(name: "Water (H₂O)", description: "Essential for life.")],
+            culturalReferences: ["Featured in Jules Verne's novels."],
+            sustainabilityNotes: "Key to clean energy future."
+        ))
+    }
 }

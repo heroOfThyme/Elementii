@@ -29,21 +29,15 @@ struct PeriodicTableView: View {
                 .padding(.top, 2)
                 .padding(.leading, 16)
         }
+        .background(Theme.background)
+        .navigationTitle("The Periodic Table")
         .toolbar {
-            ToolbarItem(placement: .principal) {
-                HStack {
-                    Text("The Periodic Table")
-                        .font(.largeTitle)
-                        .bold()
-                        .foregroundColor(Color("AppPrimary"))
-                }
-            }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
                     showLegendModal = true
                 }) {
                     Image(systemName: "info.square.fill")
-                        .foregroundColor(Color("AppPrimary"))
+                        .foregroundColor(Theme.primary)
                 }
             }
         }
@@ -275,7 +269,7 @@ struct PeriodicTableView: View {
     // Origin tile (top-left corner)
     private var originTile: some View {
         RoundedRectangle(cornerRadius: 8)
-            .fill(Color.secondary.opacity(0.1))
+            .fill(Theme.secondary.opacity(0.1))
             .frame(width: 36, height: 36)
     }
     
@@ -289,7 +283,7 @@ struct PeriodicTableView: View {
             .overlay {
                 Text(rowText)
                     .font(.system(size: 20))
-                    .foregroundStyle(Color.secondary)
+                    .foregroundStyle(Theme.text)
             }
     }
     
@@ -300,7 +294,7 @@ struct PeriodicTableView: View {
             .frame(width: 78, height: 36)
             .overlay {
                 Text("\(group)")
-                    .foregroundStyle(Color.secondary)
+                    .foregroundStyle(Theme.text)
             }
     }
     
@@ -315,7 +309,7 @@ struct PeriodicTableView: View {
     private func referenceCell(text: String, color: Color) -> some View {
         RoundedRectangle(cornerRadius: 8)
             .frame(width: 78, height: 94)
-            .foregroundStyle(Color.secondary.opacity(0.1))
+            .foregroundStyle(Theme.secondary.opacity(0.1))
             .overlay {
                 VStack {
                     Spacer()
@@ -336,7 +330,7 @@ struct PeriodicTableView: View {
                     .font(.system(size: 10))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity, alignment: .center)
-                
+                                
                 // Element symbol
                 Text(element.symbol)
                     .font(.system(size: 24, weight: .bold))
