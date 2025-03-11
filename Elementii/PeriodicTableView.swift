@@ -22,6 +22,7 @@ struct PeriodicTableView: View {
     @State private var showLegendModal = false
     @State private var offset = CGPoint.zero
     @State private var searchQuery: String = ""
+    @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -43,91 +44,221 @@ struct PeriodicTableView: View {
         }
         .sheet(isPresented: $showLegendModal) {
             NavigationView {
-                VStack(alignment: .leading, spacing: 12) {
-                    List {
-                        Section(header: Text("Element Classifications")) {
-                            CategoryLegendItem(name: "Alkali Metal", color: Color("Alkali Metal"))
-                            CategoryLegendItem(name: "Alkaline Earth Metal", color: Color("Alkaline Earth Metal"))
-                            CategoryLegendItem(name: "Transition Metal", color: Color("Transition Metal"))
-                            CategoryLegendItem(name: "Post-Transition Metal", color: Color("Post-Transition Metal"))
-                            CategoryLegendItem(name: "Metalloid", color: Color("Metalloid"))
-                            CategoryLegendItem(name: "Nonmetal", color: Color("Nonmetal"))
-                            CategoryLegendItem(name: "Halogen", color: Color("Halogen"))
-                            CategoryLegendItem(name: "Noble Gas", color: Color("Noble Gas"))
-                            CategoryLegendItem(name: "Lanthanide", color: Color("Lanthanide"))
-                            CategoryLegendItem(name: "Actinide", color: Color("Actinide"))
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        // Element Classifications Section
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Element Classifications")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .foregroundColor(Theme.text)
+                                .padding(.horizontal)
+                                .padding(.top, 16)
+                            
+                            VStack(alignment: .leading, spacing: 12) {
+                                EnhancedCategoryLegendItem(
+                                    name: "Alkali Metal",
+                                    color: Color("Alkali Metal"),
+                                    description: "Highly reactive metals that readily lose their outermost electron. Found in Group 1 of the periodic table."
+                                )
+                                
+                                EnhancedCategoryLegendItem(
+                                    name: "Alkaline Earth Metal",
+                                    color: Color("Alkaline Earth Metal"),
+                                    description: "Reactive metals with two electrons in their outermost shell. Found in Group 2 of the periodic table."
+                                )
+                                
+                                EnhancedCategoryLegendItem(
+                                    name: "Transition Metal",
+                                    color: Color("Transition Metal"),
+                                    description: "Metals that form one or more stable ions with incompletely filled d-orbitals. Located in the middle of the periodic table."
+                                )
+                                
+                                EnhancedCategoryLegendItem(
+                                    name: "Post-Transition Metal",
+                                    color: Color("Post-Transition Metal"),
+                                    description: "Metals with properties between transition metals and metalloids. Often have complete d-subshells."
+                                )
+                                
+                                EnhancedCategoryLegendItem(
+                                    name: "Metalloid",
+                                    color: Color("Metalloid"),
+                                    description: "Elements with properties of both metals and nonmetals. Often semiconductors with intermediate conductivity."
+                                )
+                                
+                                EnhancedCategoryLegendItem(
+                                    name: "Nonmetal",
+                                    color: Color("Nonmetal"),
+                                    description: "Elements that are poor conductors of heat and electricity. Usually gain electrons in reactions with metals."
+                                )
+                                
+                                EnhancedCategoryLegendItem(
+                                    name: "Halogen",
+                                    color: Color("Halogen"),
+                                    description: "Highly reactive nonmetals that readily gain one electron to form anions. Found in Group 17 of the periodic table."
+                                )
+                                
+                                EnhancedCategoryLegendItem(
+                                    name: "Noble Gas",
+                                    color: Color("Noble Gas"),
+                                    description: "Extremely stable, nonreactive elements with full outer electron shells. Found in Group 18 of the periodic table."
+                                )
+                                
+                                EnhancedCategoryLegendItem(
+                                    name: "Lanthanide",
+                                    color: Color("Lanthanide"),
+                                    description: "Rare earth elements with atomic numbers 57-71. Have partially filled f-orbitals and similar properties."
+                                )
+                                
+                                EnhancedCategoryLegendItem(
+                                    name: "Actinide",
+                                    color: Color("Actinide"),
+                                    description: "Radioactive elements with atomic numbers 89-103. Have partially filled f-orbitals and many are synthetic."
+                                )
+                            }
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 16)
                         }
-                        
-                        Section(header: Text("Element Tile Anatomy")) {
-                            VStack(alignment: .center, spacing: 20) {
+                        .background(Color(UIColor.secondarySystemBackground))
+                        .cornerRadius(12)
+                        .padding(.horizontal)
+
+                        // Element Tile Anatomy Section
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Element Tile Anatomy")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .foregroundColor(Theme.text)
+                                .padding(.horizontal, 16)
+                                .padding(.top, 16)
+                            
+                            HStack(alignment: .center, spacing: 20) {
                                 // Example element tile
-                                VStack(alignment: .center, spacing: 1) {
+                                VStack(alignment: .center, spacing: 2) {
                                     Text("11")
-                                        .font(.system(size: 10))
+                                        .font(.system(size: 14))
                                         .foregroundColor(.white)
                                     
                                     Text("Na")
-                                        .font(.system(size: 24, weight: .bold))
+                                        .font(.system(size: 32, weight: .bold))
                                         .foregroundColor(.white)
+                                        .padding(.vertical, 4)
                                     
                                     Text("Sodium")
-                                        .font(.system(size: 9))
+                                        .font(.system(size: 13))
                                         .foregroundColor(.white)
                                     
                                     Text("22.990")
-                                        .font(.system(size: 9))
+                                        .font(.system(size: 13))
                                         .foregroundColor(.white)
                                         .padding(.top, 2)
+                                        .padding(.bottom, 6)
                                 }
-                                .padding(5)
-                                .frame(width: 80, height: 80)
+                                .frame(width: 120, height: 120)
                                 .background(
-                                    RoundedRectangle(cornerRadius: 8)
+                                    RoundedRectangle(cornerRadius: 10)
                                         .fill(Color("Alkali Metal"))
                                 )
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.white.opacity(0.3), lineWidth: 1)
+                                )
+                                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
                                 
-                                // Labels explaining each part
-                                VStack(alignment: .leading, spacing: 10) {
-                                    HStack {
-                                        Image(systemName: "1.circle.fill")
-                                            .foregroundColor(.primary)
-                                        Text("Atomic number")
-                                    }
-                                    
-                                    HStack {
-                                        Image(systemName: "2.circle.fill")
-                                            .foregroundColor(.primary)
-                                        Text("Element symbol")
-                                    }
-                                    
-                                    HStack {
-                                        Image(systemName: "3.circle.fill")
-                                            .foregroundColor(.primary)
-                                        Text("Element name")
-                                    }
-                                    
-                                    HStack {
-                                        Image(systemName: "4.circle.fill")
-                                            .foregroundColor(.primary)
-                                        Text("Atomic weight (u)")
-                                    }
+                                // Labels beside the element block
+                                VStack(alignment: .leading, spacing: 14) {
+                                    AnatomyLabelItem(number: 1, text: "Atomic number", alignment: .top)
+                                    AnatomyLabelItem(number: 2, text: "Element symbol", alignment: .center)
+                                    AnatomyLabelItem(number: 3, text: "Element name", alignment: .center)
+                                    AnatomyLabelItem(number: 4, text: "Atomic weight (u)", alignment: .bottom)
                                 }
-                                .font(.system(size: 14))
+                                
+                                Spacer()
                             }
-                            .padding(.vertical)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
                         }
+                        .padding(.bottom, 16)
+                        .background(Color(UIColor.secondarySystemBackground))
+                        .cornerRadius(12)
+                        .padding(.horizontal)
                         
-                        Section(header: Text("Table Structure")) {
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text("• The periodic table is organized in 18 columns (groups) and 7 rows (periods)")
+                        // Table Structure Section
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Table Structure")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .foregroundColor(Theme.text)
+                                .padding(.horizontal)
+                            
+                            VStack(alignment: .leading, spacing: 12) {
+                                StructureItem(
+                                    icon: "tablecells",
+                                    title: "Organization",
+                                    description: "The periodic table is organized into 18 vertical columns (groups) and 7 horizontal rows (periods)."
+                                )
                                 
-                                Text("• Elements in the same group share similar chemical properties")
+                                StructureItem(
+                                    icon: "arrow.down",
+                                    title: "Groups (Columns)",
+                                    description: "Elements in the same group share similar chemical properties due to having the same number of electrons in their outer shell."
+                                )
                                 
-                                Text("• Lanthanides (57-71) and Actinides (89-103) are placed below the main table")
+                                StructureItem(
+                                    icon: "arrow.right",
+                                    title: "Periods (Rows)",
+                                    description: "Elements in the same period have the same number of electron shells. As you move right, atomic number increases and properties change predictably."
+                                )
+                                
+                                StructureItem(
+                                    icon: "arrow.up.and.down",
+                                    title: "Special Series",
+                                    description: "Lanthanides (57-71) and Actinides (89-103) are placed separately below the main table to keep it from becoming too wide."
+                                )
+                                
+                                StructureItem(
+                                    icon: "atom",
+                                    title: "Electron Configuration",
+                                    description: "The table structure reflects electron shell filling, with each block (s, p, d, f) representing different subshells."
+                                )
                             }
-                            .padding(.vertical, 8)
+                            .padding(.horizontal)
                         }
+                        .padding(.vertical, 16)
+                        .background(Color(UIColor.secondarySystemBackground))
+                        .cornerRadius(12)
+                        .padding(.horizontal)
+                        
+                        // Interactive Tips Section
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Interactive Tips")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .foregroundColor(Theme.text)
+                                .padding(.horizontal, 16)
+                                .padding(.top, 16)
+                            
+                            VStack(alignment: .leading, spacing: 12) {
+                                InteractiveTipItem(
+                                    icon: "hand.tap.fill",
+                                    tip: "Tap any element to view its detailed information and properties."
+                                )
+                                
+                                InteractiveTipItem(
+                                    icon: "arrow.left.and.right.circle",
+                                    tip: "Swipe to scroll horizontally across the periodic table."
+                                )
+                                
+                            }
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 16)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)  // This forces the VStack to take up all available width
+                        .background(Color(UIColor.secondarySystemBackground))
+                        .cornerRadius(12)
+                        .padding(.horizontal)
                     }
+                    .padding(.vertical, 20)
                 }
                 .navigationTitle("Periodic Table Legend")
                 .toolbar {
@@ -137,8 +268,10 @@ struct PeriodicTableView: View {
                         }
                     }
                 }
+                .background(Theme.background)
             }
             .presentationDetents([.medium, .large])
+            .presentationDragIndicator(.visible)
         }
     }
     
@@ -269,7 +402,7 @@ struct PeriodicTableView: View {
     // Origin tile (top-left corner)
     private var originTile: some View {
         RoundedRectangle(cornerRadius: 8)
-            .fill(Theme.secondary.opacity(0.1))
+            .fill(Theme.primary)
             .frame(width: 36, height: 36)
     }
     
@@ -328,13 +461,13 @@ struct PeriodicTableView: View {
                 // Atomic number
                 Text("\(element.atomicNumber)")
                     .font(.system(size: 10))
-                    .foregroundColor(.white)
+                    .foregroundStyle(Color.white)
                     .frame(maxWidth: .infinity, alignment: .center)
                                 
                 // Element symbol
                 Text(element.symbol)
                     .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(.white)
+                    .foregroundStyle(Color.white)
                     .frame(height: 26)
                 
                 // Element name
@@ -342,12 +475,12 @@ struct PeriodicTableView: View {
                     .font(.system(size: 9))
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
-                    .foregroundColor(.white)
+                    .foregroundStyle(Color.white)
                 
                 // Atomic weight
                 Text(String(format: "%.3f", element.atomicWeight))
                     .font(.system(size: 9))
-                    .foregroundColor(.white.opacity(0.9))
+                    .foregroundStyle(Color.white.opacity(0.9))
                     .padding(.top, 2)
             }
             .padding(4)
@@ -360,23 +493,111 @@ struct PeriodicTableView: View {
     }
 }
 
-// Helper struct for the legend view
-struct CategoryLegendItem: View {
+// Enhanced category item with description
+struct EnhancedCategoryLegendItem: View {
     let name: String
     let color: Color
+    let description: String
     
     var body: some View {
-        HStack {
-            Circle()
+        HStack(alignment: .top) {
+            // Color square with fixed position
+            RoundedRectangle(cornerRadius: 6)
                 .fill(color)
                 .frame(width: 24, height: 24)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 6)
+                        .stroke(Color.white.opacity(0.3), lineWidth: 1)
+                )
             
-            Text(name)
-                .font(.body)
-                .lineLimit(1)
-            
-            Spacer()
+            // Text content with consistent spacing
+            VStack(alignment: .leading, spacing: 4) {
+                Text(name)
+                    .font(.headline)
+                    .foregroundColor(Theme.text)
+                
+                Text(description)
+                    .font(.subheadline)
+                    .foregroundColor(Theme.text.opacity(0.8))
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .padding(.leading, 12)
         }
+        .padding(.vertical, 8)
+    }
+}
+
+// Anatomy label item with connector
+struct AnatomyLabelItem: View {
+    let number: Int
+    let text: String
+    let alignment: Alignment
+    
+    var body: some View {
+        HStack(spacing: 10) {
+            ZStack {
+                Circle()
+                    .fill(Theme.primary)
+                    .frame(width: 24, height: 24)
+                
+                Text("\(number)")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(.white)
+            }
+            
+            Text(text)
+                .font(.system(size: 15))
+                .foregroundColor(Theme.text)
+        }
+    }
+}
+
+// Structure item with icon
+struct StructureItem: View {
+    let icon: String
+    let title: String
+    let description: String
+    
+    var body: some View {
+        HStack(alignment: .top, spacing: 12) {
+            Image(systemName: icon)
+                .font(.system(size: 20))
+                .foregroundColor(Theme.primary)
+                .frame(width: 28, height: 28)
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.headline)
+                    .foregroundColor(Theme.text)
+                
+                Text(description)
+                    .font(.subheadline)
+                    .foregroundColor(Theme.text.opacity(0.8))
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .padding(.vertical, 6)
+    }
+}
+
+// Interactive tip item
+struct InteractiveTipItem: View {
+    let icon: String
+    let tip: String
+    
+    var body: some View {
+        HStack(alignment: .center, spacing: 12) {
+            Image(systemName: icon)
+                .font(.system(size: 20))
+                .foregroundColor(Theme.accent)
+                .frame(width: 28, height: 28)
+            
+            Text(tip)
+                .font(.subheadline)
+                .foregroundColor(Theme.text)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .padding(.vertical, 6)
     }
 }
 

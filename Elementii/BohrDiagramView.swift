@@ -11,210 +11,196 @@ struct BohrDiagramView: View {
     let element: Element
     @Environment(\.colorScheme) var colorScheme
     
-    // Constants for sizing
-    private let maxOrbitRadius: CGFloat = 160
-    private let nucleusSize: CGFloat = 30
-    private let electronSize: CGFloat = 12
-    
-    // Fixed number of rings (shells) for all elements
-    private let numberOfRings = 7
+    // Fixed size for consistency across all elements
+    private let maxOrbitRadius: CGFloat = 170
+    private let nucleusSize: CGFloat = 40
+    private let electronSize: CGFloat = 10
     
     // Animation states
-    @State private var electronAnimationStates: [String: Bool] = [:]
-    @State private var isLoaded = false
-    @State private var positions: [ElectronPosition] = []
     @State private var isPulsing = false
+    @State private var ringsLoaded = false
+    @State private var electronsLoaded = false
+    @State private var animationToggle = false
     
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                // Clear background with border
-                Circle()
-                    .fill(Color.clear)
-                    .frame(width: maxOrbitRadius * 2 + 20, height: maxOrbitRadius * 2 + 20)
+        let shellCounts = calculateElectronsPerShell()
+        let sortedShells = shellCounts.keys.sorted()
+        
+        ZStack {
+            // Nucleus with pulsing animation
+            Circle()
+                .fill(element.categoryColor)
+                .shadow(color: element.categoryColor.opacity(0.7), radius: 5)
+                .frame(width: nucleusSize, height: nucleusSize)
+                .scaleEffect(isPulsing ? 1.1 : 1.0)
+                .animation(
+                    Animation.easeInOut(duration: 2.0)
+                        .repeatForever(autoreverses: true),
+                    value: isPulsing
+                )
+                .overlay(
+                    Text("\(element.atomicNumber)")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(colorScheme == .dark ? .black : .white)
+                )
+                .scaleEffect(ringsLoaded ? 1.0 : 0.5)
+                .animation(.spring(response: 0.6).delay(0.1), value: ringsLoaded)
+            
+            // Draw electron shells and electrons
+            ForEach(sortedShells.indices, id: \.self) { index in
+                let shellNumber = sortedShells[index]
+                let electronCount = shellCounts[shellNumber] ?? 0
+                let radius = calculateOrbitRadius(for: index, totalShells: sortedShells.count)
                 
-                // Nucleus with pulsing animation
+                // Draw orbit (ring)
                 Circle()
-                    .fill(element.categoryColor)
-                    .shadow(color: element.categoryColor.opacity(0.7), radius: 5)
-                    .frame(width: nucleusSize, height: nucleusSize)
-                    .scaleEffect(isPulsing ? 1.1 : 1.0)
-                    .animation(
-                        Animation.easeInOut(duration: 2.0)
-                            .repeatForever(autoreverses: true),
-                        value: isPulsing
-                    )
-                    .overlay(
-                        Text("\(element.atomicNumber)")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(colorScheme == .dark ? .black : .white)
-                    )
-                    .scaleEffect(isLoaded ? 1.0 : 0.5)
-                    .animation(.spring(response: 0.6).delay(0.1), value: isLoaded)
+                    .stroke(colorScheme == .dark ? Color.white.opacity(0.4) : Color.black.opacity(0.4), lineWidth: 1)
+                    .frame(width: radius * 2, height: radius * 2)
+                    .scaleEffect(ringsLoaded ? 1.0 : 0.1)
+                    .opacity(ringsLoaded ? 1.0 : 0.0)
+                    .animation(.spring(response: 0.6).delay(0.1 + Double(index) * 0.05), value: ringsLoaded)
                 
-                // Draw all rings and electrons
-                ForEach(positions, id: \.id) { position in
-                    // Ring path with animation
-                    if position.isRing {
-                        Circle()
-                            .stroke(colorScheme == .dark ? Color.white.opacity(0.4) : Color.black.opacity(0.4), lineWidth: 1)
-                            .frame(width: position.radius * 2, height: position.radius * 2)
-                            .scaleEffect(isLoaded ? 1.0 : 0.1)
-                            .opacity(isLoaded ? 1.0 : 0.0)
-                            .animation(.spring(response: 0.6).delay(0.1 + Double(position.id.split(separator: "-")[1])! * 0.05), value: isLoaded)
-                    }
-                    
-                    // Electron with animation
-                    if !position.isRing {
-                        ZStack {
-                            // Electron glow effect
-                            Circle()
-                                .fill(Theme.primary.opacity(0.5))
-                                .frame(width: electronSize * 1.5, height: electronSize * 1.5)
-                                .scaleEffect(electronAnimationStates[position.id] ?? false ? 1.2 : 0.8)
-                                .animation(
-                                    Animation.easeInOut(duration: 1.5)
-                                        .repeatForever(autoreverses: true)
-                                        .delay(Double.random(in: 0...1)),
-                                    value: electronAnimationStates[position.id] ?? false
-                                )
-                            
-                            // Actual electron
-                            Circle()
-                                .fill(Color.blue)
-                                .frame(width: electronSize, height: electronSize)
-                                .shadow(color: Color.blue.opacity(0.7), radius: 3)
-                        }
-                        .offset(x: position.x, y: position.y)
-                        .scaleEffect(isLoaded ? 1.0 : 0.1)
-                        .opacity(isLoaded ? 1.0 : 0.0)
-                        .animation(.spring(response: 0.6).delay(0.3 + Double.random(in: 0...0.5)), value: isLoaded)
-                    }
-                }
+                // Now create a rotating group for this shell
+                ElectronShellView(
+                    radius: radius,
+                    electronCount: electronCount,
+                    electronSize: electronSize,
+                    shellIndex: index,
+                    isVisible: electronsLoaded,
+                    animationToggle: animationToggle
+                )
             }
-            .frame(width: geometry.size.width, height: geometry.size.height)
-            .position(x: geometry.size.width / 2, y: geometry.size.height / 2) // Center the diagram
-            .onAppear {
-                // Calculate positions on appear
-                positions = computeElectronPositions()
+        }
+        .frame(width: maxOrbitRadius * 2 + 20, height: maxOrbitRadius * 2 + 20)
+        .onAppear {
+            // Sequence the animations:
+            
+            // 1. First, show the nucleus and rings
+            isPulsing = true
+            ringsLoaded = true
+            
+            // 2. After rings are visible, show electrons
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                electronsLoaded = true
                 
-                // Start animations
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    isLoaded = true
-                    isPulsing = true
-                    
-                    // Start electron pulsing animations
-                    for position in positions {
-                        if !position.isRing {
-                            electronAnimationStates[position.id] = true
-                        }
+                // 3. After electrons appear, start orbital rotation
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    withAnimation(.linear(duration: 0)) {
+                        animationToggle.toggle()
                     }
                 }
             }
         }
-        .frame(width: 300, height: 300)
-        .background(Color.clear)
     }
     
-    // Precompute electron positions
-    private func computeElectronPositions() -> [ElectronPosition] {
-        var positions: [ElectronPosition] = []
-        var remainingElectrons = element.atomicNumber
+    // Calculate electrons per shell from the element's electron configuration
+    private func calculateElectronsPerShell() -> [Int: Int] {
+        // Parse the electron configuration
+        let config = element.electronConfiguration
+        let orbitals = config.split(separator: " ")
         
-        for ringIndex in 0..<numberOfRings {
-            let orbitRadius = calculateOrbitRadius(for: ringIndex)
-            
-            // Add ring path
-            positions.append(
-                ElectronPosition(
-                    id: "ring-\(ringIndex)",
-                    radius: orbitRadius,
-                    x: 0,
-                    y: 0,
-                    isRing: true
-                )
-            )
-            
-            // Calculate max electrons in this ring
-            let maxElectronsInRing = maxElectrons(for: ringIndex)
-            let electronsInRing = min(maxElectronsInRing, remainingElectrons)
-            
-            // Add electrons in this ring
-            for electronIndex in 0..<electronsInRing {
-                let angle = Double(electronIndex) * (2 * Double.pi / Double(electronsInRing))
-                let x = orbitRadius * cos(CGFloat(angle))
-                let y = orbitRadius * sin(CGFloat(angle))
-                
-                positions.append(
-                    ElectronPosition(
-                        id: "electron-\(ringIndex)-\(electronIndex)",
-                        radius: 0,
-                        x: x,
-                        y: y,
-                        isRing: false
-                    )
-                )
+        var shellCounts: [Int: Int] = [:]
+        
+        for orbital in orbitals {
+            if let shellNumber = getShellNumber(from: String(orbital)) {
+                let electronCount = getElectronCount(from: String(orbital))
+                shellCounts[shellNumber, default: 0] += electronCount
             }
-            
-            remainingElectrons -= electronsInRing
         }
         
-        return positions
+        return shellCounts
     }
     
-    // Calculate the radius for each ring with better spacing
-    private func calculateOrbitRadius(for ringIndex: Int) -> CGFloat {
-        // Enhanced spacing with progressive increase
-        let spacingMultipliers: [CGFloat] = [1.8, 3.2, 4.8, 6.6, 8.6, 10.8, 13.2]
-        
-        // Safety check
-        let safeIndex = min(ringIndex, spacingMultipliers.count - 1)
-        
-        // Base unit
-        let baseUnit = maxOrbitRadius / 14
-        
-        return baseUnit * spacingMultipliers[safeIndex]
+    // Extract shell number from orbital notation
+    private func getShellNumber(from orbital: String) -> Int? {
+        guard let firstChar = orbital.first, let shellNumber = Int(String(firstChar)) else {
+            return nil
+        }
+        return shellNumber
     }
     
-    // Calculate max electrons for a given ring
-    private func maxElectrons(for ringIndex: Int) -> Int {
-        // Electron shell configuration: [2, 8, 18, 32, 32, 18, 8]
-        let electronShells = [2, 8, 18, 32, 32, 18, 8]
-        return ringIndex < electronShells.count ? electronShells[ringIndex] : 0
+    // Extract electron count from orbital notation
+    private func getElectronCount(from orbital: String) -> Int {
+        // Skip the first two characters (e.g., "1s") to get the superscript part
+        guard orbital.count > 2 else { return 0 }
+        
+        // The rest should be superscript digits
+        let startIndex = orbital.index(orbital.startIndex, offsetBy: 2)
+        let superscriptPart = orbital[startIndex...]
+        
+        // Convert superscript digits to regular digits
+        var normalizedString = ""
+        for char in superscriptPart {
+            switch char {
+            case "⁰": normalizedString += "0"
+            case "¹": normalizedString += "1"
+            case "²": normalizedString += "2"
+            case "³": normalizedString += "3"
+            case "⁴": normalizedString += "4"
+            case "⁵": normalizedString += "5"
+            case "⁶": normalizedString += "6"
+            case "⁷": normalizedString += "7"
+            case "⁸": normalizedString += "8"
+            case "⁹": normalizedString += "9"
+            default: normalizedString += String(char)
+            }
+        }
+        
+        return Int(normalizedString) ?? 0
+    }
+    
+    // Calculate the radius for each orbit with improved spacing from nucleus
+    private func calculateOrbitRadius(for shellIndex: Int, totalShells: Int) -> CGFloat {
+        // Add a minimum spacing from the nucleus for the first shell
+        let nucleusOffset: CGFloat = 15.0  // Space between nucleus edge and first orbit
+        
+        // Calculate spacing between shells
+        let availableRadius = maxOrbitRadius - (nucleusSize / 2 + nucleusOffset)
+        let shellSpacing = availableRadius / CGFloat(max(totalShells, 1))
+        
+        // First shell starts at nucleus radius + offset
+        return (nucleusSize / 2) + nucleusOffset + (shellSpacing * CGFloat(shellIndex))
     }
 }
 
-// Data structure to represent electron positions
-struct ElectronPosition: Identifiable {
-    let id: String
-    let radius: CGFloat // Radius of the orbit (0 for electrons)
-    let x: CGFloat // X offset
-    let y: CGFloat // Y offset
-    let isRing: Bool // Whether this is a ring or an electron
-}
-
-#Preview {
-    BohrDiagramView(element: Element(
-        name: "Hydrogen",
-        symbol: "H",
-        atomicNumber: 1,
-        atomicWeight: 1.008,
-        category: "Nonmetal",
-        fact: "Hydrogen is the lightest element.",
-        wikipediaLink: "https://en.wikipedia.org/wiki/Hydrogen",
-        applications: ["Rocket fuel", "Fuel cells"],
-        roomTempState: "Gas",
-        history: "Discovered in 1766.",
-        examples: [],
-        icon: "wind",
-        meltingPoint: nil,
-        boilingPoint: nil,
-        electronegativity: nil,
-        discoveryYear: nil,
-        discoveredBy: nil,
-        funFacts: nil,
-        compounds: nil,
-        culturalReferences: nil,
-        sustainabilityNotes: nil
-    ))
+// Separate component for each electron shell
+struct ElectronShellView: View {
+    let radius: CGFloat
+    let electronCount: Int
+    let electronSize: CGFloat
+    let shellIndex: Int
+    let isVisible: Bool
+    let animationToggle: Bool
+    
+    // Use different rotation speeds for different shells
+    private var rotationSpeed: Double {
+        // Inner shells move faster (smaller period)
+        return 10.0 + (Double(shellIndex) * 5.0)  // Seconds per full rotation
+    }
+    
+    var body: some View {
+        ZStack {
+            ForEach(0..<electronCount, id: \.self) { i in
+                // Place electrons evenly around the orbit
+                let angle = (2 * Double.pi * Double(i)) / Double(electronCount)
+                
+                Circle()
+                    .fill(Theme.primary)
+                    .frame(width: electronSize, height: electronSize)
+                    .shadow(color: Color.blue.opacity(0.7), radius: 3)
+                    .offset(x: radius * cos(CGFloat(angle)), y: radius * sin(CGFloat(angle)))
+                    .scaleEffect(isVisible ? 1.0 : 0.0)
+                    .opacity(isVisible ? 1.0 : 0.0)
+                    .animation(.spring(response: 0.4), value: isVisible)
+            }
+        }
+        .rotationEffect(
+            .degrees(animationToggle ? 360 : 0)
+        )
+        .animation(
+            .linear(duration: rotationSpeed)
+            .repeatForever(autoreverses: false),
+            value: animationToggle
+        )
+    }
 }

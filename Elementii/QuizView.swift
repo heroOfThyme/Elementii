@@ -43,6 +43,11 @@ struct QuizView: View {
     @State private var userAnswer: String = ""
     @Environment(\.presentationMode) var presentationMode
     
+    // Create an array of randomly selected elements for the quiz
+    @State private var quizElements: [Element] = []
+    // Keep track of the current element
+    @State private var currentElement: Element? = nil
+    
     var body: some View {
         ZStack {
             Theme.background.edgesIgnoringSafeArea(.all)
@@ -60,129 +65,131 @@ struct QuizView: View {
                         .foregroundColor(Theme.text)
                         .padding()
                     
-                    // Display different question types based on game type
-                    switch gameType {
-                    case .elementIdentification:
-                        Text("What is the symbol for \(elements[currentQuestion].name)?")
-                            .font(.title)
-                            .foregroundColor(Theme.text)
-                            .padding()
-                        
-                        ForEach(currentOptions, id: \.symbol) { element in
-                            Button(action: {
-                                checkAnswer(element.symbol)
-                            }) {
-                                Text(element.symbol)
-                                    .font(.headline)
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                            }
-                        }
-                    
-                    case .atomicNumberQuiz:
-                        Text("What is the atomic number of \(elements[currentQuestion].name)?")
-                            .font(.title)
-                            .foregroundColor(Theme.text)
-                            .padding()
-                        
-                        ForEach(currentNumberOptions, id: \.self) { number in
-                            Button(action: {
-                                checkNumberAnswer(number)
-                            }) {
-                                Text("\(number)")
-                                    .font(.headline)
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Theme.primary)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                            }
-                        }
-                        
-                    case .categoryIdentification:
-                        Text("Which category does \(elements[currentQuestion].name) belong to?")
-                            .font(.title)
-                            .foregroundColor(Theme.text)
-                            .padding()
-                        
-                        ForEach(currentCategoryOptions, id: \.self) { category in
-                            Button(action: {
-                                checkCategoryAnswer(category)
-                            }) {
-                                Text(category)
-                                    .font(.headline)
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Theme.primary)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                            }
-                        }
-                        
-                    case .periodicTableLocation:
-                        Text("Where is \(elements[currentQuestion].name) located in the periodic table?")
-                            .font(.title)
-                            .foregroundColor(Theme.text)
-                            .padding()
-                        
-                        VStack {
-                            Text("Group: ")
-                            Picker("Group", selection: $selectedGroup) {
-                                ForEach(1..<19) { group in
-                                    Text("\(group)").tag(group)
+                    if let element = currentElement {
+                        // Display different question types based on game type
+                        switch gameType {
+                        case .elementIdentification:
+                            Text("What is the symbol for \(element.name)?")
+                                .font(.title)
+                                .foregroundColor(Theme.text)
+                                .padding()
+                            
+                            ForEach(currentOptions, id: \.symbol) { element in
+                                Button(action: {
+                                    checkAnswer(element.symbol)
+                                }) {
+                                    Text(element.symbol)
+                                        .font(.headline)
+                                        .padding()
+                                        .frame(maxWidth: .infinity)
+                                        .background(Color.blue)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(10)
                                 }
                             }
-                            .pickerStyle(WheelPickerStyle())
+                        
+                        case .atomicNumberQuiz:
+                            Text("What is the atomic number of \(element.name)?")
+                                .font(.title)
+                                .foregroundColor(Theme.text)
+                                .padding()
                             
-                            Text("Period: ")
-                            Picker("Period", selection: $selectedPeriod) {
-                                ForEach(1..<8) { period in
-                                    Text("\(period)").tag(period)
+                            ForEach(currentNumberOptions, id: \.self) { number in
+                                Button(action: {
+                                    checkNumberAnswer(number)
+                                }) {
+                                    Text("\(number)")
+                                        .font(.headline)
+                                        .padding()
+                                        .frame(maxWidth: .infinity)
+                                        .background(Theme.primary)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(10)
                                 }
                             }
-                            .pickerStyle(WheelPickerStyle())
+                            
+                        case .categoryIdentification:
+                            Text("Which category does \(element.name) belong to?")
+                                .font(.title)
+                                .foregroundColor(Theme.text)
+                                .padding()
+                            
+                            ForEach(currentCategoryOptions, id: \.self) { category in
+                                Button(action: {
+                                    checkCategoryAnswer(category)
+                                }) {
+                                    Text(category)
+                                        .font(.headline)
+                                        .padding()
+                                        .frame(maxWidth: .infinity)
+                                        .background(Theme.primary)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(10)
+                                }
+                            }
+                            
+                        case .periodicTableLocation:
+                            Text("Where is \(element.name) located in the periodic table?")
+                                .font(.title)
+                                .foregroundColor(Theme.text)
+                                .padding()
+                            
+                            VStack {
+                                Text("Group: ")
+                                Picker("Group", selection: $selectedGroup) {
+                                    ForEach(1..<19) { group in
+                                        Text("\(group)").tag(group)
+                                    }
+                                }
+                                .pickerStyle(WheelPickerStyle())
+                                
+                                Text("Period: ")
+                                Picker("Period", selection: $selectedPeriod) {
+                                    ForEach(1..<8) { period in
+                                        Text("\(period)").tag(period)
+                                    }
+                                }
+                                .pickerStyle(WheelPickerStyle())
+                                
+                                Button(action: {
+                                    checkLocationAnswer()
+                                }) {
+                                    Text("Submit Answer")
+                                        .font(.headline)
+                                        .padding()
+                                        .frame(maxWidth: .infinity)
+                                        .background(Theme.accent)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(10)
+                                }
+                            }
+                            
+                        case .elementAnagrams:
+                            Text("Unscramble this element name:")
+                                .font(.title)
+                                .foregroundColor(Theme.text)
+                                .padding()
+                            
+                            Text(scrambledElementName)
+                                .font(.system(size: 32, weight: .bold))
+                                .padding()
+                            
+                            TextField("Enter element name", text: $userAnswer)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding()
+                                .autocapitalization(.none)
                             
                             Button(action: {
-                                checkLocationAnswer()
+                                checkAnagramAnswer()
                             }) {
                                 Text("Submit Answer")
                                     .font(.headline)
                                     .padding()
                                     .frame(maxWidth: .infinity)
-                                    .background(Theme.accent)
-                                    .foregroundColor(.white)
+                                    .background(Theme.primary)
+                                    .foregroundStyle(.white)
                                     .cornerRadius(10)
                             }
-                        }
-                        
-                    case .elementAnagrams:
-                        Text("Unscramble this element name:")
-                            .font(.title)
-                            .foregroundColor(Theme.text)
-                            .padding()
-                        
-                        Text(scrambledElementName)
-                            .font(.system(size: 32, weight: .bold))
-                            .padding()
-                        
-                        TextField("Enter element name", text: $userAnswer)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding()
-                            .autocapitalization(.none)
-                        
-                        Button(action: {
-                            checkAnagramAnswer()
-                        }) {
-                            Text("Submit Answer")
-                                .font(.headline)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Theme.primary)
-                                .foregroundStyle(.white)
-                                .cornerRadius(10)
                         }
                     }
                     
@@ -235,6 +242,7 @@ struct QuizView: View {
             .padding()
         }
         .onAppear {
+            prepareQuizElements()
             startQuiz()
             setupCurrentQuestion()
         }
@@ -262,6 +270,27 @@ struct QuizView: View {
         }
     }
     
+    // Prepare a random set of elements for the quiz
+    func prepareQuizElements() {
+        let count: Int
+        switch quizMode {
+        case .fixedQuestions(let questionCount):
+            count = min(questionCount, elements.count)
+        case .timeBased:
+            count = min(20, elements.count) // Default to 20 questions for time mode
+        }
+        
+        // Create a shuffled copy of the elements array
+        let shuffledElements = elements.shuffled()
+        // Take the first 'count' elements from the shuffled array
+        quizElements = Array(shuffledElements.prefix(count))
+        
+        // Set the initial current element
+        if !quizElements.isEmpty {
+            currentElement = quizElements[0]
+        }
+    }
+    
     func startQuiz() {
         if case .timeBased(let seconds) = quizMode {
             timeRemaining = seconds
@@ -278,6 +307,15 @@ struct QuizView: View {
     
     // Setup function to prepare the current question based on game type
     func setupCurrentQuestion() {
+        guard currentQuestion < quizElements.count else {
+            showResult = true
+            return
+        }
+        
+        // Update current element
+        currentElement = quizElements[currentQuestion]
+        
+        // Setup based on game type
         switch gameType {
         case .elementIdentification:
             generateOptions()
@@ -296,7 +334,7 @@ struct QuizView: View {
     
     // Original options generation for element identification
     func generateOptions() {
-        let correctElement = elements[currentQuestion]
+        guard let correctElement = currentElement else { return }
         var options = [correctElement]
         
         // Add 3 random incorrect options
@@ -313,7 +351,8 @@ struct QuizView: View {
     
     // Generate options for atomic number quiz
     func generateNumberOptions() {
-        let correctNumber = elements[currentQuestion].atomicNumber
+        guard let correctElement = currentElement else { return }
+        let correctNumber = correctElement.atomicNumber
         var options = [correctNumber]
         
         // Add 3 random incorrect options
@@ -329,10 +368,11 @@ struct QuizView: View {
     
     // Generate options for category identification
     func generateCategoryOptions() {
+        guard let correctElement = currentElement else { return }
         // Extract unique categories from your elements
         let allCategories = Array(Set(elements.map { $0.category }))
         
-        let correctCategory = elements[currentQuestion].category
+        let correctCategory = correctElement.category
         var options = [correctCategory]
         
         // Add up to 3 random incorrect options (or as many as available)
@@ -349,7 +389,8 @@ struct QuizView: View {
     
     // Scramble the element name for anagrams game
     func scrambleElementName() {
-        let name = elements[currentQuestion].name
+        guard let element = currentElement else { return }
+        let name = element.name
         
         // Keep shuffling until we get a different arrangement
         var scrambled = name
@@ -363,7 +404,8 @@ struct QuizView: View {
     
     // Original answer checking for element identification
     func checkAnswer(_ answer: String) {
-        if answer == elements[currentQuestion].symbol {
+        guard let element = currentElement else { return }
+        if answer == element.symbol {
             score += 1
         }
         moveToNextQuestion()
@@ -371,7 +413,8 @@ struct QuizView: View {
     
     // Check answer for atomic number quiz
     func checkNumberAnswer(_ answer: Int) {
-        if answer == elements[currentQuestion].atomicNumber {
+        guard let element = currentElement else { return }
+        if answer == element.atomicNumber {
             score += 1
         }
         moveToNextQuestion()
@@ -379,7 +422,8 @@ struct QuizView: View {
     
     // Check answer for category identification
     func checkCategoryAnswer(_ answer: String) {
-        if answer == elements[currentQuestion].category {
+        guard let element = currentElement else { return }
+        if answer == element.category {
             score += 1
         }
         moveToNextQuestion()
@@ -387,8 +431,9 @@ struct QuizView: View {
     
     // Check answer for periodic table location
     func checkLocationAnswer() {
-        if selectedGroup == elements[currentQuestion].group &&
-           selectedPeriod == elements[currentQuestion].period {
+        guard let element = currentElement else { return }
+        if selectedGroup == element.group &&
+           selectedPeriod == element.period {
             score += 1
         }
         moveToNextQuestion()
@@ -396,7 +441,8 @@ struct QuizView: View {
     
     // Check answer for element anagrams
     func checkAnagramAnswer() {
-        if userAnswer.lowercased() == elements[currentQuestion].name.lowercased() {
+        guard let element = currentElement else { return }
+        if userAnswer.lowercased() == element.name.lowercased() {
             score += 1
         }
         moveToNextQuestion()
@@ -419,6 +465,8 @@ struct QuizView: View {
         currentQuestion = 0
         score = 0
         showResult = false
+        // Get a new set of random elements
+        prepareQuizElements()
         startQuiz()
         setupCurrentQuestion()
     }

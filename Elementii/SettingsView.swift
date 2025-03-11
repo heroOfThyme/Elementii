@@ -49,8 +49,8 @@ struct SettingsView: View {
                 showingDevMessage = true
             }) {
                 HStack {
-                    Image(systemName: "envelope.badge.person.crop.fill")
-                        .foregroundStyle(Color.pink)
+                    Image(systemName: "heart.rectangle")
+                        .symbolRenderingMode(.multicolor)
                         .font(.system(size: 18))
                         .frame(width: 24, height: 24)
                     
@@ -70,7 +70,7 @@ struct SettingsView: View {
         Section(header: Text("About")) {
             HStack {
                 Image(systemName: "info.circle.fill")
-                    .foregroundStyle(Color.purple)
+                    .foregroundStyle(Theme.text)
                     .font(.system(size: 18))
                     .frame(width: 24, height: 24)
                 
@@ -85,41 +85,7 @@ struct SettingsView: View {
             .frame(height: 36)
             
             Button(action: {
-                if let url = URL(string: "https://elementii-app.com") {
-                    openURL(url)
-                }
-            }) {
-                HStack {
-                    Image(systemName: "globe.americas.fill")
-                        .foregroundStyle(Color.green)
-                        .font(.system(size: 18))
-                        .frame(width: 24, height: 24)
-                    
-                    Text("Visit Website")
-                        .foregroundStyle(Theme.text)
-                }
-                .frame(height: 36)
-            }
-            
-            Button(action: {
-                if let url = URL(string: "mailto:support@elementii-app.com") {
-                    openURL(url)
-                }
-            }) {
-                HStack {
-                    Image(systemName: "envelope.front.fill")
-                        .foregroundStyle(Color.red)
-                        .font(.system(size: 18))
-                        .frame(width: 24, height: 24)
-                    
-                    Text("Contact Support")
-                        .foregroundStyle(Color.primary)
-                }
-                .frame(height: 36)
-            }
-            
-            Button(action: {
-                if let url = URL(string: "https://apps.apple.com/app/idYOURAPPID") {
+                if let url = URL(string: "https://apps.apple.com/app/ 0") {
                     openURL(url)
                 }
             }) {
@@ -138,73 +104,136 @@ struct SettingsView: View {
     }
 }
 
-// A simple view for notifications settings
-struct NotificationSettingsView: View {
-    @AppStorage("pushNotificationsEnabled") private var pushNotificationsEnabled = true
-    @AppStorage("emailNotificationsEnabled") private var emailNotificationsEnabled = false
-    
-    var body: some View {
-        Form {
-            Section(header: Text("Push Notifications")) {
-                Toggle("Enable Push Notifications", isOn: $pushNotificationsEnabled)
-                if pushNotificationsEnabled {
-                    Toggle("New Updates", isOn: .constant(true))
-                    Toggle("Feature Announcements", isOn: .constant(true))
-                }
-            }
-            
-            Section(header: Text("Email Notifications")) {
-                Toggle("Enable Email Notifications", isOn: $emailNotificationsEnabled)
-                if emailNotificationsEnabled {
-                    Toggle("Weekly Newsletter", isOn: .constant(false))
-                    Toggle("Special Offers", isOn: .constant(false))
-                }
-            }
-        }
-        .navigationTitle("Notifications")
-    }
-}
-
 // Developer message view
 struct DeveloperMessageView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                Text("A Message from the Developer")
-                    .font(.largeTitle)
-                    .bold()
-                
-                Text("Dear Elementii User,")
-                    .font(.title2)
-                    .bold()
-                
-                Text("""
-                Thank you for using Elementii! This app was created with passion to help you explore and understand the elements in a new and interactive way.
-                
-                I started this project because I wanted to create something that would make learning about chemistry both fun and accessible. Each feature has been carefully designed with you in mind.
-                
-                I'm constantly working on improvements and would love to hear your feedback. If you have suggestions or encounter any issues, please don't hesitate to reach out through the support email in the app.
-                
-                Thank you for your support!
-                
-                Warm regards,
-                Petar
-                """)
-                .padding(.bottom)
-                
-                Spacer()
-                
-                Button("Close") {
-                    dismiss()
+        ZStack {
+            // Solid background using Theme.background
+            Theme.background
+                .edgesIgnoringSafeArea(.all)
+            
+            ScrollView {
+                VStack(alignment: .leading, spacing: 24) {
+                    // Header with icon
+                    HStack {
+                        Image(systemName: "atom")
+                            .font(.system(size: 40))
+                            .foregroundStyle(Theme.primary)
+                        
+                        VStack(alignment: .leading) {
+                            Text("A Message from")
+                                .font(.headline)
+                                .foregroundColor(Theme.text.opacity(0.8))
+                            
+                            Text("The Developer")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .foregroundColor(Theme.text)
+                        }
+                    }
+                    .padding(.bottom, 8)
+                    
+                    // Divider line
+                    Rectangle()
+                        .frame(height: 2)
+                        .foregroundStyle(Color.gray.opacity(0.3))
+                        .padding(.bottom, 16)
+                    
+                    // Greeting
+                    Text("Dear Elementii User,")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Theme.text)
+                    
+                    // Message content in a card
+                    VStack(alignment: .leading, spacing: 16) {
+                        messageSection(
+                            icon: "heart.fill",
+                            color: .pink,
+                            text: "Thank you for using Elementii! My name is Petar, and I am the developer behind Elementii. I wanted to create a mobile appllication as a learning curve into my developer journey - so, I figure why not make an application about one of my favourite things? Chemistry! Thus, Elementii was born."
+                        )
+                        
+                        messageSection(
+                            icon: "lightbulb.fill",
+                            color: .yellow,
+                            text: "My goal was to create an app that gave users information about elements, but also had a few differences from other chemistry apps. Each element model has several points and facts about the elements usage, sustainability, and much more. There's also a few small quizes to test your knowledge."
+                        )
+                        
+                        messageSection(
+                            icon: "info.square.fill",
+                            color: .green,
+                            text: "I am always looking for feedback and suggestions on how to improve the app. If you have any ideas or suggestions, please let me know!"
+                        )
+                        
+                        messageSection(
+                            icon: "storefront.fill",
+                            color: .orange,
+                            text: "I hope you enjoy using Elementii and that you find it useful! If you like the app, please consider leaving a review on the App Store!"
+                        )
+                        
+                        Text("Thank you for your support!")
+                            .font(.headline)
+                            .foregroundColor(Theme.text)
+                            .padding(.top, 8)
+                        
+                        HStack {
+                            Spacer()
+                            Text("Warm regards,")
+                                .italic()
+                                .foregroundColor(Theme.text.opacity(0.8))
+                            Text("Petar Vidakovic")
+                                .font(.headline)
+                                .foregroundColor(Theme.primary)
+                        }
+                        .padding(.top, 4)
+                    }
+                    .padding(20)
+                    .background(
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(colorScheme == .dark ? Color(UIColor.systemGray6) : Color.white)
+                            .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+                    )
+                    
+                    Spacer(minLength: 40)
+                    
+                    // Close button
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        HStack {
+                            Spacer()
+                            Text("Close")
+                                .font(.headline)
+                            Spacer()
+                        }
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .tint(Theme.primary)
+                    .shadow(color: Theme.primary.opacity(0.3), radius: 5, x: 0, y: 3)
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(Theme.primary)
-                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 24)
+                .padding(.vertical, 36)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .padding()
-            .background(Theme.background)
+        }
+        .background(Color.clear) // This ensures the background goes all the way down
+    }
+    
+    // Helper function to create a consistent message section
+    private func messageSection(icon: String, color: Color, text: String) -> some View {
+        HStack(alignment: .top, spacing: 12) {
+            Image(systemName: icon)
+                .foregroundStyle(color)
+                .font(.system(size: 22))
+                .frame(width: 26)
+            
+            Text(text)
+                .foregroundColor(Theme.text)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 }
@@ -216,3 +245,4 @@ struct SettingsView_Previews: PreviewProvider {
         }
     }
 }
+

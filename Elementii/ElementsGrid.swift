@@ -31,26 +31,26 @@ struct ElementsGrid: View {
             // Atomic number
             Text("\(element.atomicNumber)")
                 .font(.system(size: 10))
-                .foregroundColor(.white)
                 .frame(maxWidth: .infinity, alignment: .center)
+                .foregroundStyle(Theme.text)
             
             // Element symbol
             Text(element.symbol)
                 .font(.system(size: 24, weight: .bold))
-                .foregroundColor(.white)
                 .frame(height: 26)
+                .foregroundStyle(Theme.text)
             
             // Element name
             Text(element.name)
                 .font(.system(size: 9))
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
-                .foregroundColor(.white)
+                .foregroundStyle(Theme.text)
             
             // Atomic weight
             Text(String(format: "%.3f", element.atomicWeight))
                 .font(.system(size: 9))
-                .foregroundColor(.white.opacity(0.9))
+                .foregroundStyle(Theme.text.opacity(0.9))
                 .padding(.top, 2)
         }
         .padding(4)

@@ -20,7 +20,7 @@ struct ElementDetailView: View {
     var body: some View {
         ZStack {
             // Background
-            element.categoryColor.opacity(colorScheme == .dark ? 0.15 : 0.08)
+            element.categoryColor.opacity(colorScheme == .dark ? 0.15 : 0.1)
                 .edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 0) {
@@ -28,22 +28,24 @@ struct ElementDetailView: View {
                 ElementHeaderView(element: element)
                 
                 // Custom tab selector
-                HStack(spacing: 5) {
-                    ForEach(0..<tabTitles.count, id: \.self) { index in
-                        TabButton(
-                            title: tabTitles[index],
-                            icon: tabIcons[index],
-                            isSelected: selectedTab == index,
-                            accentColor: element.categoryColor
-                        ) {
-                            withAnimation {
-                                selectedTab = index
+                ScrollView(.horizontal, showsIndicators: true) {
+                    HStack(spacing: 10) {
+                        ForEach(0..<tabTitles.count, id: \.self) { index in
+                            TabButton(
+                                title: tabTitles[index],
+                                icon: tabIcons[index],
+                                isSelected: selectedTab == index,
+                                accentColor: element.categoryColor
+                            ) {
+                                withAnimation {
+                                    selectedTab = index
+                                }
                             }
                         }
                     }
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 8)
                 }
-                .padding(.horizontal, 10)
-                .padding(.vertical, 8)
                 
                 // Content area
                 TabView(selection: $selectedTab) {
@@ -98,7 +100,7 @@ struct ElementDetailView: View {
                     }) {
                         Image(systemName: "lightbulb.fill")
                             .font(.system(size: 24))
-                            .foregroundColor(element.categoryColor)
+                            .foregroundStyle(element.categoryColor)
                             .padding()
                             .background(
                                 Circle()
@@ -132,9 +134,11 @@ struct TabButton: View {
                     .symbolEffect(.pulse, isActive: isSelected)
                 Text(title)
                     .font(.caption)
+                    .fontWeight(.bold)
             }
-            .foregroundColor(isSelected ? .white : Theme.text)
-            .frame(maxWidth: .infinity)
+            .frame(maxHeight: .infinity)
+            .foregroundStyle(isSelected ? .white : Theme.text)
+            .frame(width: 75, height: 60) // Fixed width instead of stretching
             .padding(.vertical, 8)
             .background(
                 RoundedRectangle(cornerRadius: 10)
@@ -162,7 +166,7 @@ struct ElementHeaderView: View {
                 
                 Text(element.symbol)
                     .font(.system(size: 36, weight: .bold))
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                    .foregroundStyle(colorScheme == .dark ? .white : .black)
                     .scaleEffect(isSymbolAnimating ? 1.1 : 1.0)
                     .animation(
                         Animation.easeInOut(duration: 1.5)
@@ -177,11 +181,11 @@ struct ElementHeaderView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(element.name)
                     .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(Theme.text)
+                    .foregroundStyle(Theme.text)
                 
                 Text("Atomic Number: \(element.atomicNumber)")
                     .font(.subheadline)
-                    .foregroundColor(Theme.text.opacity(0.8))
+                    .foregroundStyle(Theme.text.opacity(0.8))
                 
                 HStack(spacing: 10) {
                     Label(element.category, systemImage: element.categoryIcon)
@@ -198,7 +202,7 @@ struct ElementHeaderView: View {
             // Element icon with animation
             Image(systemName: element.categoryIcon)
                 .font(.system(size: 32))
-                .foregroundColor(element.categoryColor)
+                .foregroundStyle(element.categoryColor)
                 .symbolEffect(.pulse, options: .repeating)
         }
         .padding()
@@ -243,7 +247,7 @@ struct ElementBasicsView: View {
                         
                         Text(element.symbol)
                             .font(.system(size: 120, weight: .bold))
-                            .foregroundColor(element.categoryColor.opacity(0.3))
+                            .foregroundStyle(element.categoryColor.opacity(0.3))
                         
                         Spacer()
                     }
@@ -263,7 +267,7 @@ struct ElementBasicsView: View {
                         }
                         if let discoverer = element.discoveredBy {
                             InfoRow(title: "Discovered By", value: discoverer)
-                                .lineLimit(6)
+                                .lineLimit(2)
                         }
                     }
                     .padding()
@@ -291,7 +295,7 @@ struct ElementBasicsView: View {
                 // Wikipedia link
                 Link(destination: URL(string: element.wikipediaLink)!) {
                     Text("Learn more on Wikipedia")
-                        .foregroundColor(.blue)
+                        .foregroundStyle(Theme.primary)
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(
@@ -317,7 +321,7 @@ struct InfoRow: View {
         HStack {
             Text(title)
                 .font(.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             Spacer()
             Text(value)
                 .font(.subheadline)
@@ -339,46 +343,31 @@ struct ElementPropertiesView: View {
                     .padding(.top)
                 
                 // Properties grid
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 15) {
-                    PropertyCard(title: "Atomic Weight", value: "\(element.atomicWeight)", icon: "scalemass")
-                    PropertyCard(title: "State", value: element.roomTempState, icon: "thermometer")
+                LazyVGrid(columns:
+                            [GridItem(.fixed(UIScreen.main.bounds.width * 0.42), spacing: 15),
+                             GridItem(.fixed(UIScreen.main.bounds.width * 0.42), spacing: 15)
+                            ], spacing: 15) {
+                    PropertyCard(title: "Atomic Weight", value: "\(element.atomicWeight)", icon: "scalemass", accentColor: element.categoryColor)
+                    PropertyCard(title: "State", value: element.roomTempState, icon: "thermometer", accentColor: element.categoryColor)
                     
                     if let meltingPoint = element.meltingPoint {
-                        PropertyCard(title: "Melting Point", value: meltingPoint, icon: "arrow.down.to.line")
+                        PropertyCard(title: "Melting Point", value: meltingPoint, icon: "arrow.down.to.line", accentColor: element.categoryColor)
                     }
                     
                     if let boilingPoint = element.boilingPoint {
-                        PropertyCard(title: "Boiling Point", value: boilingPoint, icon: "arrow.up.to.line")
+                        PropertyCard(title: "Boiling Point", value: boilingPoint, icon: "arrow.up.to.line", accentColor: element.categoryColor)
                     }
                     
                     if let electronegativity = element.electronegativity {
-                        PropertyCard(title: "Electronegativity", value: "\(electronegativity)", icon: "bolt")
+                        PropertyCard(title: "Electronegativity", value: "\(electronegativity)", icon: "bolt", accentColor: element.categoryColor)
                     }
                     
-                    PropertyCard(title: "Category", value: element.category, icon: element.categoryIcon)
+                    PropertyCard(title: "Category", value: element.category, icon: element.categoryIcon, accentColor: element.categoryColor)
                     
-                    PropertyCard(title: "Period", value: "\(element.period)", icon: "arrow.left.and.right")
-                    PropertyCard(title: "Group", value: "\(element.group)", icon: "arrow.up.and.down")
+                    PropertyCard(title: "Period", value: "\(element.period)", icon: "arrow.left.and.right", accentColor: element.categoryColor)
+                    PropertyCard(title: "Group", value: "\(element.group)", icon: "arrow.up.and.down", accentColor: element.categoryColor)
                 }
                 .padding(.horizontal)
-                
-                // Electron configuration
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Electron Configuration")
-                        .font(.headline)
-                        .padding(.horizontal)
-                        .padding(.top)
-                    
-                    Text(element.electronConfiguration)
-                        .font(.system(.body, design: .monospaced))
-                        .padding()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(colorScheme == .dark ? Color.black.opacity(0.2) : Color.white.opacity(0.7))
-                        )
-                        .padding(.horizontal)
-                }
                 
                 Spacer()
             }
@@ -391,26 +380,35 @@ struct PropertyCard: View {
     let title: String
     let value: String
     let icon: String
+    let accentColor: Color
     
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            HStack {
+            // Icon and title row
+            HStack(spacing: 8) {
                 Image(systemName: icon)
                     .font(.system(size: 16))
+                    .foregroundStyle(accentColor)
+                
                 Text(title)
                     .font(.headline)
             }
-            .foregroundColor(.secondary)
+            .foregroundStyle(.secondary)
             
+            // Value with proper text wrapping
             Text(value)
                 .font(.title3)
                 .fontWeight(.semibold)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
+                .fixedSize(horizontal: false, vertical: true)
+                .multilineTextAlignment(.leading)
         }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 14)
+        .frame(minHeight: 100)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
         .background(
             RoundedRectangle(cornerRadius: 12)
                 .fill(colorScheme == .dark ? Color.black.opacity(0.3) : Color.white.opacity(0.7))
@@ -430,7 +428,7 @@ struct ElementHistoryView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
                         Image(systemName: "clock.fill")
-                            .foregroundColor(element.categoryColor)
+                            .foregroundStyle(element.categoryColor)
                         
                         Text("Discovery")
                             .font(.title2)
@@ -440,7 +438,7 @@ struct ElementHistoryView: View {
                     .padding(.top)
                     
                     if let year = element.discoveryYear, let discoverer = element.discoveredBy {
-                        Text("Discovered in \(year) by \(discoverer)")
+                        Text(verbatim: "Discovered in \(year) by \(discoverer)")
                             .font(.headline)
                             .padding(.vertical, 5)
                             .padding(.horizontal)
@@ -483,7 +481,7 @@ struct ElementApplicationsView: View {
                 ForEach(element.applications, id: \.self) { application in
                     HStack(alignment: .top, spacing: 15) {
                         Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(element.categoryColor)
+                            .foregroundStyle(element.categoryColor)
                             .font(.system(size: 22))
                         
                         Text(application)
@@ -497,7 +495,7 @@ struct ElementApplicationsView: View {
                     VStack(alignment: .leading, spacing: 10) {
                         HStack {
                             Image(systemName: "leaf.fill")
-                                .foregroundColor(.green)
+                                .foregroundStyle(.green)
                             
                             Text("Sustainability")
                                 .font(.headline)
@@ -509,7 +507,7 @@ struct ElementApplicationsView: View {
                             .padding()
                             .background(
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.green.opacity(0.1))
+                                    .fill(Color.green.opacity(0.2))
                             )
                             .padding(.horizontal)
                     }
@@ -522,43 +520,126 @@ struct ElementApplicationsView: View {
     }
 }
 
+// In ElementDetailView.swift, replace the ElementBohrView struct with this:
 struct ElementBohrView: View {
     let element: Element
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 20) {
+            VStack(alignment: .leading, spacing: 24) {
+                // Title
                 Text("Atomic Structure")
                     .font(.title2)
                     .bold()
+                    .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.top)
                 
+                // Bohr model subtitle
                 Text("Bohr Model of \(element.name)")
                     .font(.headline)
+                    .frame(maxWidth: .infinity, alignment: .center)
                 
-                BohrDiagramView(element: element)
-                    .frame(height: 300)
-                    .padding()
+                // Bohr Diagram - contained in a fixed-size container with center alignment
+                HStack {
+                    Spacer()
+                    BohrDiagramView(element: element)
+                        .frame(width: 330, height: 330) // Fixed size for consistency
+                        .padding(.vertical, 10)
+                    Spacer()
+                }
                 
-                VStack(alignment: .leading, spacing: 8) {
+                // Electron Configuration section
+                VStack(alignment: .leading, spacing: 12) {
                     Text("Electron Configuration")
                         .font(.headline)
+                        .padding(.horizontal)
                     
-                    Text(element.electronConfiguration)
+                    // Updated format to display in a stacked layout
+                    VStack(alignment: .leading, spacing: 6) {
+                        ForEach(element.formattedElectronConfiguration, id: \.self) { line in
+                            Text(line)
+                                .font(.system(.body, design: .monospaced))
+                        }
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color.gray.opacity(0.1))
+                    )
+                    .padding(.horizontal)
+                }
+                
+                // Electrons per Shell section
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Electrons per Shell")
+                        .font(.headline)
+                        .padding(.horizontal)
+                    
+                    Text(getElectronsPerShell(element: element))
                         .font(.system(.body, design: .monospaced))
                         .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .background(
                             RoundedRectangle(cornerRadius: 8)
                                 .fill(Color.gray.opacity(0.1))
                         )
+                        .padding(.horizontal)
                 }
-                .padding(.horizontal)
+                
+                Spacer(minLength: 30)
             }
             .padding(.bottom, 20)
         }
     }
+    
+    // Helper function to calculate electrons per shell
+    private func getElectronsPerShell(element: Element) -> String {
+        // Parse the electron configuration
+        let config = element.electronConfiguration
+        let orbitals = config.split(separator: " ")
+        
+        var shellCounts: [Int: Int] = [:]
+        
+        for orbital in orbitals {
+            if let firstChar = orbital.first, let shellNumber = Int(String(firstChar)) {
+                // Extract electron count using same logic as in BohrDiagramView
+                let orbitalString = String(orbital)
+                guard orbitalString.count > 2 else { continue }
+                
+                let startIndex = orbitalString.index(orbitalString.startIndex, offsetBy: 2)
+                let superscriptPart = orbitalString[startIndex...]
+                
+                var normalizedString = ""
+                for char in superscriptPart {
+                    switch char {
+                    case "⁰": normalizedString += "0"
+                    case "¹": normalizedString += "1"
+                    case "²": normalizedString += "2"
+                    case "³": normalizedString += "3"
+                    case "⁴": normalizedString += "4"
+                    case "⁵": normalizedString += "5"
+                    case "⁶": normalizedString += "6"
+                    case "⁷": normalizedString += "7"
+                    case "⁸": normalizedString += "8"
+                    case "⁹": normalizedString += "9"
+                    default: normalizedString += String(char)
+                    }
+                }
+                
+                if let electronCount = Int(normalizedString) {
+                    shellCounts[shellNumber, default: 0] += electronCount
+                }
+            }
+        }
+        
+        // Format as string like "2, 8, 18, 18, 1"
+        let sortedShells = shellCounts.keys.sorted()
+        let countStrings = sortedShells.map { "\(shellCounts[$0] ?? 0)" }
+        return countStrings.joined(separator: ", ")
+    }
 }
-
 struct ElementMoreView: View {
     let element: Element
     @Environment(\.colorScheme) var colorScheme
@@ -578,7 +659,7 @@ struct ElementMoreView: View {
                         VStack(alignment: .leading, spacing: 10) {
                             Text(compound.name)
                                 .font(.headline)
-                                .foregroundColor(element.categoryColor)
+                                .foregroundStyle(element.categoryColor)
                             
                             Text(compound.description)
                                 .font(.body)
@@ -604,7 +685,7 @@ struct ElementMoreView: View {
                     ForEach(references, id: \.self) { reference in
                         HStack(alignment: .top, spacing: 15) {
                             Image(systemName: "star.fill")
-                                .foregroundColor(element.categoryColor)
+                                .foregroundStyle(element.categoryColor)
                                 .font(.system(size: 22))
                             
                             Text(reference)
@@ -625,7 +706,7 @@ struct ElementMoreView: View {
                     ForEach(funFacts, id: \.self) { fact in
                         HStack(alignment: .top, spacing: 15) {
                             Image(systemName: "lightbulb.fill")
-                                .foregroundColor(.yellow)
+                                .foregroundStyle(.yellow)
                                 .font(.system(size: 22))
                             
                             Text(fact)
@@ -660,7 +741,7 @@ struct FactPopupView: View {
             VStack(spacing: 20) {
                 Image(systemName: "lightbulb.fill")
                     .font(.system(size: 40))
-                    .foregroundColor(backgroundColor)
+                    .foregroundStyle(backgroundColor)
                     .symbolEffect(.pulse, options: .repeating)
                 
                 Text("Did You Know?")
@@ -679,7 +760,7 @@ struct FactPopupView: View {
                 .padding(.horizontal, 40)
                 .padding(.vertical, 10)
                 .background(backgroundColor)
-                .foregroundColor(.white)
+                .foregroundStyle(.white)
                 .cornerRadius(20)
             }
             .padding(30)
