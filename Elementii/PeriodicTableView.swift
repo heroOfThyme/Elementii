@@ -248,7 +248,6 @@ struct PeriodicTableView: View {
                                     icon: "arrow.left.and.right.circle",
                                     tip: "Swipe to scroll horizontally across the periodic table."
                                 )
-                                
                             }
                             .padding(.horizontal, 16)
                             .padding(.bottom, 16)

@@ -18,8 +18,6 @@ struct BohrDiagramView: View {
     
     // Animation states
     @State private var isPulsing = false
-    @State private var ringsLoaded = false
-    @State private var electronsLoaded = false
     @State private var animationToggle = false
     
     var body: some View {
@@ -43,8 +41,6 @@ struct BohrDiagramView: View {
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(colorScheme == .dark ? .black : .white)
                 )
-                .scaleEffect(ringsLoaded ? 1.0 : 0.5)
-                .animation(.spring(response: 0.6).delay(0.1), value: ringsLoaded)
             
             // Draw electron shells and electrons
             ForEach(sortedShells.indices, id: \.self) { index in
@@ -52,13 +48,10 @@ struct BohrDiagramView: View {
                 let electronCount = shellCounts[shellNumber] ?? 0
                 let radius = calculateOrbitRadius(for: index, totalShells: sortedShells.count)
                 
-                // Draw orbit (ring)
+                // Draw orbit (ring) - no animation
                 Circle()
                     .stroke(colorScheme == .dark ? Color.white.opacity(0.4) : Color.black.opacity(0.4), lineWidth: 1)
                     .frame(width: radius * 2, height: radius * 2)
-                    .scaleEffect(ringsLoaded ? 1.0 : 0.1)
-                    .opacity(ringsLoaded ? 1.0 : 0.0)
-                    .animation(.spring(response: 0.6).delay(0.1 + Double(index) * 0.05), value: ringsLoaded)
                 
                 // Now create a rotating group for this shell
                 ElectronShellView(
@@ -66,30 +59,17 @@ struct BohrDiagramView: View {
                     electronCount: electronCount,
                     electronSize: electronSize,
                     shellIndex: index,
-                    isVisible: electronsLoaded,
                     animationToggle: animationToggle
                 )
             }
         }
         .frame(width: maxOrbitRadius * 2 + 20, height: maxOrbitRadius * 2 + 20)
         .onAppear {
-            // Sequence the animations:
-            
-            // 1. First, show the nucleus and rings
+            // Start the nucleus pulsing animation
             isPulsing = true
-            ringsLoaded = true
             
-            // 2. After rings are visible, show electrons
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                electronsLoaded = true
-                
-                // 3. After electrons appear, start orbital rotation
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    withAnimation(.linear(duration: 0)) {
-                        animationToggle.toggle()
-                    }
-                }
-            }
+            // Start orbital rotation immediately
+            animationToggle.toggle()
         }
     }
     
@@ -163,13 +143,12 @@ struct BohrDiagramView: View {
     }
 }
 
-// Separate component for each electron shell
+// Simplified component for each electron shell - only orbital animation
 struct ElectronShellView: View {
     let radius: CGFloat
     let electronCount: Int
     let electronSize: CGFloat
     let shellIndex: Int
-    let isVisible: Bool
     let animationToggle: Bool
     
     // Use different rotation speeds for different shells
@@ -189,9 +168,6 @@ struct ElectronShellView: View {
                     .frame(width: electronSize, height: electronSize)
                     .shadow(color: Color.blue.opacity(0.7), radius: 3)
                     .offset(x: radius * cos(CGFloat(angle)), y: radius * sin(CGFloat(angle)))
-                    .scaleEffect(isVisible ? 1.0 : 0.0)
-                    .opacity(isVisible ? 1.0 : 0.0)
-                    .animation(.spring(response: 0.4), value: isVisible)
             }
         }
         .rotationEffect(
