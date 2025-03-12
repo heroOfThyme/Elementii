@@ -35,7 +35,7 @@ struct ElementDetailView: View {
                                 title: tabTitles[index],
                                 icon: tabIcons[index],
                                 isSelected: selectedTab == index,
-                                accentColor: element.categoryColor
+                                accentColor: element.categoryColor.opacity(0.5)
                             ) {
                                 withAnimation {
                                     selectedTab = index
@@ -43,7 +43,7 @@ struct ElementDetailView: View {
                             }
                         }
                     }
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal)
                     .padding(.vertical, 8)
                 }
                 

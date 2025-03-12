@@ -4,6 +4,7 @@
 //
 //  Created by Petar Vidakovic on 2025-03-01.
 //
+
 import SwiftUI
 
 struct SettingsView: View {
@@ -245,4 +246,3 @@ struct SettingsView_Previews: PreviewProvider {
         }
     }
 }
-
